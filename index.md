@@ -16,12 +16,6 @@ You can provide more descriptive names for the name and path:
 python nbcreate.py README.md plot.py -o not_executed.ipynb -p notebooks/
 ```  
 
-Examples:
-
-- [not_executed](/jupyter/pandoc/dzslides-pandoc.html)
-- [executed](/jupyter/pandoc/slidy-pandoc.html)
-
-
 ## Step 2. Execute the notebook
 
 Run the following command in your terminal:
@@ -37,6 +31,11 @@ You can provide more descriptive names for the output name (`-o`) and path (`-p`
 ```sh
 python nbexecute.py raw.ipynb -o executed.ipynb -p notebooks/
 ```
+
+Examples:
+
+- [not_executed](https://nbviewer.jupyter.org/github/marskar/jupyter/blob/master/notebooks/not_executed.ipynb)
+- [executed](https://nbviewer.jupyter.org/github/marskar/jupyter/blob/master/notebooks/executed.ipynb)
 
 ## Missing a dependency?
 
