@@ -1,6 +1,6 @@
 from typing import List
-from packages.nbless.nbuild import nbuild
-from packages.nbless.nbexec import nbexec
+from nbuild import nbuild
+from nbexec import nbexec
 
 def nbless(filenames: List,
            nbuild_name: str = 'raw.ipynb',
