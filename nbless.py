@@ -2,6 +2,7 @@ from typing import List
 from nbuild import nbuild
 from nbexec import nbexec
 
+
 def nbless(filenames: List,
            nbuild_name: str = 'raw.ipynb',
            nbuild_path: str = './',
@@ -18,6 +19,7 @@ def nbless(filenames: List,
     nbexec(input_name=nbuild_path+nbuild_name,
            output_name=nbexec_name,
            output_path=nbexec_path)
+
 
 if __name__ == "__main__":
     import argparse
@@ -42,7 +44,7 @@ if __name__ == "__main__":
     out_name = args.out
     out_path = args.path
 
-    nbless(nbuild_name=names,
+    nbless(names,
            nbuild_path=out_path,
            nbexec_name=out_name,
            nbexec_path=out_path)
