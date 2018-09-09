@@ -5,7 +5,7 @@
 Run `nbcreate.py` script in your terminal, providing all of the names of the source files as arguments, e.g.
 
 ```sh
-python nbcreate.py README.md plot.py notes.txt
+python nbuild.py README.md plot.py notes.txt
 ```  
 
 The default output filename is `raw.ipynb`. The default output filepath is the current directory (`'.'`). 
@@ -13,7 +13,7 @@ The default output filename is `raw.ipynb`. The default output filepath is the c
 You can provide more descriptive names for the name and path:
     
 ```sh
-python nbcreate.py README.md plot.py -o not_executed.ipynb -p notebooks/
+python nbuild.py README.md plot.py -o not_executed.ipynb -p notebooks/
 ```  
 
 ## Step 2. Execute the notebook
@@ -21,7 +21,7 @@ python nbcreate.py README.md plot.py -o not_executed.ipynb -p notebooks/
 Run the following command in your terminal:
     
 ```sh
-python nbexecute.py raw.ipynb
+python nbexec.py raw.ipynb
 ```
 
 The default output filename is `out.ipynb`. The default output filepath is the current directory (`'.'`). 
@@ -29,7 +29,7 @@ The default output filename is `out.ipynb`. The default output filepath is the c
 You can provide more descriptive names for the output name (`-o`) and path (`-p`):
 
 ```sh
-python nbexecute.py raw.ipynb -o executed.ipynb -p notebooks/
+python nbexec.py raw.ipynb -o executed.ipynb -p notebooks/
 ```
 
 ## Missing a dependency?
@@ -59,5 +59,5 @@ Consider the example below:
 ```sh
 touch {01..09}.py
 name_list=`ls 0*.py`
-python nbcreate.py `echo $name_list`
+python nbuild.py `echo $name_list`
 ```
