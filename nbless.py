@@ -13,6 +13,8 @@ def nbless(filenames: List,
            output_name=nbuild_name,
            output_path=nbuild_path)
 
+    print(f"Created {nbuild_name} in {nbuild_path}")
+
     if not nbuild_path.endswith('/'):
         nbuild_path += '/'
 
@@ -20,6 +22,7 @@ def nbless(filenames: List,
            output_name=nbexec_name,
            output_path=nbexec_path)
 
+    print(f"Created {nbexec_name} in {nbexec_path}")
 
 if __name__ == "__main__":
     import argparse
@@ -32,7 +35,7 @@ if __name__ == "__main__":
     parser.add_argument('--raw', '-r', default='raw.ipynb',
                        help='The filename of the unexecuted output notebook.')
 
-    parser.add_argument('--out', '-o', default='raw.ipynb',
+    parser.add_argument('--out', '-o', default='out.ipynb',
                         help='The filename of the executed output notebook.')
 
     parser.add_argument('--path', '-p', default='./',
