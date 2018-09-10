@@ -1,0 +1,6 @@
+README.md
+setup.py
+nbless.egg-info/PKG-INFO
+nbless.egg-info/SOURCES.txt
+nbless.egg-info/dependency_links.txt
+nbless.egg-info/top_level.txt
