@@ -1,5 +1,10 @@
 README.md
 setup.py
+nbless/__init__.py
+nbless/nbexec.py
+nbless/nbless.py
+nbless/nbtest.py
+nbless/nbuild.py
 nbless.egg-info/PKG-INFO
 nbless.egg-info/SOURCES.txt
 nbless.egg-info/dependency_links.txt
