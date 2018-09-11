@@ -24,6 +24,7 @@ def nbless(filenames: List,
 
     print(f"Created {nbexec_name} in {nbexec_path}")
 
+
 if __name__ == "__main__":
     import argparse
 
@@ -33,13 +34,13 @@ if __name__ == "__main__":
     parser.add_argument('names', nargs='+', help='A series of filenames.')
 
     parser.add_argument('--raw', '-r', default='raw.ipynb',
-                       help='The filename of the unexecuted output notebook.')
+                        help='The filename of the unexecuted output notebook.')
 
     parser.add_argument('--out', '-o', default='out.ipynb',
                         help='The filename of the executed output notebook.')
 
     parser.add_argument('--path', '-p', default='./',
-                       help='The path where the notebooks will be saved.')
+                        help='The path where the notebooks will be saved.')
 
     args = parser.parse_args()
     names = args.names
