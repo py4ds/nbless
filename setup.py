@@ -12,6 +12,7 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/marskar/nbless",
+    scripts=['nbless.py', 'nbuild.py', 'nbexec.py'],
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
