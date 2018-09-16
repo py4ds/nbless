@@ -1,6 +1,6 @@
 from typing import List
-from nbless.nbuild import nbuild
-from nbless.nbexec import nbexec
+from nbuild import nbuild
+from nbexec import nbexec
 
 
 def nbless(filenames: List,

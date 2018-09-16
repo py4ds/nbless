@@ -11,11 +11,19 @@ The `nbless` python package consists of 3 functions:
 
 These functions rely on the `nbconvert` and `nbformat` modules that are included with `jupyter`.
 
+## Installation
+
+```sh
+pip install nbless
+```
+
+or clone this repo and use locally, e.g. `python nbless.py README.md plot.py notes.txt`.
+
 ## Basic usage: terminal
 
 ### Creating and executing a notebook with `nbless` in the terminal
 
-Run `nbless.py` script in your terminal, providing all of the names of the source files as arguments, e.g.
+Run `nbless` in your terminal, providing all of the names of the source files as arguments, e.g.
 
 ```sh
 python nbless.py README.md plot.py notes.txt
@@ -28,9 +36,9 @@ Then, the newly created notebook is copied, run from top to bottom and saved. Th
 You can provide more descriptive names for the notebooks and set a different path:
 
 ```sh
-python nbless.py README.md plot.py notes.txt --raw unexecuted --out executed.ipynb --path notebooks/
+nbless README.md plot.py notes.txt --raw unexecuted --out executed.ipynb --path notebooks/
 # Or
-python nbless.py README.md plot.py notes.txt -r not_executed.ipynb -o executed.ipynb -p notebooks/
+nbless README.md plot.py notes.txt -r not_executed.ipynb -o executed.ipynb -p notebooks/
 ```  
 
 ### Creating a notebook with `nbuild` in the terminal
@@ -38,7 +46,7 @@ python nbless.py README.md plot.py notes.txt -r not_executed.ipynb -o executed.i
 If you do not want an executed version of the notebook, run `nbuild.py` instead of `nbless.py`.
 
 ```sh
-python nbuild.py README.md plot.py notes.txt
+nbuild README.md plot.py notes.txt
 ```  
 
 The default output filename for `nbuild` is `raw.ipynb`. The default output filepath is the current directory (`'./'`).
@@ -46,15 +54,15 @@ The default output filename for `nbuild` is `raw.ipynb`. The default output file
 You can provide a more descriptive filename (`-o`) and set a different path (`-p`):
 
 ```sh
-python nbuild.py README.md plot.py -o not_executed.ipynb -p notebooks/
+nbuild README.md plot.py -o not_executed.ipynb -p notebooks/
 # Or
-python nbuild.py README.md plot.py --out not_executed.ipynb --path notebooks/
+nbuild README.md plot.py --out not_executed.ipynb --path notebooks/
 ```  
 
 If you only want to execute a notebook, run `nbexec.py`.
 
 ```sh
-python nbexec.py raw.ipynb
+nbexec raw.ipynb
 ```
 
 The default output filename for `nbexec.py` is `out.ipynb`. The default output filepath is the current directory (`'.'`).
@@ -62,9 +70,9 @@ The default output filename for `nbexec.py` is `out.ipynb`. The default output f
 You can provide more descriptive names for the output name (`-o`) and path (`-p`):
 
 ```sh
-python nbexec.py raw.ipynb -o executed.ipynb -p notebooks/
+nbexec raw.ipynb -o executed.ipynb -p notebooks/
 # Or
-python nbexec.py raw.ipynb --out executed.ipynb --path notebooks/
+nbexec raw.ipynb --out executed.ipynb --path notebooks/
 ```
 
 ## Basic usage: python environment
