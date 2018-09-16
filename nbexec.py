@@ -21,7 +21,7 @@ def nbexec(input_name: str,
         nbformat.write(nb, f)
 
 
-if __name__ == "__main__":
+def command_line_runner():
     import argparse
     parser = argparse.ArgumentParser(
         description='Execute a notebook from the command line.')
@@ -42,3 +42,7 @@ if __name__ == "__main__":
     nbexec(input_name=in_name,
            output_name=out_name,
            output_path=out_path)
+
+
+if __name__ == "__main__":
+    command_line_runner()
