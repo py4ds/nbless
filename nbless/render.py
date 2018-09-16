@@ -1,4 +1,4 @@
-from os import system
+from subprocess import call
 import argparse
 
 
@@ -23,8 +23,8 @@ def render(input_name: str = 'unrendered.Rmd',
     if not input_path.endswith('/'):
         input_path += '/'
 
-    system('Rscript -e rmarkdown::render('
-           f'"{input_path+input_name}")'
+    call(['Rscript -e rmarkdown::render('
+           f'"{input_path+input_name}")']
            #f'output_format = "{output_format}", '
            #f'output_file = "{output_name}", '
            #f'output_dir = "{output_path}") '
