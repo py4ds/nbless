@@ -1,16 +1,22 @@
 #!python
 import nbformat
 from nbconvert.preprocessors import ExecutePreprocessor
+import argparse
 
 
 def nbexec(input_name: str,
-           output_name: str = 'out.ipynb',
-           output_path: str = './') -> None:
+           input_path: str = './',
+           output_name: str = 'executed.ipynb',
+           output_path: str = './',
+           kernel_name: str = 'python3') -> None:
 
-    with open(input_name) as f:
+    if not input_path.endswith('/'):
+        input_path += '/'
+
+    with open(input_path+input_name) as f:
         nb = nbformat.read(f, as_version=4)
 
-    ep = ExecutePreprocessor()
+    ep = ExecutePreprocessor(timeout=600, kernel_name=kernel_name)
 
     ep.preprocess(nb, {'metadata': {'path': output_path}})
 
@@ -22,26 +28,36 @@ def nbexec(input_name: str,
 
 
 def command_line_runner():
-    import argparse
+
     parser = argparse.ArgumentParser(
         description='Execute a notebook from the command line.')
 
-    parser.add_argument('source', help='The filename of the input notebook.')
+    parser.add_argument('input_name', help='The filename of the input notebook.')
 
-    parser.add_argument('--out', '-o', default='out.ipynb',
-                        help='The filename of the output notebook.')
+    parser.add_argument('--input_path', '-i', default='./',
+                        help='The filepath to the input notebook.')
 
-    parser.add_argument('--path', '-p', default='.',
+    parser.add_argument('--executed', '-e', default='executed.ipynb',
+                        help='The filename of the executed output notebook.')
+
+    parser.add_argument('--output_path', '-o', default='./',
                         help='The filepath where the output notebook is saved.')
 
+    parser.add_argument('--kernel', '-k', default='python3',
+                        help='The Jupyter kernel used to execute the notebook')
+
     args = parser.parse_args()
-    in_name = args.source
-    out_name = args.out
-    out_path = args.path
+    in_name = args.input_name
+    in_path = args.input_path
+    out_name = args.executed
+    out_path = args.input_path
+    kernel = args.kernel
 
     nbexec(input_name=in_name,
+           input_path=in_path,
            output_name=out_name,
-           output_path=out_path)
+           output_path=out_path,
+           kernel_name=kernel)
 
 
 if __name__ == "__main__":

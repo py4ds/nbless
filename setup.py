@@ -13,7 +13,7 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/marskar/nbless",
     packages=setuptools.find_packages(),
-    scripts=['nbless.py', 'nbuild.py', 'nbexec.py'],
+    scripts=['nbless/nbless.py', 'nbless/nbuild.py', 'nbless/nbexec.py'],
     entry_points={
         'console_scripts': [
             'nbless = nbless.nbless:command_line_runner',

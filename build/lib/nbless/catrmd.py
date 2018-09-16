@@ -1,60 +1,57 @@
-#!python
-import nbformat
+#!/usr/bin/env python
 from typing import List
 import argparse
 
 
-def nbuild(filenames: List[str],
+def catrmd(filenames: List[str],
            input_path: str = './',
-           output_name: str = "unexecuted.ipynb",
+           output_name: str = "cat.Rmd",
            output_path: str = './') -> None:
 
     def read_file(filename):
         with open(filename) as f:
             return f.read()
 
-    nb = nbformat.v4.new_notebook()
-    md_cell = nbformat.v4.new_markdown_cell
-    code_cell = nbformat.v4.new_code_cell
-
     if not input_path.endswith('/'):
         input_path += '/'
 
-    nb['cells'] = [code_cell(read_file(input_path+name))
-                   if name.endswith(('.py', '.R'))
-                   else md_cell(read_file(input_path+name))
+    string_list = ['```{r}\n'+read_file(input_path+name)+'\n```'
+                   if name.endswith('.R')
+                   else '```{python}\n'+read_file(input_path+name)+'\n```'
+                   if name.endswith('.py')
+                   else read_file(input_path+name)
                    for name in filenames]
 
     if not output_path.endswith('/'):
         output_path += '/'
 
     with open(output_path+output_name, 'wt') as f:
-        nbformat.write(nb, f)
+        f.write('\n\n'.join(string_list))
 
 
 def command_line_runner():
 
     parser = argparse.ArgumentParser(
-        description='Create a notebook from the command line.')
+        description='Create an R markdown file from the command line.')
 
     parser.add_argument('names', nargs='+', help='A series of filenames.')
 
     parser.add_argument('--input_path', '-i', default='./',
                         help='The filepath to the source files.')
 
-    parser.add_argument('--unexecuted', '-u', default='unexecuted.ipynb',
-                        help='The filename of the unexecuted output notebook.')
+    parser.add_argument('--unrendered', '-u', default='unrendered.Rmd',
+                        help='The filename of the unrendered output Rmd file.')
 
     parser.add_argument('--output_path', '-o', default='./',
-                        help='The filepath where the output notebook is saved.')
+                        help='The filepath where the output Rmd file is saved.')
 
     args = parser.parse_args()
     names = args.names
     in_path = args.input_path
-    out_name = args.unexecuted
+    out_name = args.unrendered
     out_path = args.output_path
 
-    nbuild(filenames=names,
+    catrmd(filenames=names,
            input_path=in_path,
            output_name=out_name,
            output_path=out_path)
