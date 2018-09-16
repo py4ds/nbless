@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: nbless
-Version: 0.0.6
+Version: 0.0.7
 Summary: Create Jupyter notebooks from Markdown and Python scripts.
 Home-page: https://github.com/marskar/nbless
 Author: Martin Skarzynski
@@ -19,11 +19,19 @@ Description: # The `nbless` python package
         
         These functions rely on the `nbconvert` and `nbformat` modules that are included with `jupyter`.
         
+        ## Installation
+        
+        ```sh
+        pip install nbless
+        ```
+        
+        or clone this repo and use locally, e.g. `python nbless.py README.md plot.py notes.txt`.
+        
         ## Basic usage: terminal
         
         ### Creating and executing a notebook with `nbless` in the terminal
         
-        Run `nbless.py` script in your terminal, providing all of the names of the source files as arguments, e.g.
+        Run `nbless` in your terminal, providing all of the names of the source files as arguments, e.g.
         
         ```sh
         python nbless.py README.md plot.py notes.txt
@@ -36,9 +44,9 @@ Description: # The `nbless` python package
         You can provide more descriptive names for the notebooks and set a different path:
         
         ```sh
-        python nbless.py README.md plot.py notes.txt --raw unexecuted --out executed.ipynb --path notebooks/
+        nbless README.md plot.py notes.txt --raw unexecuted --out executed.ipynb --path notebooks/
         # Or
-        python nbless.py README.md plot.py notes.txt -r not_executed.ipynb -o executed.ipynb -p notebooks/
+        nbless README.md plot.py notes.txt -r not_executed.ipynb -o executed.ipynb -p notebooks/
         ```  
         
         ### Creating a notebook with `nbuild` in the terminal
@@ -46,7 +54,7 @@ Description: # The `nbless` python package
         If you do not want an executed version of the notebook, run `nbuild.py` instead of `nbless.py`.
         
         ```sh
-        python nbuild.py README.md plot.py notes.txt
+        nbuild README.md plot.py notes.txt
         ```  
         
         The default output filename for `nbuild` is `raw.ipynb`. The default output filepath is the current directory (`'./'`).
@@ -54,15 +62,15 @@ Description: # The `nbless` python package
         You can provide a more descriptive filename (`-o`) and set a different path (`-p`):
         
         ```sh
-        python nbuild.py README.md plot.py -o not_executed.ipynb -p notebooks/
+        nbuild README.md plot.py -o not_executed.ipynb -p notebooks/
         # Or
-        python nbuild.py README.md plot.py --out not_executed.ipynb --path notebooks/
+        nbuild README.md plot.py --out not_executed.ipynb --path notebooks/
         ```  
         
         If you only want to execute a notebook, run `nbexec.py`.
         
         ```sh
-        python nbexec.py raw.ipynb
+        nbexec raw.ipynb
         ```
         
         The default output filename for `nbexec.py` is `out.ipynb`. The default output filepath is the current directory (`'.'`).
@@ -70,16 +78,17 @@ Description: # The `nbless` python package
         You can provide more descriptive names for the output name (`-o`) and path (`-p`):
         
         ```sh
-        python nbexec.py raw.ipynb -o executed.ipynb -p notebooks/
+        nbexec raw.ipynb -o executed.ipynb -p notebooks/
         # Or
-        python nbexec.py raw.ipynb --out executed.ipynb --path notebooks/
+        nbexec raw.ipynb --out executed.ipynb --path notebooks/
         ```
         
         ## Basic usage: python environment
         
         ```python
-        from nbuild import nbuild
-        from nbexec import nbexec
+        # You can also import each function individually
+        from nbless import nbuild
+        from nbless import nbexec
         from nbless import nbless
         
         nbuild(["README.md", "plot.py", "notes.txt"], output_path="notebooks/")
@@ -87,6 +96,12 @@ Description: # The `nbless` python package
         
         # Or to run both nbuild and nbexec at once, use nbless
         nbless(["README.md", "plot.py", "notes.txt"], nbexec_path="notebooks/")
+        
+        # Another alternative is to import the package and use it as a namespace.
+        import nbless
+        nbless.nbuild(["README.md", "plot.py", "notes.txt"], output_path="notebooks/")
+        nbless.nbexec("notebooks/raw.ipynb", output_path="notebooks/")
+        nbless.nbless(["README.md", "plot.py", "notes.txt"], nbexec_path="notebooks/")
         ```
         
         ### Missing a dependency?
