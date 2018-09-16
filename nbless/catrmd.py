@@ -1,10 +1,10 @@
 #!/usr/bin/env python
-import nbformat
 from typing import List
 import argparse
 
 
-def catrmd(filenames: List,
+def catrmd(filenames: List[str],
+           input_path: str = './',
            output_name: str = "cat.Rmd",
            output_path: str = './') -> None:
 
@@ -12,32 +12,47 @@ def catrmd(filenames: List,
         with open(filename) as f:
             return f.read()
 
+    if not input_path.endswith('/'):
+        input_path += '/'
+
+    string_list = ['```{r}\n'+read_file(input_path+name)+'\n```'
+                   if name.endswith('.R')
+                   else '```{python}\n'+read_file(input_path+name)+'\n```'
+                   if name.endswith('.py')
+                   else read_file(input_path+name)
+                   for name in filenames]
 
     if not output_path.endswith('/'):
         output_path += '/'
 
-    nbformat.write(nb, output_path+output_name)
+    with open(output_path+output_name, 'wt') as f:
+        f.write('\n\n'.join(string_list))
 
 
 def command_line_runner():
 
     parser = argparse.ArgumentParser(
-        description='Create a notebook from the command line.')
+        description='Create an R markdown file from the command line.')
 
     parser.add_argument('names', nargs='+', help='A series of filenames.')
 
-    parser.add_argument('--out', '-o', default='raw.ipynb',
-                        help='The filename of the output notebook.')
+    parser.add_argument('--input_path', '-i', default='./',
+                        help='The filepath to the source files.')
 
-    parser.add_argument('--path', '-p', default='./',
-                        help='The path where the output notebook is saved.')
+    parser.add_argument('--unrendered', '-u', default='unrendered.Rmd',
+                        help='The filename of the unrendered output Rmd file.')
+
+    parser.add_argument('--output_path', '-o', default='./',
+                        help='The filepath where the output Rmd file is saved.')
 
     args = parser.parse_args()
     names = args.names
-    out_name = args.out
-    out_path = args.path
+    in_path = args.input_path
+    out_name = args.unrendered
+    out_path = args.output_path
 
-    nbuild(filenames=names,
+    catrmd(filenames=names,
+           input_path=in_path,
            output_name=out_name,
            output_path=out_path)
 

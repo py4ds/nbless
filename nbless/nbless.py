@@ -5,7 +5,7 @@ from nbexec import nbexec
 import argparse
 
 
-def nbless(filenames: List,
+def nbless(filenames: List[str],
            input_path: str = './',
            nbuild_name: str = 'unexecuted.ipynb',
            nbuild_path: str = './',

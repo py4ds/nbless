@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import nbformat
 from nbconvert.preprocessors import ExecutePreprocessor
+import argparse
 
 
 def nbexec(input_name: str,
@@ -27,11 +28,11 @@ def nbexec(input_name: str,
 
 
 def command_line_runner():
-    import argparse
+
     parser = argparse.ArgumentParser(
         description='Execute a notebook from the command line.')
 
-    parser.add_argument('input', help='The filename of the input notebook.')
+    parser.add_argument('input_name', help='The filename of the input notebook.')
 
     parser.add_argument('--input_path', '-i', default='./',
                         help='The filepath to the input notebook.')
@@ -46,7 +47,7 @@ def command_line_runner():
                         help='The Jupyter kernel used to execute the notebook')
 
     args = parser.parse_args()
-    in_name = args.input
+    in_name = args.input_name
     in_path = args.input_path
     out_name = args.executed
     out_path = args.input_path

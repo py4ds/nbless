@@ -4,7 +4,7 @@ from typing import List
 import argparse
 
 
-def nbuild(filenames: List,
+def nbuild(filenames: List[str],
            input_path: str = './',
            output_name: str = "unexecuted.ipynb",
            output_path: str = './') -> None:
@@ -28,7 +28,8 @@ def nbuild(filenames: List,
     if not output_path.endswith('/'):
         output_path += '/'
 
-    nbformat.write(nb, output_path+output_name)
+    with open(output_path+output_name, 'wt') as f:
+        nbformat.write(nb, f)
 
 
 def command_line_runner():

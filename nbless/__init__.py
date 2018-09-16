@@ -1,6 +1,7 @@
 from nbless import nbless
-from nbuild import nbuild
-from nbexec import nbexec
+from nbless import nbuild
+from nbless import nbexec
+from nbless import catrmd
 
-__all__ = ['nbless', 'nbuild', 'nbexec']
+__all__ = ['nbless', 'nbuild', 'nbexec', 'catrmd']
 
