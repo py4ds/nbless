@@ -13,13 +13,13 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/marskar/nbless",
     packages=setuptools.find_packages(),
-    scripts=['nbless/nbless.py', 'nbless/nbuild.py', 'nbless/nbexec.py'],
+    scripts=['nbless.py', 'nbuild.py', 'nbexec.py', 'catrmd.py'],
     entry_points={
         'console_scripts': [
-            'nbless = nbless.nbless:command_line_runner',
-            'nbuild = nbless.nbuild:command_line_runner',
-            'nbexec = nbless.nbexec:command_line_runner',
-            'catrmd = nbless.catrmd:command_line_runner',
+            'nbless = nbless:command_line_runner',
+            'nbuild = nbuild:command_line_runner',
+            'nbexec = nbexec:command_line_runner',
+            'catrmd = catrmd:command_line_runner',
         ]
     },
     classifiers=[
