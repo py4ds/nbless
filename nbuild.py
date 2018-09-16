@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import nbformat
 from typing import List
 

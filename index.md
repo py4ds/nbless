@@ -78,8 +78,9 @@ nbexec raw.ipynb --out executed.ipynb --path notebooks/
 ## Basic usage: python environment
 
 ```python
-from nbuild import nbuild
-from nbexec import nbexec
+# You can also import each function individually
+from nbless import nbuild
+from nbless import nbexec
 from nbless import nbless
 
 nbuild(["README.md", "plot.py", "notes.txt"], output_path="notebooks/")
@@ -87,6 +88,12 @@ nbexec("notebooks/raw.ipynb", output_path="notebooks/")
 
 # Or to run both nbuild and nbexec at once, use nbless
 nbless(["README.md", "plot.py", "notes.txt"], nbexec_path="notebooks/")
+
+# Another alternative is to import the package and use it as a namespace.
+import nbless
+nbless.nbuild(["README.md", "plot.py", "notes.txt"], output_path="notebooks/")
+nbless.nbexec("notebooks/raw.ipynb", output_path="notebooks/")
+nbless.nbless(["README.md", "plot.py", "notes.txt"], nbexec_path="notebooks/")
 ```
 
 ### Missing a dependency?

@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 from typing import List
 from nbuild import nbuild
 from nbexec import nbexec
