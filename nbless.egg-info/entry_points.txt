@@ -1,0 +1,5 @@
+[console_scripts]
+nbexec = nbexec.nbexec:command_line_runner
+nbless = nbless.nbless:command_line_runner
+nbuild = nbuild.nbuild:command_line_runner
+

@@ -26,7 +26,8 @@ def nbless(filenames: List,
     print(f"Created {nbexec_name} in {nbexec_path}")
 
 
-if __name__ == "__main__":
+def command_line_runner():
+
     import argparse
 
     parser = argparse.ArgumentParser(
@@ -51,5 +52,10 @@ if __name__ == "__main__":
 
     nbless(names,
            nbuild_path=out_path,
+           nbuild_name=raw_name,
            nbexec_name=out_name,
            nbexec_path=out_path)
+
+
+if __name__ == "__main__":
+    command_line_runner()

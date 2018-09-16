@@ -1,6 +1,7 @@
 #!python
 import nbformat
 from typing import List
+import argparse
 
 
 def nbuild(filenames: List,
@@ -26,8 +27,7 @@ def nbuild(filenames: List,
     nbformat.write(nb, output_path+output_name)
 
 
-if __name__ == "__main__":
-    import argparse
+def command_line_runner():
 
     parser = argparse.ArgumentParser(
         description='Create a notebook from the command line.')
@@ -48,3 +48,7 @@ if __name__ == "__main__":
     nbuild(filenames=names,
            output_name=out_name,
            output_path=out_path)
+
+
+if __name__ == "__main__":
+    command_line_runner()
