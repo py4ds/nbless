@@ -17,7 +17,7 @@ def nbuild(filenames: List,
     code_cell = nbformat.v4.new_code_cell
 
     nb['cells'] = [code_cell(read_file(name))
-                   if name.endswith('.py')
+                   if name.endswith(('.py', '.r', '.R'))
                    else md_cell(read_file(name))
                    for name in filenames]
 
