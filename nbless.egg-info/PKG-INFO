@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: nbless
-Version: 0.0.10
+Version: 0.0.11
 Summary: Create Jupyter notebooks from Markdown and Python scripts.
 Home-page: https://github.com/marskar/nbless
 Author: Martin Skarzynski
@@ -8,16 +8,23 @@ Author-email: marskar@gmail.com
 License: UNKNOWN
 Description: # The `nbless` python package
         
-        Using `nbless` you can create and execute Jupyter notebooks in
+        Using `nbless` you can create and execute [Jupyter Notebooks](http://jupyter-notebook.readthedocs.io/en/latest/examples/Notebook/What%20is%20the%20Jupyter%20Notebook.html) in
         - your terminal or
-        - your favorite Python environment (e.g. PyCharm or Visual Studio Code).
+        - your favorite Python environment (e.g. [PyCharm](https://www.jetbrains.com/pycharm/) or [Visual Studio Code](https://code.visualstudio.com/docs/python/python-tutorial)).
         
-        The `nbless` python package consists of 3 functions:
+        The `nbless` python package consists of 4 functions:
         - `nbuild`, which creates a notebook from python scripts and plain text files, e.g. markdown (`.md`) and text (`.txt`) files.
         - `nbexec`, which runs a notebook from top to bottom and saves an executed version, leaving the source notebook untouched.
         - `nbless`, which calls `nbuild` and `nbexec` to create and execute a notebook.
+        - `catrmd`, which con**cat**enates input files to output an [R Markdown](https://rmarkdown.rstudio.com/authoring_quick_tour.html) (Rmd) file.
         
-        These functions rely on the `nbconvert` and `nbformat` modules that are included with `jupyter`.
+        All of the above function work for Python _and_ R code, with the caveat that nbexec and nbless require the kernel argument to be set to `ir` if R code files (`.R`) are included.
+        
+        If you want to execute a Jupyter notebook that contains both R and Python code, you will have to put the R code in Python scripts (`.py`) and use [rpy2](https://rpy2.readthedocs.io/) with the default kernel (`python3`).
+        
+        To run Rmd files that include R and Python code, you will need the `reticulate` R package.
+        
+        The `nb` functions rely on the `nbconvert` and `nbformat` modules that are included with `jupyter`. The `catrmd` function has no dependencies beyond Python.
         
         ## Installation
         
@@ -25,84 +32,137 @@ Description: # The `nbless` python package
         pip install nbless
         ```
         
-        or clone this repo and use locally, e.g. `python nbless.py README.md plot.py notes.txt`.
+        or clone the [repo](https://github.com/marskar/nbless), e.g. `git clone https://github.com/marskar/nbless` and either use locally, e.g. `python nbless.py README.md plot.py notes.txt` or install using setup.py, e.g. `python setup.py install`.
         
         ## Basic usage: terminal
         
-        ### Creating and executing a notebook with `nbless` in the terminal
-        
-        Run `nbless` in your terminal, providing all of the names of the source files as arguments, e.g.
-        
-        ```sh
-        python nbless.py README.md plot.py notes.txt
-        ```
-        
-        First, the contents of Python code files (`.py`) are stored as Jupyter notebook code cells, while the contents of all other files are stored in markdown cells.
-        
-        Then, the newly created notebook is copied, run from top to bottom and saved. The default name of the first notebook is `raw.ipynb` while the executed notebook is called `out.ipynb` by default output. The default filepath where the notebooks are saved is the current directory (`'./'`).
-        
-        You can provide more descriptive names for the notebooks and set a different path:
-        
-        ```sh
-        nbless README.md plot.py notes.txt --raw unexecuted --out executed.ipynb --path notebooks/
-        # Or
-        nbless README.md plot.py notes.txt -r not_executed.ipynb -o executed.ipynb -p notebooks/
-        ```  
-        
-        ### Creating a notebook with `nbuild` in the terminal
-        
-        If you do not want an executed version of the notebook, run `nbuild.py` instead of `nbless.py`.
+        ### Creating a Jupyter notebook with `nbuild` in the terminal
         
         ```sh
         nbuild README.md plot.py notes.txt
         ```  
         
-        The default output filename for `nbuild` is `raw.ipynb`. The default output filepath is the current directory (`'./'`).
+        The `nbuild` function takes the contents of Python code files (`.py`) stores them as [Jupyter Notebook code cells](https://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/Running%20Code.html). The contents of all other files are stored in [markdown cells](https://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/Working%20With%20Markdown%20Cells.html).
         
-        You can provide a more descriptive filename (`-o`) and set a different path (`-p`):
+        The default output filename for `nbuild` is `unexecuted.ipynb`. By default, input and output files are located in the current directory (`'./'`).
+        
+        You can provide a more descriptive filename for the unexecuted notebook (`-u`) and set different input  (`-i`) and output  (`-o`) filepaths:
         
         ```sh
-        nbuild README.md plot.py -o not_executed.ipynb -p notebooks/
+        nbuild README.md plot.py notes.txt --unexecuted raw.ipynb --output_path notebooks/
         # Or
-        nbuild README.md plot.py --out not_executed.ipynb --path notebooks/
-        ```  
+        nbuild README.md plot.py notes.txt -u raw.ipynb -o notebooks/
+        ```
         
-        If you only want to execute a notebook, run `nbexec.py`.
+        If you only want to execute a notebook, run `nbexec`.
+        
+        ### Executing a notebook with `nbexec` in the terminal
+        
         
         ```sh
         nbexec raw.ipynb
         ```
         
-        The default output filename for `nbexec.py` is `out.ipynb`. The default output filepath is the current directory (`'.'`).
+        The `nbexec` creates a copy of the input notebook, runs it from top to bottom and saves it. The default name of the first notebook is `unexecuted.ipynb` while the executed notebook is called `executed.ipynb` by default. The default filepath where the notebooks are saved is the current directory (`'./'`).
         
-        You can provide more descriptive names for the output name (`-o`) and path (`-p`):
+        The default output filename for `nbexec.py` is `executed.ipynb`.  By default, input and output files are located in the current directory (`'./'`).
+        
+        You can provide a more descriptive filename for the executed notebook (`-e`) and set different input  (`-i`) and output  (`-o`) filepaths:
+        
         
         ```sh
-        nbexec raw.ipynb -o executed.ipynb -p notebooks/
+        nbexec raw.ipynb -e out.ipynb -o notebooks/
         # Or
-        nbexec raw.ipynb --out executed.ipynb --path notebooks/
+        nbexec raw.ipynb --executed out.ipynb --output_path notebooks/
         ```
+        
+        If you want to combine `nbuild` and `nbexec` in one step, use `nbless`.
+        
+        ### Creating and executing a Jupyter notebook with `nbless` in the terminal
+        
+        Run `nbless` in your terminal, providing all of the names of the source files as arguments, e.g.
+        
+        ```sh
+        nbless README.md plot.py notes.txt
+        ```
+        
+        You can provide more descriptive names for the notebooks and set a different path:
+        
+        ```sh
+        nbless README.md plot.py notes.txt --unexecuted raw.ipynb --executed out.ipynb --output_path notebooks/
+        # Or
+        nbless README.md plot.py notes.txt -u raw.ipynb -e out.ipynb -o notebooks/
+        ```  
+        
+        If you do not want an executed version of the notebook, run `nbuild` instead of `nbless`.
+        
+        ### Creating an R markdown file with `catrmd` in the terminal
+        
+        The `catrmd` functions works like `nbuild`. Provide all of the source files as arguments, e.g.
+        
+        ```sh
+        catrmd header.yml intro.md letters.R notes.txt plot.py
+        ```
+        
+        The default output filename for `catrmd` is `cat.Rmd`. By default, input and output files are located in the current directory (`'./'`).
+        
+        You can provide a more descriptive filename for the unrendered Rmd (`-u`) and set different input  (`-i`) and output  (`-o`) filepaths:
+        
+        ```sh
+        catrmd header.yml intro.md letters.R notes.txt plot.py --unrendered raw.Rmd --output_path rmarkdown/
+        # Or
+        catrmd header.yml intro.md letters.R notes.txt plot.py -u raw.Rmd -o rmarkdown/
+        ```
+        
+        If want to later output an R notebook using [RStudio](https://rmarkdown.rstudio.com/r_notebooks), your YAML header should include `html_notebook` as an output type (Hint: press ctrl/cmd+Shift+K).
+        
+        ```yaml
+        ---
+        title: "Untitled"
+        output: html_notebook
+        ---
+        ```
+        
+        The `render` function from the `rmarkdown` R package allows you to specify the output type on the fly with the `output_format` argument.
+        
         
         ## Basic usage: python environment
         
         ```python
+        # You can import any or all of the functions from the nbless package.
+        
         # You can also import each function individually
         from nbless import nbuild
         from nbless import nbexec
         from nbless import nbless
+        from nbless import catrmd
         
+        # The above imports all 4 functions
+        # This can also be done with either of the two lines below.
+        from nbless import nbuild, nbexec, nbless, catrmd
+        from nbless import *
+        
+        # Another alternative is to import the package and use it as a namespace.
+        import nbless
+        
+        #Use individually
         nbuild(["README.md", "plot.py", "notes.txt"], output_path="notebooks/")
         nbexec("notebooks/raw.ipynb", output_path="notebooks/")
         
         # Or to run both nbuild and nbexec at once, use nbless
         nbless(["README.md", "plot.py", "notes.txt"], nbexec_path="notebooks/")
         
-        # Another alternative is to import the package and use it as a namespace.
-        import nbless
+        # To make an Rmd file, use catrmd
+        catrmd(["header.yml", "intro.md", "letters.R" "plot.py", "notes.txt"], output_path="rmarkdown/")
+        
+        # Use nbless as a namespace
         nbless.nbuild(["README.md", "plot.py", "notes.txt"], output_path="notebooks/")
         nbless.nbexec("notebooks/raw.ipynb", output_path="notebooks/")
         nbless.nbless(["README.md", "plot.py", "notes.txt"], nbexec_path="notebooks/")
+        nbless.catrmd(["header.yml", "intro.md", "letters.R" "plot.py", "notes.txt"], output_path="rmarkdown/")
         ```
+        
+        You can also run the `nbless` functions in an R environment using the `reticulate` R package.
         
         ### Missing a dependency?
         

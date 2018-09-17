@@ -1,8 +1,4 @@
 README.md
-catrmd.py
-nbexec.py
-nbless.py
-nbuild.py
 setup.py
 nbless.egg-info/PKG-INFO
 nbless.egg-info/SOURCES.txt
