@@ -1,7 +1,7 @@
-from nbless.nbless import nbless
-from nbless.nbuild import nbuild
-from nbless.nbexec import nbexec
-from nbless.catrmd import catrmd
+from nbless import nbless
+from nbless import nbuild
+from nbless import nbexec
+from nbless import catrmd
 
 __all__ = ['nbless', 'nbuild', 'nbexec', 'catrmd']
 

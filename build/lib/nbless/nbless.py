@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 from typing import List
-from nbuild import nbuild
-from nbexec import nbexec
+from nbless import nbuild
+from nbless import nbexec
 import argparse
 
 
