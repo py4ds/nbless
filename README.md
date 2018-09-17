@@ -36,9 +36,9 @@ Then, the newly created notebook is copied, run from top to bottom and saved. Th
 You can provide more descriptive names for the notebooks and set a different path:
 
 ```sh
-nbless README.md plot.py notes.txt --raw unexecuted --out executed.ipynb --path notebooks/
+nbless README.md plot.py notes.txt --unexecuted unexecuted.ipynb --executed executed.ipynb --output_path notebooks/
 # Or
-nbless README.md plot.py notes.txt -r not_executed.ipynb -o executed.ipynb -p notebooks/
+nbless README.md plot.py notes.txt -u unexecuted.ipynb -e executed.ipynb -o notebooks/
 ```  
 
 ### Creating a notebook with `nbuild` in the terminal
@@ -54,9 +54,9 @@ The default output filename for `nbuild` is `raw.ipynb`. The default output file
 You can provide a more descriptive filename (`-o`) and set a different path (`-p`):
 
 ```sh
-nbuild README.md plot.py -o not_executed.ipynb -p notebooks/
+nbuild README.md plot.py notes.txt --unexecuted not_executed.ipynb --output_path notebooks/
 # Or
-nbuild README.md plot.py --out not_executed.ipynb --path notebooks/
+nbuild README.md plot.py notes.txt -u unexecuted.ipynb -o notebooks/
 ```  
 
 If you only want to execute a notebook, run `nbexec.py`.
@@ -70,9 +70,9 @@ The default output filename for `nbexec.py` is `out.ipynb`. The default output f
 You can provide more descriptive names for the output name (`-o`) and path (`-p`):
 
 ```sh
-nbexec raw.ipynb -o executed.ipynb -p notebooks/
+nbexec raw.ipynb -e executed.ipynb -o notebooks/
 # Or
-nbexec raw.ipynb --out executed.ipynb --path notebooks/
+nbexec raw.ipynb --executed executed.ipynb --output_path notebooks/
 ```
 
 ## Basic usage: python environment
