@@ -26,7 +26,7 @@ or clone this repo and use locally, e.g. `python nbless.py README.md plot.py not
 Run `nbless` in your terminal, providing all of the names of the source files as arguments, e.g.
 
 ```sh
-python nbless.py README.md plot.py notes.txt
+nbless README.md plot.py notes.txt
 ```
 
 First, the contents of Python code files (`.py`) are stored as Jupyter notebook code cells, while the contents of all other files are stored in markdown cells.
