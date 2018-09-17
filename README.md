@@ -145,13 +145,13 @@ nbexec("notebooks/raw.ipynb", output_path="notebooks/")
 nbless(["README.md", "plot.py", "notes.txt"], nbexec_path="notebooks/")
 
 # To make an Rmd file, use catrmd
-catrmd(["header.yml", "intro.md", "letters.R" "plot.py", "notes.txt"], output_path="rmarkdown/")
+catrmd(["header.yml", "intro.md", "letters.R", "plot.py", "notes.txt"], output_path="rmarkdown/")
 
 # Use nbless as a namespace
 nbless.nbuild(["README.md", "plot.py", "notes.txt"], output_path="notebooks/")
 nbless.nbexec("notebooks/raw.ipynb", output_path="notebooks/")
 nbless.nbless(["README.md", "plot.py", "notes.txt"], nbexec_path="notebooks/")
-nbless.catrmd(["header.yml", "intro.md", "letters.R" "plot.py", "notes.txt"], output_path="rmarkdown/")
+nbless.catrmd(["header.yml", "intro.md", "letters.R", "plot.py", "notes.txt"], output_path="rmarkdown/")
 ```
 
 You can also run the `nbless` functions in an R environment using the `reticulate` R package.
