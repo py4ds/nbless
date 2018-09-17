@@ -8,7 +8,7 @@ The `nbless` python package consists of 4 functions:
 - `nbuild`, which creates a notebook from python scripts and plain text files, e.g. markdown (`.md`) and text (`.txt`) files.
 - `nbexec`, which runs a notebook from top to bottom and saves an executed version, leaving the source notebook untouched.
 - `nbless`, which calls `nbuild` and `nbexec` to create and execute a notebook.
-- `catrmd`, which con**cat**enates input files to output an R Markdown (Rmd) file.
+- `catrmd`, which con**cat**enates input files to output an [R Markdown](https://rmarkdown.rstudio.com/authoring_quick_tour.html) (Rmd) file.
 
 All of the above function work for Python _and_ R code, with the caveat that nbexec and nbless require the kernel argument to be set to `ir` if R code files (`.R`) are included.
 
