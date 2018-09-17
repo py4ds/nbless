@@ -44,7 +44,7 @@ def command_line_runner():
                         help='The filepath where the output notebook is saved.')
 
     parser.add_argument('--kernel', '-k', default='python3',
-                        help='The Jupyter kernel used to execute the notebook')
+                        help='The Jupyter kernel used to execute the notebook.')
 
     args = parser.parse_args()
     in_name = args.input_name
