@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 from typing import List
-from nbless import nbuild
-from nbless import nbexec
-import argparse
+from nbless.nbuild import nbuild
+from nbless.nbexec import nbexec
+from nbless.nbcode import nbcode
+from argparse import ArgumentParser
 
 
 def nbless(filenames: List[str],
@@ -11,7 +12,10 @@ def nbless(filenames: List[str],
            nbuild_path: str = './',
            nbexec_name: str = 'executed.ipynb',
            nbexec_path: str = './',
-           kernel_name: str = 'python3') -> None:
+           kernel_name: str = 'python3',
+           nbcode_name: str = 'code.py',
+           nbcode_path: str = './'
+           ) -> None:
 
     nbuild(filenames=filenames,
            input_path=input_path,
@@ -33,10 +37,16 @@ def nbless(filenames: List[str],
         print(f'Created {nbexec_name} in {nbexec_path} from {nbuild_name} '
               f'using the {kernel_name} kernel.')
 
+    nbcode(input_name=nbexec_name,
+           input_path=nbexec_path,
+           output_name=nbcode_name,
+           output_path=nbcode_path)
+
+    print(f'Created {nbcode_name} in {nbcode_path}.')
 
 def command_line_runner():
 
-    parser = argparse.ArgumentParser(
+    parser = ArgumentParser(
           description='Create and execute a notebook from the command line.')
 
     parser.add_argument('names', nargs='+', help='A series of filenames.')
@@ -44,10 +54,13 @@ def command_line_runner():
     parser.add_argument('--input_path', '-i', default='./',
                         help='The filepath to the source files.')
 
-    parser.add_argument('--unexecuted', '-u', default='unexecuted.ipynb',
+    parser.add_argument('--nbuild', '-u', default='unexecuted.ipynb',
                         help='The filename of the unexecuted output notebook.')
 
-    parser.add_argument('--executed', '-e', default='executed.ipynb',
+    parser.add_argument('--nbcode', '-c', default='code.py',
+                        help='The filename of the output code file.')
+
+    parser.add_argument('--nbexec', '-e', default='executed.ipynb',
                         help='The filename of the executed output notebook.')
 
     parser.add_argument('--output_path', '-o', default='./',
@@ -59,16 +72,19 @@ def command_line_runner():
     args = parser.parse_args()
     names = args.names
     in_path = args.input_path
-    raw_name = args.unexecuted
+    nbu_name = args.nbuild
+    nbc_name = args.nbcode
+    nbe_name = args.nbexec
     out_path = args.output_path
-    out_name = args.executed
     kernel = args.kernel
 
     nbless(filenames=names,
            input_path=in_path,
-           nbuild_name=raw_name,
+           nbuild_name=nbu_name,
+           nbcode_name=nbc_name,
+           nbexec_name=nbe_name,
            nbuild_path=out_path,
-           nbexec_name=out_name,
+           nbcode_path=out_path,
            nbexec_path=out_path,
            kernel_name=kernel)
 

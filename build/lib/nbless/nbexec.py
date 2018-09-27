@@ -1,7 +1,10 @@
 #!/usr/bin/env python
 import nbformat
 from nbconvert.preprocessors import ExecutePreprocessor
-import argparse
+from argparse import ArgumentParser
+#from typing import Optional
+#from os.path import splitext
+
 
 
 def nbexec(input_name: str,
@@ -29,7 +32,7 @@ def nbexec(input_name: str,
 
 def command_line_runner():
 
-    parser = argparse.ArgumentParser(
+    parser = ArgumentParser(
         description='Execute a notebook from the command line.')
 
     parser.add_argument('input_name', help='The filename of the input notebook.')
@@ -37,7 +40,7 @@ def command_line_runner():
     parser.add_argument('--input_path', '-i', default='./',
                         help='The filepath to the input notebook.')
 
-    parser.add_argument('--executed', '-e', default='executed.ipynb',
+    parser.add_argument('--output_name', '-n', default='executed.ipynb',
                         help='The filename of the executed output notebook.')
 
     parser.add_argument('--output_path', '-o', default='./',
@@ -49,8 +52,8 @@ def command_line_runner():
     args = parser.parse_args()
     in_name = args.input_name
     in_path = args.input_path
-    out_name = args.executed
-    out_path = args.input_path
+    out_name = args.output_name
+    out_path = args.output_path
     kernel = args.kernel
 
     nbexec(input_name=in_name,

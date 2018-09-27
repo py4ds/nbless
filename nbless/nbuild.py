@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import nbformat
 from typing import List
-import argparse
+from argparse import ArgumentParser
 
 
 def nbuild(filenames: List[str],
@@ -34,7 +34,7 @@ def nbuild(filenames: List[str],
 
 def command_line_runner():
 
-    parser = argparse.ArgumentParser(
+    parser = ArgumentParser(
         description='Create a notebook from the command line.')
 
     parser.add_argument('names', nargs='+', help='A series of filenames.')
@@ -42,7 +42,7 @@ def command_line_runner():
     parser.add_argument('--input_path', '-i', default='./',
                         help='The filepath to the source files.')
 
-    parser.add_argument('--unexecuted', '-u', default='unexecuted.ipynb',
+    parser.add_argument('--output_name', '-n', default='unexecuted.ipynb',
                         help='The filename of the unexecuted output notebook.')
 
     parser.add_argument('--output_path', '-o', default='./',
@@ -51,7 +51,7 @@ def command_line_runner():
     args = parser.parse_args()
     names = args.names
     in_path = args.input_path
-    out_name = args.unexecuted
+    out_name = args.output_name
     out_path = args.output_path
 
     nbuild(filenames=names,

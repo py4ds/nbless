@@ -1,6 +1,7 @@
 [console_scripts]
-catrmd = nbless.catrmd:command_line_runner
+nbcode = nbless.nbcode:command_line_runner
 nbexec = nbless.nbexec:command_line_runner
+nbhtml = nbless.nbhtml:command_line_runner
 nbless = nbless.nbless:command_line_runner
 nbuild = nbless.nbuild:command_line_runner
 
