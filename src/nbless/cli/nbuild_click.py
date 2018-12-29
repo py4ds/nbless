@@ -2,7 +2,7 @@ from typing import List
 
 import click
 
-from src.nbless import nbuild, nbsave
+from nbless import nbuild, nbsave
 
 
 @click.command()

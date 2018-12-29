@@ -3,7 +3,7 @@ from typing import Tuple
 
 from nbconvert.exporters import get_exporter
 
-from src.nbless.helpers.get_stem import get_stem
+from nbless.helpers.get_stem import get_stem
 
 
 def nbconv(nb_name: str, exporter: str = 'python') -> Tuple[str, str]:
