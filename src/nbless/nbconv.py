@@ -1,7 +1,10 @@
 #!/usr/bin/env python
+from typing import Tuple
+
 from nbconvert.exporters import get_exporter
-from nbless.helpers import get_base, write_file
-from nbless.cli import nbexec_click
+
+from src.nbless.helpers.get_stem import get_stem
+
 
 def nbconv(nb_name: str, exporter: str = 'python') -> Tuple[str, str]:
     """Convert a notebook into various formats using different exporters
@@ -13,9 +16,5 @@ def nbconv(nb_name: str, exporter: str = 'python') -> Tuple[str, str]:
     slides need to served (not self-contained)
     """
     contents, resources = get_exporter(exporter)().from_filename(nb_name)
-    out_name = get_base(nb_name) + resources.get('output_extension', '.txt')
+    out_name = get_stem(nb_name) + resources.get('output_extension', '.txt')
     return out_name, contents
-
-
-if __name__ == "__main__":
-    nbexec_click()

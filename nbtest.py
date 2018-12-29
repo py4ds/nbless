@@ -1,12 +1,12 @@
 # You can import any or all of the functions from the nbless package.
 # The above imports all 3 functions and is the same as the line below.
 # You can also import each function individually
-from nbless import nbuild
+from src.nbless import nbuild
 from nbless import nbexec
 from nbless import nbless
 from nbless import nbcode
 from nbless import nbhtml
-nbuild(["plot.py", "notes.txt"], input_path='input_files', output_path="notebooks/")
+nbuild(["input_files/plot.py", "input_files/notes.txt"])
 nbexec("notebooks/raw.ipynb", output_path="notebooks/")
 nbcode("out.ipynb", input_path="notebooks/", output_path='output_files')
 nbhtml("out.ipynb", input_path="notebooks/", output_path='output_files')
