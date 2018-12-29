@@ -4,19 +4,23 @@ Using `nbless` you can create and execute [Jupyter Notebooks](http://jupyter-not
 - your terminal or
 - your favorite Python environment (e.g. [PyCharm](https://www.jetbrains.com/pycharm/) or [Visual Studio Code](https://code.visualstudio.com/docs/python/python-tutorial)).
 
-The `nbless` python package consists of 5 functions:
+The `nbless` python package consists of 6 functions:
 - `nbuild`, which creates a notebook from python scripts and plain text files, e.g. markdown (`.md`) and text (`.txt`) files.
 - `nbexec`, which runs a notebook from top to bottom and saves an executed version, leaving the source notebook untouched.
 - `nbconv`, which converts a notebook into various formats.
 - `nbless`, which calls `nbuild` and `nbexec` to create and execute a notebook.
+- `nbsave`, which saves notebook objects as files (Python only, no command line interface)
+- `nbread`, which reads in notebook objects from files (Python only, no command line interface)
 
-All of the above function work for Python _and_ R code, with the caveat that nbexec and nbless require the kernel argument to be set to `ir` if R code files (`.R`) are included.
+All of the above function work for Python _and_ R code, with the caveat that `nbexec` and `nbless` require the kernel argument to be set to `ir` if R code files (`.R`) are included.
 
 If you want to execute a Jupyter notebook that contains both R and Python code, you will have to put the R code in Python scripts (`.py`) and use [rpy2](https://rpy2.readthedocs.io/) with the default kernel (`python3`).
 
-To run Rmd files that include R and Python code, you will need the `reticulate` R package.
+You can also run the `nbless` functions in an R environment using the `reticulate` R package.
 
-The `nb` functions rely on the `nbconvert` and `nbformat` modules that are included with `jupyter`. The `catrmd` function has no dependencies beyond Python.
+The `nb` functions rely on the `nbconvert` and `nbformat` modules that are included with `jupyter`.
+
+The command line interface relies on the `click` library.
 
 ## Installation
 
@@ -24,25 +28,25 @@ The `nb` functions rely on the `nbconvert` and `nbformat` modules that are inclu
 pip install nbless
 ```
 
-or clone the [repo](https://github.com/marskar/nbless), e.g. `git clone https://github.com/marskar/nbless` and either use locally, e.g. `python nbless.py README.md plot.py notes.txt` or install using setup.py, e.g. `python setup.py install`.
+or clone the [repo](https://github.com/marskar/nbless), e.g. `git clone https://github.com/marskar/nbless` and either use locally, e.g. `python nbless.py README.md plot.py notes.txt` or install locally using setup.py (`python setup.py install`) or `pip` (`pip install .`)
 
 ## Basic usage: terminal
 
 ### Creating a Jupyter notebook with `nbuild` in the terminal
 
 ```sh
-nbuild README.md plot.py notes.txt > notebook.ipynb
+nbuild README.md plot.py notes.txt > notebooks/notebook.ipynb
 ```  
 
-The `nbuild` function takes the contents of Python code files (`.py`) stores them as [Jupyter Notebook code cells](https://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/Running%20Code.html). The contents of all other files are stored in [markdown cells](https://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/Working%20With%20Markdown%20Cells.html).
+The `nbuild` function takes the contents of Python or R code files (`.py` or `.R`) and stores them as [Jupyter Notebook code cells](https://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/Running%20Code.html). The contents of all other files are stored in [markdown cells](https://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/Working%20With%20Markdown%20Cells.html).
 
 
-You can provide a more descriptive name for the unexecuted notebook (`-n`) and set a different output (`-o`) filepath:
+Instead of redirecting to a file (`>`), you can use the `--out_file` or `-o` flag:
 
 ```sh
-nbuild README.md plot.py notes.txt --out_file raw.ipynb
+nbuild README.md plot.py notes.txt --out_file notebooks/notebook.ipynb
 # Or
-nbuild README.md plot.py notes.txt -o raw.ipynb
+nbuild README.md plot.py notes.txt -o notebooks/notebook.ipynb
 ```
 
 If you only want to execute a notebook, run `nbexec`.
@@ -51,18 +55,18 @@ If you only want to execute a notebook, run `nbexec`.
 
 
 ```sh
-nbexec raw.ipynb
+nbexec notebook.ipynb
 ```
 
-The `nbexec` command creates a copy of the input notebook, runs it from top to bottom and saves it. The default name of the executed notebook is `executed.ipynb`. The default filepath where the notebook is saved is the current directory (`'./'`).
+The `nbexec` command creates a copy of the input notebook, runs it from top to bottom and saves it. If an `out_file` name is not provided, the new filename will be the original filename with `_executed.ipynb` appended to it.
 
-You can provide a more descriptive name for the executed notebook (`-n`) and set different input (`-i`) and output (`-o`) filepaths:
+You can provide a more descriptive name for the executed output (`-o`) notebook:
 
 
 ```sh
-nbexec raw.ipynb --input_path input_files --output_name out.ipynb --output_path notebooks/
+nbexec raw.ipynb --out_file executed.ipynb
 # Or
-nbexec raw.ipynb -i input_files -n out.ipynb -o notebooks/
+nbexec raw.ipynb -o executed.ipynb
 ```
 
 If you want to combine `nbuild` and `nbexec` in one step, use `nbless`.
@@ -72,58 +76,54 @@ If you want to combine `nbuild` and `nbexec` in one step, use `nbless`.
 Run `nbless` in your terminal, providing all of the names of the source files as arguments, e.g.
 
 ```sh
-nbless README.md plot.py notes.txt
+nbless README.md plot.py notes.txt > output/executed.ipynb
 ```
-The default name of the first notebook is `unexecuted.ipynb` while the executed notebook is called `executed.ipynb` by default. The default filepath where the notebooks are saved is the current directory (`'./'`).
+The default name of the first notebook is `unexecuted.ipynb` while the executed notebook is called `executed.ipynb` by default.
 
-You can provide more descriptive names for the notebooks and set a different output path:
+Instead of redirecting to a file (`>`), you can use the `--out_file` or `-o` flag:
 
 ```sh
-nbless README.md plot.py notes.txt --input_path input_files --nbuild raw.ipynb --nbexec out.ipynb --nbcode code.py --output_path output_files/
+nbless README.md plot.py notes.txt --out_file output/executed.ipynb
 # Or
-nbless README.md plot.py notes.txt --i input_files -u raw.ipynb -e out.ipynb -c code.py -o output_files/
+nbless README.md plot.py notes.txt -o output/executed.ipynb
 ```  
 
 If you do not want an executed version of the notebook, run `nbuild` instead of `nbless`.
 
-### Creating a code file with `nbcode` in the terminal
+### Creating a code file with `nbconv` in the terminal
 
 
 ```sh
-nbcode out.ipynb
+nbconv notebook.ipynb
 ```
 
-The `nbcode` command extracts the content from code cells, discarding all output and markdown content.
+The `nbconv` command by default created a python script by extracting the content from code cells and discarding all output and markdown content.
 
-The default name of the code file is `code.py`. The default filepath where the code file is saved is the current directory (`'./'`).
-
-You can provide a more descriptive name for the code file (`-n`) and set different input (`-i`) and output (`-o`) filepaths:
+In the example above, the output file would be `notebook.py`, but it is possible to specify a different filename:
 
 
 ```sh
-nbcode out.ipynb --input_path input_files --output_name out.ipynb --output_path notebooks/
+nbconv notebook.ipynb --out_file script.py
 # Or
-nbcode out.ipynb -i input_files -n out.ipynb -o notebooks/
+nbconv notebook.ipynb -o script.py
 ```
 
 
-### Creating an HTML file with `nbhtml` in the terminal
+### Creating an HTML file with `nbconv` in the terminal
 
-The `nbhtml` command works like `nbcode`, except it creates an HTML document, which includes output and the content of markdown and code cells.
+The example below is similar to creating a python script, except it creates an HTML document, which includes output and the content of markdown and code cells.
 
 ```sh
-nbhtml out.ipynb
+nbconv notebook.ipynb -e html
 ```
 
-The default name of the HTML file is `nb.html`. The default filepath where the HTML file is saved is the current directory (`'./'`).
-
-You can provide a more descriptive name for the executed notebook (`-n`) and set different input (`-i`) and output (`-o`) filepaths:
+You can provide a more descriptive name for the output file with the `--out_file` or `-o` flag:
 
 
 ```sh
-nbhtml out.ipynb --input_path input_files --output_name out.ipynb --output_path notebooks/
+nbconv notebook.ipynb --out_file report.html
 # Or
-nbhtml out.ipynb -i input_files -n out.ipynb -o notebooks/
+nbconv notebook.ipynb -o report.html
 ```
 
 ## Basic usage: Python environment
@@ -136,49 +136,81 @@ from nbless import nbuild
 from nbless import nbexec
 from nbless import nbless
 from nbless import nbcode
+from nbless import nbsave
+from nbless import nbread
 
-# The above imports all 4 functions
+# The above imports all 6 functions
 # This can also be done with either of the two lines below.
 from nbless import nbuild, nbexec, nbless, nbcode
 from nbless import *
 
+# Simple individual usage
+
+# Create notebook.ipynb in notebooks folder from plot.py and notes.txt
+nbsave("notebooks/notebook.ipynb", nbuild(["plot.py", "notes.txt"]))
+
+# nbexec returns a filename string and a notebook object
+nb_name, nb = nbexec("notebooks/notebook.ipynb")
+nbsave(nb_name, nb)
+
+# Create notebook_executed.ipynb from notebook.ipynb
+nbsave(*nbexec("notebooks/notebook.ipynb"))
+
+# Create executed.ipynb from notebook.ipynb in notebooks folder
+nbsave('executed.ipynb', nbexec("notebooks/notebook.ipynb")[1])
+
+# Or to run both nbuild and nbexec at once, use nbless
+nbsave("output/executed.ipynb", nbless(["plot.py", "notes.txt"]))
+
+def write_file(filename: str, contents: str) -> None:
+    with open(filename, 'w') as f:
+        f.write(contents)
+
+# nbconv returns a filename and file contents as strings
+filename, contents = nbconv("notebooks/notebook.ipynb")
+write_file(filename, contents)
+
+# Create notebook.py from notebook.ipynb in notebooks folder
+write_file(*nbconv("notebooks/notebook.ipynb"))
+
+# Create notebook.html from notebook.ipynb in notebooks folder
+write_file(*nbconv("notebooks/notebook.ipynb", "html"))
+
+# Create script.py from notebook.ipynb in notebooks folder
+write_file('script.py', nbconv("notebooks/notebook.ipynb")[1])
+
+# Create report.html from notebook.ipynb in notebooks folder
+write_file('report.html', nbconv("notebooks/notebook.ipynb", 'html')[1])
+
 # Another alternative is to import the package and use it as a namespace.
 import nbless
 
-#Use individually
-nbuild(["plot.py", "notes.txt"], input_path='input_files', output_path="notebooks/")
-nbexec("notebooks/raw.ipynb", output_path="notebooks/")
-nbcode("out.ipynb", input_path="notebooks/", output_path='output_files')
-nbhtml("out.ipynb", input_path="notebooks/", output_path='output_files')
-
-# Or to run both nbuild and nbexec at once, use nbless
-nbless(["index.md", "plot.py", "notes.txt"], input_path="input_files/", nbexec_path="notebooks/")
-
 # Use nbless as a namespace
-nbless.nbuild(["index.md", "plot.py", "notes.txt"], input_path="input_files/", output_path="notebooks/")
-nbless.nbexec("out.ipynb", input_path="notebooks/", output_path="notebooks/")
-nbless.nbcode("out.ipynb", input_path="notebooks/", output_path='output_files')
-nbless.nbhtml("out.ipynb", input_path="notebooks/", output_path='output_files')
-nbless.nbless(["index.md", "plot.py", "notes.txt"], input_path="input_files/", nbexec_path="notebooks/")
+nbsave("notebook.ipynb", nbless.nbuild(["plot.py", "notes.txt"]))
+nbsave(*nbless.nbexec("notebook.ipynb"))
+nbsave('executed.ipynb', nbless.nbexec("notebook.ipynb")[1])
+nbsave("executed.ipynb", nbless.nbless(["plot.py", "notes.txt"]))
+write_file(*nbless.nbconv("notebook.ipynb"))
+write_file(*nbless.nbconv("notebook.ipynb", "html"))
+write_file('script.py', nbless.nbconv("notebook.ipynb")[1])
+write_file('report.html', nbless.nbconv("notebook.ipynb", 'html')[1])
 ```
 
-You can also run the `nbless` functions in an R environment using the `reticulate` R package.
 
 ### Missing a dependency?
 
-If you installed [Anaconda](https://www.anaconda.com/download/), you should already have all of the dependencies (`python`, `nbformat`, and `nbconvert`).
-
-If not, or if you have [Miniconda](https://conda.io/miniconda.html) installed, run
+If you installed via `pip` or `setup.py`, you should have both of the dependencies (`click` and `jupyter`) already. If not, try pip installing them separately.
 
 ```sh
-conda install -yc conda-forge jupyter
+pip install jupyter click
 ```
 
-If you have any other Python installation, run
+Or if you have [Anaconda](https://www.anaconda.com/download/) or [Miniconda](https://conda.io/miniconda.html) installed, you can run
 
 ```sh
-pip install jupyter
+conda install -yc conda-forge jupyter click
 ```
+
 
 ## Too many file names to type out?
 

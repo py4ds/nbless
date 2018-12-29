@@ -4,8 +4,8 @@ from typing import Tuple
 from nbconvert.preprocessors import ExecutePreprocessor
 from nbformat.notebooknode import NotebookNode
 
-from nbless import nbread
-from nbless.helpers import get_stem
+from nbless.nbread import nbread
+from nbless.helpers.get_stem import get_stem
 
 
 def nbexec(nb_name: str, kernel: str = 'python3') -> Tuple[str, NotebookNode]:
