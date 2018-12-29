@@ -4,7 +4,7 @@ from typing import Tuple
 from nbconvert.preprocessors import ExecutePreprocessor
 from nbformat.notebooknode import NotebookNode
 
-from nbless import nbread
+from nbless.nbread import nbread
 from nbless.helpers.get_stem import get_stem
 
 
