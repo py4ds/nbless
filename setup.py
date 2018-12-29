@@ -5,14 +5,15 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="nbless",
-    version="0.1.3",
+    version="0.1.5",
     author="Martin Skarzynski",
     author_email="marskar@gmail.com",
     description="Create Jupyter notebooks from Markdown and Python scripts.",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/marskar/nbless",
-    packages=setuptools.find_packages('src/nbless'),
+    package_dir={"": "src"},
+    packages=setuptools.find_packages('src'),
     # scripts=['nbless.py', 'nbuild.py', 'nbexec.py'],
      entry_points={
          'console_scripts': [

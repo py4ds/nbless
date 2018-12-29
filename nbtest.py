@@ -2,10 +2,17 @@
 # The above imports all 3 functions and is the same as the line below.
 # You can also import each function individually
 from src.nbless import nbuild
+import sys
+
+for p in sys.path:
+    print(p)
+
+import nbless
+from src import nbless
 from nbless import nbexec
 from nbless import nbless
-from nbless import nbcode
-from nbless import nbhtml
+from nbless import nbconv
+from nbless import nbuild
 nbuild(["input_files/plot.py", "input_files/notes.txt"])
 nbexec("notebooks/raw.ipynb", output_path="notebooks/")
 nbcode("out.ipynb", input_path="notebooks/", output_path='output_files')
