@@ -1,7 +1,6 @@
-from nbless.nbless import nbless
-from nbless.nbuild import nbuild
-from nbless.nbexec import nbexec
-from nbless.nbcode import nbcode
-from nbless.nbhtml import nbhtml
+from src.nbless.nbuild import nbuild
+from src.nbless.nbuild import nbuild
+from src.nbless.nbexec import nbexec
+from src.nbless.nbconv import nbconv
 
-__all__ = ['nbless', 'nbuild', 'nbexec', 'nbcode', 'nbhtml']
+__all__ = ['nbless', 'nbuild', 'nbexec', 'nbconv']

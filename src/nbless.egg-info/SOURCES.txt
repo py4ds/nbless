@@ -93,3 +93,9 @@ src/nbless/cli/nbuild_click.py
 src/nbless/helpers/get_stem.py
 src/nbless/helpers/read_file.py
 src/nbless/helpers/write_file.py
+src/nbless/nbless.egg-info/PKG-INFO
+src/nbless/nbless.egg-info/SOURCES.txt
+src/nbless/nbless.egg-info/dependency_links.txt
+src/nbless/nbless.egg-info/entry_points.txt
+src/nbless/nbless.egg-info/requires.txt
+src/nbless/nbless.egg-info/top_level.txt
