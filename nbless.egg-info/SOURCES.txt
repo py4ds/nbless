@@ -10,9 +10,6 @@ index.rst
 make.bat
 nbtest.py
 setup.py
-dist/nbless-0.1.1-py3-none-any.whl
-dist/nbless-0.1.1-py3.6.egg
-dist/nbless-0.1.1.tar.gz
 docs/index.html
 docs/_build/doctrees/environment.pickle
 docs/_build/doctrees/index.doctree
@@ -83,6 +80,10 @@ src/nbless/nbless.py
 src/nbless/nbread.py
 src/nbless/nbsave.py
 src/nbless/nbuild.py
+src/nbless/cli/nbconv_click.py
+src/nbless/cli/nbexec_click.py
+src/nbless/cli/nbless_click.py
 src/nbless/cli/nbuild_click.py
+src/nbless/helpers/get_stem.py
 src/nbless/helpers/read_file.py
 src/nbless/helpers/write_file.py
