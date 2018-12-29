@@ -29,6 +29,7 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
         install_requires=[
+        'click',
         'jupyter'
     ]
 )
