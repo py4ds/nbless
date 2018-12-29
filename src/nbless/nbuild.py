@@ -1,10 +1,9 @@
 #!/usr/bin/env python
-import nbformat
 from typing import List
 
-from nbless.helpers import read_file
-from nbless.cli import nbuild_click
+import nbformat
 
+from src.nbless.helpers.read_file import read_file
 
 
 def nbuild(filenames: List[str]) -> nbformat.notebooknode.NotebookNode:
@@ -17,8 +16,3 @@ def nbuild(filenames: List[str]) -> nbformat.notebooknode.NotebookNode:
                    else nbformat.v4.new_markdown_cell(read_file(name))
                    for name in filenames]
     return nb
-
-
-
-if __name__ == "__main__":
-    nbuild_click()

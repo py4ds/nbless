@@ -12,17 +12,16 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/marskar/nbless",
-    packages=setuptools.find_packages(),
-    #scripts=['nbless.py', 'nbuild.py', 'nbexec.py'],
-    # entry_points={
-    #     'console_scripts': [
-    #         'nbless = src.nbless.nbless:command_line_runner',
-    #         'nbuild = src.nbless.nbuild:command_line_runner',
-    #         'nbexec = src.nbless.nbexec:command_line_runner',
-    #         'nbconv = src.nbless.nbconv:command_line_runner',
-    #         'nbdeck = src.nbless.nbdeck:command_line_runner',
-    #     ]
-    # },
+    packages=setuptools.find_packages('src/nbless'),
+    # scripts=['nbless.py', 'nbuild.py', 'nbexec.py'],
+     entry_points={
+         'console_scripts': [
+             'nbless = src.nbless.cli.nbless_click:nbless_click',
+             'nbuild = src.nbless.cli.nbuild_click:nbuild_click',
+             'nbexec = src.nbless.cli.nbexec_click:nbexec_click',
+             'nbconv = src.nbless.cli.nbconv_click:nbconv_click',
+         ]
+     },
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",

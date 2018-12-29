@@ -1,0 +1,6 @@
+[console_scripts]
+nbconv = src.nbless.cli.nbconv_click:nbconv_click
+nbexec = src.nbless.cli.nbexec_click:nbexec_click
+nbless = src.nbless.cli.nbless_click:nbless_click
+nbuild = src.nbless.cli.nbuild_click:nbuild_click
+

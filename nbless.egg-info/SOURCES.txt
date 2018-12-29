@@ -59,6 +59,7 @@ input_files/unrendered.Rmd
 nbless.egg-info/PKG-INFO
 nbless.egg-info/SOURCES.txt
 nbless.egg-info/dependency_links.txt
+nbless.egg-info/entry_points.txt
 nbless.egg-info/requires.txt
 nbless.egg-info/top_level.txt
 notebooks/code.py
@@ -76,12 +77,12 @@ output_files/code.py
 output_files/executed.ipynb
 output_files/unexecuted.ipynb
 src/nbless/__init__.py
-src/nbless/nbcode.py
+src/nbless/nbconv.py
 src/nbless/nbexec.py
-src/nbless/nbhtml.py
 src/nbless/nbless.py
 src/nbless/nbread.py
 src/nbless/nbsave.py
 src/nbless/nbuild.py
+src/nbless/cli/nbuild_click.py
 src/nbless/helpers/read_file.py
 src/nbless/helpers/write_file.py
