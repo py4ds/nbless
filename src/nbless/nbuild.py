@@ -3,7 +3,7 @@ from typing import List
 
 import nbformat
 
-from nbless.helpers.read_file import read_file
+from nbless.helpers import read_file
 
 
 def nbuild(filenames: List[str]) -> nbformat.notebooknode.NotebookNode:
