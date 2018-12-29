@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="nbless",
-    version="0.1.7",
+    version="0.1.8",
     author="Martin Skarzynski",
     author_email="marskar@gmail.com",
     description="Create Jupyter notebooks from Markdown and Python scripts.",
@@ -17,10 +17,10 @@ setuptools.setup(
     # scripts=['nbless.py', 'nbuild.py', 'nbexec.py'],
      entry_points={
          'console_scripts': [
-             'nbless = src.nbless.cli.nbless_click:nbless_click',
-             'nbuild = src.nbless.cli.nbuild_click:nbuild_click',
-             'nbexec = src.nbless.cli.nbexec_click:nbexec_click',
-             'nbconv = src.nbless.cli.nbconv_click:nbconv_click',
+             'nbless = nbless.cli.nbless_click:nbless_click',
+             'nbuild = nbless.cli.nbuild_click:nbuild_click',
+             'nbexec = nbless.cli.nbexec_click:nbexec_click',
+             'nbconv = nbless.cli.nbconv_click:nbconv_click',
          ]
      },
     classifiers=[

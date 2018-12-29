@@ -9,5 +9,5 @@ from nbless import nbless, nbsave
 @click.argument('in_files', nargs=-1)
 @click.option('-o', '--out_file', 'out_file')
 def nbless_click(in_files: List[str], out_file: str) -> None:
-    nb = nbless.nbless(in_files)
-    nbsave.nbsave(out_file, nb) if out_file else print(nb)
+    nb = nbless(in_files)
+    nbsave(out_file, nb) if out_file else print(nb)

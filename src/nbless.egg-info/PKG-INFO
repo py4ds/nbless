@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: nbless
-Version: 0.1.7
+Version: 0.1.8
 Summary: Create Jupyter notebooks from Markdown and Python scripts.
 Home-page: https://github.com/marskar/nbless
 Author: Martin Skarzynski
