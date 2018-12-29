@@ -135,13 +135,13 @@ nbconv notebook.ipynb -o report.html
 from nbless import nbuild
 from nbless import nbexec
 from nbless import nbless
-from nbless import nbcode
+from nbless import nbconv
 from nbless import nbsave
 from nbless import nbread
 
 # The above imports all 6 functions
 # This can also be done with either of the two lines below.
-from nbless import nbuild, nbexec, nbless, nbcode
+from nbless import nbuild, nbexec, nbless, nbconv, nbsave, nbread
 from nbless import *
 
 # Simple individual usage
