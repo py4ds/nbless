@@ -5,7 +5,6 @@ README.md
 _config.yml
 conf.py
 deploy.sh
-index.md
 index.rst
 make.bat
 nbtest.py
