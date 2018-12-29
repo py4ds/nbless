@@ -3,7 +3,6 @@ import nbformat
 from typing import List
 
 from nbless.helpers import read_file
-
 from nbless.cli import nbuild_click
 
 

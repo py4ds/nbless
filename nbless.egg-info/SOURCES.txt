@@ -75,3 +75,13 @@ notebooks/unexecuted.ipynb
 output_files/code.py
 output_files/executed.ipynb
 output_files/unexecuted.ipynb
+src/nbless/__init__.py
+src/nbless/nbcode.py
+src/nbless/nbexec.py
+src/nbless/nbhtml.py
+src/nbless/nbless.py
+src/nbless/nbread.py
+src/nbless/nbsave.py
+src/nbless/nbuild.py
+src/nbless/helpers/read_file.py
+src/nbless/helpers/write_file.py
