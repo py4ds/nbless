@@ -4,7 +4,7 @@ from typing import List
 from nbconvert.preprocessors import ExecutePreprocessor
 from nbformat.notebooknode import NotebookNode
 
-from nbless.nbuild import nbuild
+from nbless import nbuild
 
 
 def nbless(filenames: List[str], kernel: str = 'python3') -> NotebookNode:

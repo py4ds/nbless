@@ -2,7 +2,7 @@ import click
 
 from nbless import nbconv
 
-from nbless.helpers import write_file
+from nbless.helpers.write_file import write_file
 
 @click.command()
 @click.argument('in_file')
