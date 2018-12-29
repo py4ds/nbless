@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="nbless",
-    version="0.1.8",
+    version="0.1.9",
     author="Martin Skarzynski",
     author_email="marskar@gmail.com",
     description="Create Jupyter notebooks from Markdown and Python scripts.",
