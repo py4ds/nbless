@@ -1,4 +1,4 @@
-ENV_TOOL=pipenv
+ENV_TOOL=virtualenv
 PYTHON=.venv/bin/python3
 TESTER=pytest
 LINTER=black
