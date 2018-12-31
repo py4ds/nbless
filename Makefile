@@ -59,7 +59,8 @@ clean:
 	find . -name '*.egg' -exec rm -f {} +
 
 commit: env
-	[ -z "`git status --porcelain`" ] || git commit -am "ready to deploy version `python setup.py --version`"
+	[ -z "`git status --porcelain`" ] || git add --all
+	git commit --message "ready to deploy version `python setup.py --version`"
 	git push
 
 patch: commit
