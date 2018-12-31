@@ -25,7 +25,7 @@ ifeq ($(ENV), pipenv)
 endif
 ifeq ($(ENV), conda)
 	test -d .venv || pipenv --three
-	pipenv update pip
+	pipenv install pip
 	pipenv install --editable .
 endif
 
