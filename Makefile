@@ -18,7 +18,7 @@ endif
 ifeq ($(ENV_TOOL), pipenv)
 	export PIPENV_VENV_IN_PROJECT=1
 	test -d .venv || pipenv --three
-	pipenv install pip
+	pipenv update pip
 	pipenv install --editable .
 endif
 
