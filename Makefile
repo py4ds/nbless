@@ -53,8 +53,7 @@ release: dist ## package and upload a release
 	twine upload dist/*
 
 dist: clean ## builds source and wheel package
-	VERSION=`python setup.py --version`
-	bumpversion --current-version $(VERSION) setup.py
+	bumpversion --current-version `python setup.py --version` patch setup.py
 	python setup.py sdist bdist_wheel
 
 .PHONY: env test lint
