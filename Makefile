@@ -53,10 +53,10 @@ commit: env
 	git commit -am "working on version `python setup.py --version`"
 	git push
 
-patch: commit
+patch:
 	bumpversion --current-version `python setup.py --version` patch setup.py
 
-minor: commit
+minor:
 	bumpversion --current-version `python setup.py --version` patch setup.py
 
 dist: clean
