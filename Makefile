@@ -12,14 +12,14 @@ ifneq ($(ENV_TOOL), venv)
 endif
 ifeq ($(ENV_TOOL), $(filter $(ENV_TOOL),virtualenv venv))
 	test -d .venv || python -m $(ENV_TOOL) .venv
-	${PYTHON} -m pip install -U pip
-	${PYTHON} -m pip install -e .
+	${PYTHON} -m pip install --upgrade pip
+	${PYTHON} -m pip install --editable .
 endif
 ifeq ($(ENV_TOOL), pipenv)
 	export PIPENV_VENV_IN_PROJECT=1
 	test -d .venv || pipenv --three
 	pipenv install pip
-	pipenv install -e .
+	pipenv install --editable .
 endif
 
 test: env
