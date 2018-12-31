@@ -1,4 +1,4 @@
-# The `nbless` python package
+# Nbless: a Python package for programmatic Jupyter notebook workflows
 
 Using `nbless` you can create and execute [Jupyter Notebooks](http://jupyter-notebook.readthedocs.io/en/latest/examples/Notebook/What%20is%20the%20Jupyter%20Notebook.html) in
 - your terminal or
