@@ -5,25 +5,28 @@ ENV=virtualenv
 PYTHON=.venv/bin/python3
 LINTER=black
 
-# Requirements are in setup.py, so whenever setup.py is changed, re-run installation of dependencies.
 
 env: .venv/bin/activate
 
 .venv/bin/activate: setup.py
-ifneq ($(ENV), venv)
+ifneq ($(ENV), $(filter $(ENV),conda venv))
 	pip install $(ENV)
 endif
 ifeq ($(ENV), $(filter $(ENV),virtualenv venv))
 	test -d .venv || python -m $(ENV) .venv
-	${PYTHON} -m pip install --upgrade pip
-	${PYTHON} -m pip install --editable .
-	touch .venv/bin/activate
+endif
+ifeq ($(ENV), conda)
+	test -d .venv || conda create -yp .venv python=3
 endif
 ifeq ($(ENV), pipenv)
 	test -d .venv || pipenv --three
-	pipenv update pip
+	pipenv install pip
 	pipenv install --editable .
+else
+	${PYTHON} -m pip install --upgrade pip
+	${PYTHON} -m pip install --editable .
 endif
+	touch .venv/bin/activate
 
 test: env
 ifeq ($(ENV), pipenv)
