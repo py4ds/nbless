@@ -5,4 +5,4 @@ from nbless.nbconv import nbconv
 from nbless.nbsave import nbsave
 from nbless.nbread import nbread
 
-__all__ = ['nbless', 'nbuild', 'nbexec', 'nbconv', 'nbsave', 'nbread']
+__all__ = ["nbless", "nbuild", "nbexec", "nbconv", "nbsave", "nbread"]

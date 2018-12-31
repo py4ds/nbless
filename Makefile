@@ -7,6 +7,7 @@ TESTER=pytest
 LINTER=black
 
 # Requirements are in setup.py, so whenever setup.py is changed, re-run installation of dependencies.
+
 env: .venv/bin/activate
 
 .venv/bin/activate: setup.py
@@ -30,11 +31,30 @@ ifeq ($(ENV), conda)
 endif
 
 test: env
+ifeq ($(TESTER), pytest)
+	${PYTHON} -m pip install pytest-mypy
+else
 	${PYTHON} -m pip install $(TESTER)
-	${PYTHON} -m $(TESTER)
+endif
+	${PYTHON} -m $(TESTER) src tests
 
 lint: env
 	${PYTHON} -m pip install $(LINTER)
-	${PYTHON} -m $(LINTER)
+	${PYTHON} -m $(LINTER) src tests
+
+clean:
+	rm -rf build/
+	rm -rf dist/
+	rm -rf .eggs/
+	find . -name '*.egg-info' -exec rm -rf {} +
+	find . -name '*.egg' -exec rm -f {} +
+
+release: dist ## package and upload a release
+	twine upload dist/*
+
+dist: clean ## builds source and wheel package
+	VERSION=`python setup.py --version`
+	bumpversion --current-version $(VERSION) setup.py
+	python setup.py sdist bdist_wheel
 
 .PHONY: env test lint
