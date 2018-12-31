@@ -164,8 +164,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'nbless', 'Nbless Documentation',
-     'Martin Skarzynski', 'Nbless', 'Use Python to make HTML slides via Pandoc.',
+    (master_doc, 'nbless', 'Nbless Documentation', 'Martin Skarzynski',
+     'Nbless', 'Create, run, and convert Jupyter notebooks programmatically.',
      'Miscellaneous'),
 ]
 
