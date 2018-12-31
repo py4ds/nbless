@@ -60,17 +60,23 @@ clean:
 
 commit: env
 	[ -z "`git status --porcelain`" ] || git add --all
-	git commit --message "ready to deploy version `python setup.py --version`"
+	git commit --message "Edit version `python setup.py --version`"
 	git push
 
 patch: commit
 	bumpversion --current-version `python setup.py --version` patch setup.py
+	git commit --all --message "Bump version to `python setup.py --version`"
+	git push
 
 minor: commit
 	bumpversion --current-version `python setup.py --version` minor setup.py
+	git commit --all --message "Bump version to `python setup.py --version`"
+	git push
 
 major: commit
 	bumpversion --current-version `python setup.py --version` major setup.py
+	git commit --all --message "Bump version to `python setup.py --version`"
+	git push
 
 dist: clean
 	python setup.py sdist bdist_wheel
