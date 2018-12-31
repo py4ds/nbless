@@ -6,9 +6,7 @@ Notebooks <http://jupyter-notebook.readthedocs.io/en/latest/examples/Notebook/Wh
 in
 
 - your terminal or
-- your favorite Python environment (e.g.
-`PyCharm <https://www.jetbrains.com/pycharm/>`__ or `Visual Studio
-Code <https://code.visualstudio.com/docs/python/python-tutorial>`__).
+- your favorite Python environment (e.g. `PyCharm <https://www.jetbrains.com/pycharm/>`__ or `Visual Studio Code <https://code.visualstudio.com/docs/python/python-tutorial>`__).
 
 The ``nbless`` python package consists of 6 functions:
 
