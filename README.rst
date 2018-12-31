@@ -3,20 +3,21 @@ Nbless: a Python package for programmatic Jupyter notebook workflows
 
 Using ``nbless`` you can create and execute `Jupyter
 Notebooks <http://jupyter-notebook.readthedocs.io/en/latest/examples/Notebook/What%20is%20the%20Jupyter%20Notebook.html>`__
-in - your terminal or - your favorite Python environment (e.g.
+in
+
+- your terminal or
+- your favorite Python environment (e.g.
 `PyCharm <https://www.jetbrains.com/pycharm/>`__ or `Visual Studio
 Code <https://code.visualstudio.com/docs/python/python-tutorial>`__).
 
-The ``nbless`` python package consists of 6 functions: - ``nbuild``,
-which creates a notebook from python scripts and plain text files, e.g.
-markdown (``.md``) and text (``.txt``) files. - ``nbexec``, which runs a
-notebook from top to bottom and saves an executed version, leaving the
-source notebook untouched. - ``nbconv``, which converts a notebook into
-various formats. - ``nbless``, which calls ``nbuild`` and ``nbexec`` to
-create and execute a notebook. - ``nbsave``, which saves notebook
-objects as files (Python only, no command line interface) - ``nbread``,
-which reads in notebook objects from files (Python only, no command line
-interface)
+The ``nbless`` python package consists of 6 functions:
+
+- ``nbuild``, which creates a notebook from python scripts and plain text files, e.g. markdown (``.md``) and text (``.txt``) files.
+- ``nbexec``, which runs a notebook from top to bottom and saves an executed version, leaving the source notebook untouched.
+- ``nbconv``, which converts a notebook into various formats.
+- ``nbless``, which calls ``nbuild`` and ``nbexec`` to create and execute a notebook.
+- ``nbsave``, which saves notebook objects as files (Python only, no command line interface)
+- ``nbread``, which reads in notebook objects from files (Python only, no command line interface)
 
 All of the above function work for Python *and* R code, with the caveat
 that ``nbexec`` and ``nbless`` require the kernel argument to be set to
