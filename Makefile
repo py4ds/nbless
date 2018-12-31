@@ -59,16 +59,16 @@ clean:
 	find . -name '*.egg' -exec rm -f {} +
 
 commit: env
-	git commit -am "working on version `python setup.py --version`"
+	[ -z "`git status --porcelain`" ] || git commit -am "ready to deploy version `python setup.py --version`"
 	git push
 
-patch:
+patch: commit
 	bumpversion --current-version `python setup.py --version` patch setup.py
 
-minor:
+minor: commit
 	bumpversion --current-version `python setup.py --version` minor setup.py
 
-major:
+major: commit
 	bumpversion --current-version `python setup.py --version` major setup.py
 
 dist: clean
