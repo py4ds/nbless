@@ -49,11 +49,20 @@ clean:
 	find . -name '*.egg-info' -exec rm -rf {} +
 	find . -name '*.egg' -exec rm -f {} +
 
-release: dist ## package and upload a release
-	twine upload dist/*
+commit: env
+	git commit -am "working on version `python setup.py --version`"
+	git push
 
-dist: clean ## builds source and wheel package
+patch: commit
 	bumpversion --current-version `python setup.py --version` patch setup.py
+
+minor: commit
+	bumpversion --current-version `python setup.py --version` patch setup.py
+
+dist: clean
 	python setup.py sdist bdist_wheel
+
+release: setup.py
+	twine upload dist/*
 
 .PHONY: env test lint
