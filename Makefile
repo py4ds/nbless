@@ -1,12 +1,16 @@
 # If ENV is pipenv, run export PIPENV_VENV_IN_PROJECT=1
 # Otherwise, .venv will not be in the current project.
 
-ENV=virtualenv
-PYTHON=.venv/bin/python3
-LINTER=black
+ENV = virtualenv
+PYTHON = .venv/bin/python3
+LINTER = black
+DOCS = $(wildcard docs/*.rst docs/*.md docs/*.ipynb)
+TESTS = $(wildcard tests/*.py)
+SRC = $(wildcard src/*/*.py)
 
 
 env: .venv/bin/activate
+docs: docs/_build/html/index.html
 
 .venv/bin/activate: setup.py
 ifneq ($(ENV), $(filter $(ENV),conda venv))
@@ -43,6 +47,9 @@ else
 	${PYTHON} -m pip install $(LINTER)
 endif
 	${PYTHON} -m $(LINTER) src tests
+
+docs/_build/html/index.html: $(DOCS) $(TESTS) $(SRC)
+	sphinx-build -M html docs/ docs/_build
 
 clean:
 	rm -rf build/

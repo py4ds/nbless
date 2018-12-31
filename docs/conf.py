@@ -12,21 +12,22 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-# import os
-# import sys
-# sys.path.insert(0, os.path.abspath('.'))
+import os
+import sys
+sys.path.insert(0, os.path.abspath('../src'))
+sys.path.insert(1, os.path.abspath('../tests'))
 
 
 # -- Project information -----------------------------------------------------
 
-project = 'nbless'
+project = 'Nbless'
 copyright = '2018, Martin Skarzynski'
 author = 'Martin Skarzynski'
 
 # The short X.Y version
-version = ''
+version = '0.0.1'
 # The full version, including alpha/beta/rc tags
-release = '0.1.1'
+release = '0.0.1'
 
 
 # -- General configuration ---------------------------------------------------
@@ -40,9 +41,16 @@ release = '0.1.1'
 # ones.
 extensions = [
     'sphinx.ext.autodoc',
+    'sphinx.ext.autosummary',
+    'sphinx.ext.coverage',
     'sphinx.ext.doctest',
-    'sphinx.ext.viewcode',
+    'sphinxcontrib.fulltoc',
     'sphinx.ext.githubpages',
+    'sphinx.ext.intersphinx',
+    'sphinx.ext.mathjax',
+    'sphinx.ext.napoleon',
+    'sphinx.ext.viewcode',
+    'nbsphinx',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -51,8 +59,11 @@ templates_path = ['_templates']
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
 #
-# source_suffix = ['.rst', '.md']
-source_suffix = '.rst'
+from recommonmark.parser import CommonMarkParser
+
+source_parsers = {'.md': CommonMarkParser}
+
+source_suffix = ['.rst', '.md', '.ipynb']
 
 # The master toctree document.
 master_doc = 'index'
@@ -67,7 +78,7 @@ language = None
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', '**.ipynb_checkpoints']
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = None
@@ -78,7 +89,7 @@ pygments_style = None
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'alabaster'
+html_theme = 'classic'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -132,7 +143,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'nbless.tex', 'nbless Documentation',
+    (master_doc, 'nbless.tex', 'Nbless Documentation',
      'Martin Skarzynski', 'manual'),
 ]
 
@@ -142,8 +153,8 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'nbless', 'nbless Documentation',
-     [author], 1)
+    (master_doc, 'nbless', 'Nbless Documentation',
+     ['Martin Skarzynski'], 1)
 ]
 
 
@@ -153,8 +164,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'nbless', 'nbless Documentation',
-     author, 'nbless', 'One line description of project.',
+    (master_doc, 'nbless', 'Nbless Documentation',
+     'Martin Skarzynski', 'Nbless', 'Use Python to make HTML slides via Pandoc.',
      'Miscellaneous'),
 ]
 
@@ -175,6 +186,3 @@ epub_title = project
 
 # A list of files that should not be packed into the epub file.
 epub_exclude_files = ['search.html']
-
-
-# -- Extension configuration -------------------------------------------------
