@@ -18,6 +18,7 @@ ifeq ($(ENV), $(filter $(ENV),virtualenv venv))
 	test -d .venv || python -m $(ENV) .venv
 	${PYTHON} -m pip install --upgrade pip
 	${PYTHON} -m pip install --editable .
+	touch .venv/bin/activate
 endif
 ifeq ($(ENV), pipenv)
 	test -d .venv || pipenv --three
