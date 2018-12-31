@@ -58,12 +58,15 @@ patch:
 	bumpversion --current-version `python setup.py --version` patch setup.py
 
 minor:
-	bumpversion --current-version `python setup.py --version` patch setup.py
+	bumpversion --current-version `python setup.py --version` minor setup.py
+
+major:
+	bumpversion --current-version `python setup.py --version` major setup.py
 
 dist: clean
 	python setup.py sdist bdist_wheel
 
-release: setup.py
+release: dist
 	twine upload dist/*
 
-.PHONY: env test lint
+.PHONY: env test lint clean commit patch minor major dist release
