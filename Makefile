@@ -3,7 +3,6 @@
 
 ENV=virtualenv
 PYTHON=.venv/bin/python3
-TESTER=pytest
 LINTER=black
 
 # Requirements are in setup.py, so whenever setup.py is changed, re-run installation of dependencies.
@@ -25,22 +24,21 @@ ifeq ($(ENV), pipenv)
 	pipenv update pip
 	pipenv install --editable .
 endif
-ifeq ($(ENV), conda)
-	test -d .venv || pipenv --three
-	pipenv install pip
-	pipenv install --editable .
-endif
 
 test: env
-ifeq ($(TESTER), pytest)
-	${PYTHON} -m pip install pytest-mypy
+ifeq ($(ENV), pipenv)
+	pipenv install pytest-mypy
 else
-	${PYTHON} -m pip install $(TESTER)
+	${PYTHON} -m pip install pytest-mypy
 endif
-	${PYTHON} -m $(TESTER) src tests
+	${PYTHON} -m pytest src tests
 
 lint: env
+ifeq ($(ENV), pipenv)
+	pipenv install $(LINTER)
+else
 	${PYTHON} -m pip install $(LINTER)
+endif
 	${PYTHON} -m $(LINTER) src tests
 
 clean:
