@@ -1,19 +1,32 @@
-# Minimal makefile for Sphinx documentation
-#
+ENV_NAME=.venv
+ENV_TOOL=virtualenv
+ENV_ACTIVATE=. $(ENV_NAME)/bin/activate
+PYTHON=${ENV_NAME}/bin/python3
+TESTER=pytest
+LINTER=black
 
-# You can set these variables from the command line.
-SPHINXOPTS    =
-SPHINXBUILD   = sphinx-build
-SOURCEDIR     = .
-BUILDDIR      = _build
+# Requirements are in setup.py, so whenever setup.py is changed, re-run installation of dependencies.
+env: $(ENV_NAME)/bin/activate
+$(ENV_NAME)/bin/activate: setup.py
+ifneq ($(ENV_TOOL), venv)
+	pip install $(ENV_TOOL)
+endif
+ifeq ($(ENV_TYPE), $(filter $(ENV_TYPE),virtualenv venv))
+	test -d $(ENV_NAME) || python -m $(ENV_TOOL) $(ENV_NAME)
+endif
+ifeq ($(ENV_TYPE), pipenv)
+	export PIPENV_VENV_IN_PROJECT=1
+	test -d $(ENV_NAME) || python -m $(ENV_TOOL) $(ENV_NAME)
+endif
+	${PYTHON} -m pip install -U pip
+	${PYTHON} -m pip install -e .
 
-# Put it first so that "make" without argument is like "make help".
-help:
-	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+test: env
+	pip install $(TESTER)
+	${PYTHON} -m $(TESTER)
 
-.PHONY: help Makefile
+lint: env
+	pip install $(LINTER)
+	${PYTHON} -m $(LINTER)
 
-# Catch-all target: route all unknown targets to Sphinx using the new
-# "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
-%: Makefile
-	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+.PHONY: env test lint run
