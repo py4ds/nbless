@@ -77,8 +77,6 @@ You can preview the raw notebook output by running nbuild with only the position
 .. code:: sh
 
     nbuild README.md plot.py notes.txt
-    # Or
-    nbuild README.md plot.py notes.txt
 
 If you only want to execute a notebook, run ``nbexec`` as described below.
 
@@ -103,8 +101,14 @@ notebook:
     # Or
     nbexec raw.ipynb -o executed.ipynb
 
+You can preview the default output filename and the raw notebook output by running nbconv with only the positional arguments:
+
+.. code:: sh
+
+    nbexec raw.ipynb
+
 If you want to combine ``nbuild`` and ``nbexec`` in one step, use
-``nbless``.
+``nbless`` as described below.
 
 Creating and executing a Jupyter notebook with ``nbless`` in the terminal
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
