@@ -72,7 +72,15 @@ or ``-o`` flag:
     # Or
     nbuild README.md plot.py notes.txt -o notebooks/notebook.ipynb
 
-If you only want to execute a notebook, run ``nbexec``.
+You can preview the raw notebook output by running nbuild with only the positional arguments:
+
+.. code:: sh
+
+    nbuild README.md plot.py notes.txt
+    # Or
+    nbuild README.md plot.py notes.txt
+
+If you only want to execute a notebook, run ``nbexec`` as described below.
 
 Executing a notebook with ``nbexec`` in the terminal
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
