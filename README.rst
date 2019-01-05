@@ -97,15 +97,15 @@ notebook:
 
 .. code:: sh
 
-    nbexec raw.ipynb --out_file executed.ipynb
+    nbexec notebook.ipynb --out_file executed.ipynb
     # Or
-    nbexec raw.ipynb -o executed.ipynb
+    nbexec notebook.ipynb -o executed.ipynb
 
-You can preview the default output filename and the raw notebook output by running nbconv with only the positional arguments:
+You can preview the default output filename and the raw notebook output by running nbexec with only the positional arguments:
 
 .. code:: sh
 
-    nbexec raw.ipynb
+    nbexec notebook.ipynb
 
 If you want to combine ``nbuild`` and ``nbexec`` in one step, use
 ``nbless`` as described below.
@@ -154,6 +154,13 @@ is possible to specify a different filename:
     nbconv notebook.ipynb --out_file script.py
     # Or
     nbconv notebook.ipynb -o script.py
+
+You can preview the default output filename and the raw notebook output by running nbconv with only the positional arguments:
+
+.. code:: sh
+
+    nbconv notebook.ipynb
+
 
 Creating an HTML file with ``nbconv`` in the terminal
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
