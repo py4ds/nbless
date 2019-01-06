@@ -10,3 +10,10 @@ build/
 *.egg
 
 docs/_build/
+bin/
+build.err
+build.log
+etc/
+include/
+lib/
+share/
