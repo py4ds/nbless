@@ -12,13 +12,7 @@ Welcome to Nbless's documentation!
 
    readme.rst
    nbless.rst
-   rmd.md
-   jupyter.ipynb
-   altair.ipynb
    tests.rst
-   pandoc_slides.rst
-   jupyterlab_slides.rst
-   revealjs.ipynb
 
 
 

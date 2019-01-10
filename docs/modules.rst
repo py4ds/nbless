@@ -1,7 +1,7 @@
-tests
-=====
+nbless
+======
 
 .. toctree::
    :maxdepth: 4
 
-   test_nbless
+   nbless
