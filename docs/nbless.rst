@@ -1,57 +1,14 @@
 nbless package
 ==============
 
-Submodules
-----------
+Subpackages
+-----------
 
-nbless.nbconv module
---------------------
+.. toctree::
 
-.. automodule:: nbless.nbconv
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-nbless.nbexec module
---------------------
-
-.. automodule:: nbless.nbexec
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-nbless.nbless module
---------------------
-
-.. automodule:: nbless.nbless
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-nbless.nbread module
---------------------
-
-.. automodule:: nbless.nbread
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-nbless.nbsave module
---------------------
-
-.. automodule:: nbless.nbsave
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-nbless.nbuild module
---------------------
-
-.. automodule:: nbless.nbuild
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
+    nbless.cli
+    nbless.helpers
+    nbless.main
 
 Module contents
 ---------------
