@@ -8,7 +8,8 @@ import nbformat
 
 
 @click.command()
-@click.argument("in_files", nargs=-1)
+@click.argument("in_files", nargs=-1, required=True,
+                type=click.Path(exists=True))
 @click.option("-o", "--out_file", "out")
 def nbless_click(in_files: List[str], out: str) -> None:
     nb = nbless.nbless(in_files)

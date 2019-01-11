@@ -6,7 +6,6 @@ Subpackages
 
 .. toctree::
 
-    nbless.cli
     nbless.helpers
     nbless.main
 

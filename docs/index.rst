@@ -6,6 +6,7 @@ Welcome to Nbless's documentation!
    :caption: Contents:
 
    readme.rst
+   cli.rst
    modules.rst
    tests.rst
 
