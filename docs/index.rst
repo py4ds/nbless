@@ -1,8 +1,3 @@
-.. Nbless main documentation file, created by
-   sphinx-quickstart.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
 Welcome to Nbless's documentation!
 ======================================================
 
@@ -11,8 +6,10 @@ Welcome to Nbless's documentation!
    :caption: Contents:
 
    readme.rst
-   nbless.rst
+   modules.rst
    tests.rst
+
+
 
 
 

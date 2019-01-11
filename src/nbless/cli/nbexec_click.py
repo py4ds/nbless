@@ -1,6 +1,6 @@
 import click
 
-from nbless import nbexec, nbsave
+from nbless.main import nbexec, nbsave
 
 
 @click.command()

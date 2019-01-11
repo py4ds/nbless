@@ -8,6 +8,7 @@ from nbless.helpers.read_file import read_file
 
 def nbuild(filenames: List[str]) -> nbformat.notebooknode.NotebookNode:
     """Create a Jupyter notebook from text files and Python or R scripts
+
     :param filenames: a list of source file names
     """
     nb = nbformat.v4.new_notebook()
