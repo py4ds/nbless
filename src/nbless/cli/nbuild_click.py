@@ -13,4 +13,4 @@ import nbformat
 @click.option("-o", "--out_file", "out")
 def nbuild_click(in_files: List[str], out: str) -> None:
     nb = nbuild.nbuild(in_files)
-    nbuild.nbsave(out, nb) if out else sys.stdout.write(nbformat.writes(nb))
+    nbsave.nbsave(out, nb) if out else sys.stdout.write(nbformat.writes(nb))
