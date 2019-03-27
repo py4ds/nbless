@@ -50,7 +50,7 @@ extensions = [
     'sphinx.ext.mathjax',
     'sphinx.ext.napoleon',
     'sphinx.ext.viewcode',
-    'nbsphinx',
+    #'nbsphinx',
     'sphinx_click.ext',
 ]
 
