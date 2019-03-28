@@ -1,0 +1,212 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Nbless command-line interface (CLI) &#8212; Nbless 0.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="nbless" href="modules.html" />
+    <link rel="prev" title="Nbless: a Python package for programmatic Jupyter notebook workflows" href="readme.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="modules.html" title="nbless"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="readme.html" title="Nbless: a Python package for programmatic Jupyter notebook workflows"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Nbless 0.0.1 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="nbless-command-line-interface-cli">
+<h1>Nbless command-line interface (CLI)<a class="headerlink" href="#nbless-command-line-interface-cli" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="nbless">
+<h2>nbless<a class="headerlink" href="#nbless" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>nbless <span class="o">[</span>OPTIONS<span class="o">]</span> IN_FILES...
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-nbless-o">
+<code class="descname">-o</code><code class="descclassname"></code><code class="descclassname">, </code><code class="descname">--out_file</code><code class="descclassname"> &lt;out&gt;</code><a class="headerlink" href="#cmdoption-nbless-o" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="option">
+<dt id="cmdoption-nbless-arg-in-files">
+<code class="descname">IN_FILES</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-nbless-arg-in-files" title="Permalink to this definition">¶</a></dt>
+<dd><p>Required argument(s)</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nbuild">
+<h2>nbuild<a class="headerlink" href="#nbuild" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>nbuild <span class="o">[</span>OPTIONS<span class="o">]</span> IN_FILES...
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-nbuild-o">
+<code class="descname">-o</code><code class="descclassname"></code><code class="descclassname">, </code><code class="descname">--out_file</code><code class="descclassname"> &lt;out&gt;</code><a class="headerlink" href="#cmdoption-nbuild-o" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="option">
+<dt id="cmdoption-nbuild-arg-in-files">
+<code class="descname">IN_FILES</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-nbuild-arg-in-files" title="Permalink to this definition">¶</a></dt>
+<dd><p>Required argument(s)</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nbconv">
+<h2>nbconv<a class="headerlink" href="#nbconv" title="Permalink to this headline">¶</a></h2>
+<p>Command-line interface for the nbconv function</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>nbconv <span class="o">[</span>OPTIONS<span class="o">]</span> IN_FILE
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-nbconv-e">
+<code class="descname">-e</code><code class="descclassname"></code><code class="descclassname">, </code><code class="descname">--exporter</code><code class="descclassname"> &lt;exporter&gt;</code><a class="headerlink" href="#cmdoption-nbconv-e" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-nbconv-o">
+<code class="descname">-o</code><code class="descclassname"></code><code class="descclassname">, </code><code class="descname">--out_file</code><code class="descclassname"> &lt;out&gt;</code><a class="headerlink" href="#cmdoption-nbconv-o" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="option">
+<dt id="cmdoption-nbconv-arg-in-file">
+<code class="descname">IN_FILE</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-nbconv-arg-in-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nbexec">
+<h2>nbexec<a class="headerlink" href="#nbexec" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>nbexec <span class="o">[</span>OPTIONS<span class="o">]</span> IN_FILE
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-nbexec-k">
+<code class="descname">-k</code><code class="descclassname"></code><code class="descclassname">, </code><code class="descname">--kernel</code><code class="descclassname"> &lt;kernel&gt;</code><a class="headerlink" href="#cmdoption-nbexec-k" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-nbexec-o">
+<code class="descname">-o</code><code class="descclassname"></code><code class="descclassname">, </code><code class="descname">--out_file</code><code class="descclassname"> &lt;out_file&gt;</code><a class="headerlink" href="#cmdoption-nbexec-o" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="option">
+<dt id="cmdoption-nbexec-arg-in-file">
+<code class="descname">IN_FILE</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-nbexec-arg-in-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="readme.html">Nbless: a Python package for programmatic Jupyter notebook workflows</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Nbless command-line interface (CLI)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#nbless">nbless</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nbuild">nbuild</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nbconv">nbconv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nbexec">nbexec</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">nbless</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">tests</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="readme.html"
+                        title="previous chapter">Nbless: a Python package for programmatic Jupyter notebook workflows</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="modules.html"
+                        title="next chapter">nbless</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/cli.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="modules.html" title="nbless"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="readme.html" title="Nbless: a Python package for programmatic Jupyter notebook workflows"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Nbless 0.0.1 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Martin Skarzynski.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>

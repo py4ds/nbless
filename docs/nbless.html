@@ -1,0 +1,237 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>nbless package &#8212; Nbless 0.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="nbless.helpers package" href="nbless.helpers.html" />
+    <link rel="prev" title="nbless" href="modules.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="nbless.helpers.html" title="nbless.helpers package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="modules.html" title="nbless"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Nbless 0.0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" accesskey="U">nbless</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="nbless-package">
+<h1>nbless package<a class="headerlink" href="#nbless-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nbless.helpers.html">nbless.helpers package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="nbless.helpers.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nbless.helpers.html#module-nbless.helpers.get_stem">nbless.helpers.get_stem module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nbless.helpers.html#module-nbless.helpers.read_file">nbless.helpers.read_file module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nbless.helpers.html#module-nbless.helpers.write_file">nbless.helpers.write_file module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nbless.helpers.html#module-nbless.helpers">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="nbless.main.html">nbless.main package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="nbless.main.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nbless.main.html#module-nbless.main.nbconv">nbless.main.nbconv module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nbless.main.html#module-nbless.main.nbexec">nbless.main.nbexec module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nbless.main.html#module-nbless.main.nbless">nbless.main.nbless module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nbless.main.html#module-nbless.main.nbread">nbless.main.nbread module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nbless.main.html#module-nbless.main.nbsave">nbless.main.nbsave module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nbless.main.html#module-nbless.main.nbuild">nbless.main.nbuild module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nbless.main.html#module-nbless.main">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="module-nbless">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-nbless" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="nbless.nbless">
+<code class="descclassname">nbless.</code><code class="descname">nbless</code><span class="sig-paren">(</span><em>filenames: List[str], kernel: str = 'python3'</em><span class="sig-paren">)</span> &#x2192; nbformat.notebooknode.NotebookNode<a class="reference internal" href="_modules/nbless/main/nbless.html#nbless"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.nbless" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a Jupyter notebook from text files and Python or R scripts</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filenames</strong> – a list of source file names</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="nbless.nbuild">
+<code class="descclassname">nbless.</code><code class="descname">nbuild</code><span class="sig-paren">(</span><em>filenames: List[str]</em><span class="sig-paren">)</span> &#x2192; nbformat.notebooknode.NotebookNode<a class="reference internal" href="_modules/nbless/main/nbuild.html#nbuild"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.nbuild" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a Jupyter notebook from text files and Python or R scripts</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filenames</strong> – a list of source file names</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="nbless.nbexec">
+<code class="descclassname">nbless.</code><code class="descname">nbexec</code><span class="sig-paren">(</span><em>nb_name: str</em>, <em>kernel: str = 'python3'</em><span class="sig-paren">)</span> &#x2192; Tuple[str, nbformat.notebooknode.NotebookNode]<a class="reference internal" href="_modules/nbless/main/nbexec.html#nbexec"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.nbexec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an executed notebook without modifying the input notebook.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>nb_name</strong> – The name of the input notebook</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="nbless.nbconv">
+<code class="descclassname">nbless.</code><code class="descname">nbconv</code><span class="sig-paren">(</span><em>nb_name: str</em>, <em>exporter: str = 'python'</em><span class="sig-paren">)</span> &#x2192; Tuple[str, str]<a class="reference internal" href="_modules/nbless/main/nbconv.html#nbconv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.nbconv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a notebook into various formats using different exporters</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>input_name</strong> – The name of the input notebook</li>
+<li><strong>exporter</strong> – The exporter type determines the output file type</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Note:</th><td class="field-body"><p class="first last">The exporter type must be ‘asciidoc’, ‘pdf’, ‘html’, ‘latex’,
+‘markdown’, ‘python’, ‘rst’, ‘script’, or ‘slides’.
+pdf requires latex, ‘notebook’ does nothing,
+slides need to served (not self-contained)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="nbless.nbsave">
+<code class="descclassname">nbless.</code><code class="descname">nbsave</code><span class="sig-paren">(</span><em>nb_name: str</em>, <em>nb: nbformat.notebooknode.NotebookNode</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/nbless/main/nbsave.html#nbsave"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.nbsave" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="nbless.nbread">
+<code class="descclassname">nbless.</code><code class="descname">nbread</code><span class="sig-paren">(</span><em>filename: str</em><span class="sig-paren">)</span> &#x2192; nbformat.notebooknode.NotebookNode<a class="reference internal" href="_modules/nbless/main/nbread.html#nbread"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.nbread" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="readme.html">Nbless: a Python package for programmatic Jupyter notebook workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Nbless command-line interface (CLI)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">nbless</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">nbless package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="nbless.helpers.html">nbless.helpers package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nbless.main.html">nbless.main package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#module-nbless">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">tests</a></li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="modules.html"
+                        title="previous chapter">nbless</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="nbless.helpers.html"
+                        title="next chapter">nbless.helpers package</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/nbless.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="nbless.helpers.html" title="nbless.helpers package"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="modules.html" title="nbless"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Nbless 0.0.1 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="modules.html" >nbless</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Martin Skarzynski.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.
+    </div>
+  </body>
+</html>
