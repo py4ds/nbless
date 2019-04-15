@@ -21,13 +21,13 @@ sys.path.insert(1, os.path.abspath('../../tests'))
 # -- Project information -----------------------------------------------------
 
 project = 'Nbless'
-copyright = '2018, Martin Skarzynski'
+copyright = '2019, Martin Skarzynski'
 author = 'Martin Skarzynski'
 
 # The short X.Y version
-version = '0.0.1'
+version = '0.2.18'
 # The full version, including alpha/beta/rc tags
-release = '0.0.1'
+release = '0.2.18'
 
 
 # -- General configuration ---------------------------------------------------
@@ -91,6 +91,7 @@ pygments_style = None
 # a list of builtin themes.
 #
 html_theme = 'classic'
+html_theme_options = {'body_max_width': 'none'}
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
