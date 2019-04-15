@@ -7,7 +7,7 @@ from nbless.helpers.get_stem import get_stem
 
 
 def nbconv(nb_name: str, exporter: str = "python") -> Tuple[str, str]:
-    """Convert a notebook into various formats using different exporters
+    """Convert a notebook into various formats using different exporters.
 
     :param input_name: The name of the input notebook
 

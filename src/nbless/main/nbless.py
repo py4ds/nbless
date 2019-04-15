@@ -8,7 +8,7 @@ from nbless.main.nbuild import nbuild
 
 
 def nbless(filenames: List[str], kernel: str = "python3") -> NotebookNode:
-    """Create a Jupyter notebook from text files and Python or R scripts
+    """Create an executed Jupyter notebook from text and code files.
 
     :param filenames: a list of source file names
     """

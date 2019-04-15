@@ -57,7 +57,7 @@
 <dl class="function">
 <dt id="nbless.main.nbconv.nbconv">
 <code class="descclassname">nbless.main.nbconv.</code><code class="descname">nbconv</code><span class="sig-paren">(</span><em>nb_name: str</em>, <em>exporter: str = 'python'</em><span class="sig-paren">)</span> &#x2192; Tuple[str, str]<a class="reference internal" href="_modules/nbless/main/nbconv.html#nbconv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.main.nbconv.nbconv" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a notebook into various formats using different exporters</p>
+<dd><p>Convert a notebook into various formats using different exporters.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -101,7 +101,7 @@ slides need to served (not self-contained)</p>
 <dl class="function">
 <dt id="nbless.main.nbless.nbless">
 <code class="descclassname">nbless.main.nbless.</code><code class="descname">nbless</code><span class="sig-paren">(</span><em>filenames: List[str], kernel: str = 'python3'</em><span class="sig-paren">)</span> &#x2192; nbformat.notebooknode.NotebookNode<a class="reference internal" href="_modules/nbless/main/nbless.html#nbless"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.main.nbless.nbless" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a Jupyter notebook from text files and Python or R scripts</p>
+<dd><p>Create an executed Jupyter notebook from text and code files.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -118,7 +118,8 @@ slides need to served (not self-contained)</p>
 <dl class="function">
 <dt id="nbless.main.nbread.nbread">
 <code class="descclassname">nbless.main.nbread.</code><code class="descname">nbread</code><span class="sig-paren">(</span><em>filename: str</em><span class="sig-paren">)</span> &#x2192; nbformat.notebooknode.NotebookNode<a class="reference internal" href="_modules/nbless/main/nbread.html#nbread"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.main.nbread.nbread" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Read in a notebook as an nbformat NotebookNode object.</p>
+</dd></dl>
 
 </div>
 <div class="section" id="module-nbless.main.nbsave">
@@ -126,7 +127,8 @@ slides need to served (not self-contained)</p>
 <dl class="function">
 <dt id="nbless.main.nbsave.nbsave">
 <code class="descclassname">nbless.main.nbsave.</code><code class="descname">nbsave</code><span class="sig-paren">(</span><em>nb_name: str</em>, <em>nb: nbformat.notebooknode.NotebookNode</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/nbless/main/nbsave.html#nbsave"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.main.nbsave.nbsave" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Save an nbformat NotebookNode object as an ipynb file.</p>
+</dd></dl>
 
 </div>
 <div class="section" id="module-nbless.main.nbuild">
@@ -134,7 +136,7 @@ slides need to served (not self-contained)</p>
 <dl class="function">
 <dt id="nbless.main.nbuild.nbuild">
 <code class="descclassname">nbless.main.nbuild.</code><code class="descname">nbuild</code><span class="sig-paren">(</span><em>filenames: List[str]</em><span class="sig-paren">)</span> &#x2192; nbformat.notebooknode.NotebookNode<a class="reference internal" href="_modules/nbless/main/nbuild.html#nbuild"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.main.nbuild.nbuild" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a Jupyter notebook from text files and Python or R scripts</p>
+<dd><p>Create an unexecuted Jupyter notebook from text and code files.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -148,6 +150,7 @@ slides need to served (not self-contained)</p>
 </div>
 <div class="section" id="module-nbless.main">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-nbless.main" title="Permalink to this headline">¶</a></h2>
+<p>Nbless: a Python package for programmatic Jupyter notebook workflows.</p>
 </div>
 </div>
 
@@ -160,9 +163,9 @@ slides need to served (not self-contained)</p>
   <h3><a href="index.html">Table of Contents</a></h3>
   <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="readme.html">Nbless: a Python package for programmatic Jupyter notebook workflows</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cli.html">Nbless command-line interface (CLI)</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="modules.html">nbless</a><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="readme.html">Project overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Command-line interface</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Module reference</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="nbless.html">nbless package</a><ul class="current">
 <li class="toctree-l3 current"><a class="reference internal" href="nbless.html#subpackages">Subpackages</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="nbless.helpers.html">nbless.helpers package</a></li>
@@ -184,7 +187,7 @@ slides need to served (not self-contained)</p>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="tests.html">tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">Test reference</a></li>
 </ul>
 
   <h4>Previous topic</h4>

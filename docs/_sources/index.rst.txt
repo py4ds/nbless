@@ -5,10 +5,10 @@ Welcome to Nbless's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   readme.rst
-   cli.rst
-   modules.rst
-   tests.rst
+   Project overview <readme.rst>
+   Command-line interface <cli.rst>
+   Module reference <modules.rst>
+   Test reference <tests.rst>
 
 
 

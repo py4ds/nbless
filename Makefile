@@ -4,14 +4,14 @@
 ENV = virtualenv
 PYTHON = .venv/bin/python3
 LINTER = black
-DOCS = $(wildcard docs/*.rst docs/*.md docs/*.ipynb)
+DOCS = $(wildcard docs/source/*.rst docs/source/*.md docs/source/*.ipynb)
 TESTS = $(wildcard tests/*.py)
-SRC = $(wildcard src/*/*.py)
+SRC = $(wildcard src/*/*/*.py)
 
 
 init: .git/
 env: .venv/bin/activate
-docs: docs/_build/html/index.html
+docs: docs/index.html
 patch-release: patch release
 
 
@@ -51,8 +51,10 @@ else
 endif
 	${PYTHON} -m $(LINTER) src tests
 
-docs/_build/html/index.html: $(DOCS) $(TESTS) $(SRC)
-	sphinx-build -M html docs/ docs/_build
+docs/index.html: $(DOCS) $(TESTS) $(SRC)
+	mv docs html
+	sphinx-build -M html html/source .
+	mv html docs
 
 git:
 	git add --all
