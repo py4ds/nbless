@@ -90,8 +90,16 @@ pygments_style = None
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'classic'
-html_theme_options = {'body_max_width': 'none'}
+html_theme = 'alabaster'
+html_theme_options = {
+    'description': 'A Python package for programmatic Jupyter notebook workflows',
+    'fixed_sidebar': 'true',
+    'page_width': '100%',
+    'github_button': 'true',
+    'github_banner': 'true',
+    'github_user': 'marskar',
+    'github_repo': 'nbless'
+}
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
