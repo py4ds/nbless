@@ -97,6 +97,7 @@ html_theme_options = {
     'page_width': '100%',
     'github_button': 'true',
     'github_banner': 'true',
+    'github_type': 'star',
     'github_user': 'marskar',
     'github_repo': 'nbless'
 }
