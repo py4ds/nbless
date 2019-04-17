@@ -8,9 +8,10 @@ from nbless.main.nbuild import nbuild
 
 
 def nbless(filenames: List[str], kernel: str = "python3") -> NotebookNode:
-    """Create an executed Jupyter notebook from text and code files.
+    """Create an executed Jupyter notebook from markdown and code files.
 
-    :param filenames: a list of source file names
+    :param filenames: A list of markdown and code file names.
+    :param kernel: The programming language used to run the notebook.
     """
     nb = nbuild(filenames)
     ep = ExecutePreprocessor(timeout=600, kernel_name=kernel)

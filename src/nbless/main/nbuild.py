@@ -7,9 +7,9 @@ from nbless.helpers.read_file import read_file
 
 
 def nbuild(filenames: List[str]) -> nbformat.notebooknode.NotebookNode:
-    """Create an unexecuted Jupyter notebook from text and code files.
+    """Create an unexecuted Jupyter notebook from markdown and code files.
 
-    :param filenames: a list of source file names
+    :param filenames: A list of source file names.
     """
     nb = nbformat.v4.new_notebook()
     nb["cells"] = [

@@ -135,10 +135,10 @@
 <dl class="function">
 <dt id="nbless.nbuild">
 <code class="descclassname">nbless.</code><code class="descname">nbuild</code><span class="sig-paren">(</span><em>filenames: List[str]</em><span class="sig-paren">)</span> &#x2192; nbformat.notebooknode.NotebookNode<a class="reference internal" href="_modules/nbless/main/nbuild.html#nbuild"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.nbuild" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create an unexecuted Jupyter notebook from text and code files.</p>
+<dd><p>Create an unexecuted Jupyter notebook from markdown and code files.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>filenames</strong> – a list of source file names</p>
+<dd class="field-odd"><p><strong>filenames</strong> – A list of source file names.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -149,7 +149,10 @@
 <dd><p>Create an executed notebook without modifying the input notebook.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>nb_name</strong> – The name of the input notebook</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nb_name</strong> – The <code class="docutils literal notranslate"><span class="pre">NotebookNode</span></code> object to be executed.</p></li>
+<li><p><strong>kernel</strong> – The programming language used to execute the notebook.</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -157,33 +160,46 @@
 <dl class="function">
 <dt id="nbless.nbconv">
 <code class="descclassname">nbless.</code><code class="descname">nbconv</code><span class="sig-paren">(</span><em>nb_name: str</em>, <em>exporter: str = 'python'</em><span class="sig-paren">)</span> &#x2192; Tuple[str, str]<a class="reference internal" href="_modules/nbless/main/nbconv.html#nbconv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.nbconv" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a notebook into various formats using different exporters.</p>
+<dd><p>Convert a notebook into various formats using <code class="docutils literal notranslate"><span class="pre">nbformat</span></code> exporters.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>input_name</strong> – The name of the input notebook</p></li>
-<li><p><strong>exporter</strong> – The exporter type determines the output file type</p></li>
+<li><p><strong>input_name</strong> – The name of the input notebook.</p></li>
+<li><p><strong>exporter</strong> – The exporter that determines the output file type.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Note</dt>
 <dd class="field-even"><p>The exporter type must be ‘asciidoc’, ‘pdf’, ‘html’, ‘latex’,
 ‘markdown’, ‘python’, ‘rst’, ‘script’, or ‘slides’.
 pdf requires latex, ‘notebook’ does nothing,
-slides need to served (not self-contained)</p>
+slides need to served (not self-contained).</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="nbless.nbsave">
-<code class="descclassname">nbless.</code><code class="descname">nbsave</code><span class="sig-paren">(</span><em>nb_name: str</em>, <em>nb: nbformat.notebooknode.NotebookNode</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/nbless/main/nbsave.html#nbsave"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.nbsave" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">nbless.</code><code class="descname">nbsave</code><span class="sig-paren">(</span><em>filename: str</em>, <em>nb: nbformat.notebooknode.NotebookNode</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/nbless/main/nbsave.html#nbsave"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.nbsave" title="Permalink to this definition">¶</a></dt>
 <dd><p>Save an nbformat NotebookNode object as an ipynb file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> – The filename of the output notebook.</p></li>
+<li><p><strong>nb</strong> – The <code class="docutils literal notranslate"><span class="pre">NotebookNode</span></code> object to be saved to a file.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="nbless.nbread">
 <code class="descclassname">nbless.</code><code class="descname">nbread</code><span class="sig-paren">(</span><em>filename: str</em><span class="sig-paren">)</span> &#x2192; nbformat.notebooknode.NotebookNode<a class="reference internal" href="_modules/nbless/main/nbread.html#nbread"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.nbread" title="Permalink to this definition">¶</a></dt>
-<dd><p>Read in a notebook as an nbformat NotebookNode object.</p>
+<dd><p>Read in a notebook file as an <code class="docutils literal notranslate"><span class="pre">nbformat</span></code> <code class="docutils literal notranslate"><span class="pre">NotebookNode</span></code> object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> – The filename of the notebook to be read in.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </div>

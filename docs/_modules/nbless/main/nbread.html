@@ -92,7 +92,10 @@
 
 
 <div class="viewcode-block" id="nbread"><a class="viewcode-back" href="../../../nbless.main.html#nbless.nbread">[docs]</a><span class="k">def</span> <span class="nf">nbread</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">nbformat</span><span class="o">.</span><span class="n">notebooknode</span><span class="o">.</span><span class="n">NotebookNode</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Read in a notebook as an nbformat NotebookNode object.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Read in a notebook file as an ``nbformat`` ``NotebookNode`` object.</span>
+
+<span class="sd">    :param filename: The filename of the notebook to be read in.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">nbformat</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">as_version</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span></div>
 </pre></div>

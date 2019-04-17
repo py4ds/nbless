@@ -97,9 +97,9 @@
 
 
 <div class="viewcode-block" id="nbuild"><a class="viewcode-back" href="../../../nbless.main.html#nbless.nbuild">[docs]</a><span class="k">def</span> <span class="nf">nbuild</span><span class="p">(</span><span class="n">filenames</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">nbformat</span><span class="o">.</span><span class="n">notebooknode</span><span class="o">.</span><span class="n">NotebookNode</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Create an unexecuted Jupyter notebook from text and code files.</span>
+    <span class="sd">&quot;&quot;&quot;Create an unexecuted Jupyter notebook from markdown and code files.</span>
 
-<span class="sd">    :param filenames: a list of source file names</span>
+<span class="sd">    :param filenames: A list of source file names.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">nb</span> <span class="o">=</span> <span class="n">nbformat</span><span class="o">.</span><span class="n">v4</span><span class="o">.</span><span class="n">new_notebook</span><span class="p">()</span>
     <span class="n">nb</span><span class="p">[</span><span class="s2">&quot;cells&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>

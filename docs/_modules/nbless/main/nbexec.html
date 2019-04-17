@@ -101,7 +101,8 @@
 <div class="viewcode-block" id="nbexec"><a class="viewcode-back" href="../../../nbless.main.html#nbless.nbexec">[docs]</a><span class="k">def</span> <span class="nf">nbexec</span><span class="p">(</span><span class="n">nb_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">kernel</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;python3&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">NotebookNode</span><span class="p">]:</span>
     <span class="sd">&quot;&quot;&quot;Create an executed notebook without modifying the input notebook.</span>
 
-<span class="sd">    :param nb_name: The name of the input notebook</span>
+<span class="sd">    :param nb_name: The ``NotebookNode`` object to be executed.</span>
+<span class="sd">    :param kernel: The programming language used to execute the notebook.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">stem</span><span class="p">,</span> <span class="n">nb</span> <span class="o">=</span> <span class="n">get_stem</span><span class="p">(</span><span class="n">nb_name</span><span class="p">),</span> <span class="n">nbread</span><span class="p">(</span><span class="n">nb_name</span><span class="p">)</span>
     <span class="n">ep</span> <span class="o">=</span> <span class="n">ExecutePreprocessor</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> <span class="n">kernel_name</span><span class="o">=</span><span class="n">kernel</span><span class="p">)</span>
