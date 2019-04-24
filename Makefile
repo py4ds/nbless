@@ -1,7 +1,7 @@
 # If ENV is pipenv, run export PIPENV_VENV_IN_PROJECT=1
 # Otherwise, .venv will not be in the current project.
 
-ENV = virtualenv
+ENV = venv
 PYTHON = .venv/bin/python3
 LINTER = black
 DOCS = $(wildcard docs/source/*.rst docs/source/*.md docs/source/*.ipynb)
@@ -30,7 +30,6 @@ ifeq ($(ENV), pipenv)
 	pipenv install pip
 	pipenv install --editable .
 else
-	${PYTHON} -m pip install --upgrade pip
 	${PYTHON} -m pip install --editable .
 endif
 	touch .venv/bin/activate
