@@ -1,6 +1,6 @@
 import click
 
-from nbless.main import nbraze
+from nbless import nbraze
 
 
 @click.command()

@@ -17,11 +17,11 @@ setuptools.setup(
     # scripts=['nbless.py', 'nbuild.py', 'nbexec.py'],
     entry_points={
         'console_scripts': [
-            'nbless = nbless.cli.nbless_click:nbless_click',
-            'nbuild = nbless.cli.nbuild_click:nbuild_click',
-            'nbraze = nbless.cli.nbraze_click:nbraze_click',
-            'nbexec = nbless.cli.nbexec_click:nbexec_click',
-            'nbconv = nbless.cli.nbconv_click:nbconv_click',
+            'nbless = cli.nbless_click:nbless_click',
+            'nbuild = cli.nbuild_click:nbuild_click',
+            'nbraze = cli.nbraze_click:nbraze_click',
+            'nbexec = cli.nbexec_click:nbexec_click',
+            'nbconv = cli.nbconv_click:nbconv_click',
         ]
     },
     classifiers=[

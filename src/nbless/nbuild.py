@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 from typing import List
+from pathlib import Path
 
 import nbformat
-
-from nbless.helpers.read_file import read_file
 
 
 def nbuild(filenames: List[str]) -> nbformat.notebooknode.NotebookNode:
@@ -13,9 +12,9 @@ def nbuild(filenames: List[str]) -> nbformat.notebooknode.NotebookNode:
     """
     nb = nbformat.v4.new_notebook()
     nb["cells"] = [
-        nbformat.v4.new_code_cell(read_file(name))
+        nbformat.v4.new_code_cell(Path(name).read_text())
         if name.endswith((".py", ".R"))
-        else nbformat.v4.new_markdown_cell(read_file(name))
+        else nbformat.v4.new_markdown_cell(Path(name).read_text())
         for name in filenames
     ]
     return nb

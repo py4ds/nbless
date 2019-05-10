@@ -1,9 +1,8 @@
 #!/usr/bin/env python
+from pathlib import Path
 from typing import Tuple
 
 from nbconvert.exporters.base import get_exporter
-
-from nbless.helpers.get_stem import get_stem
 
 
 def nbconv(nb_name: str, exporter: str = "python") -> Tuple[str, str]:
@@ -17,5 +16,5 @@ def nbconv(nb_name: str, exporter: str = "python") -> Tuple[str, str]:
            slides need to served (not self-contained).
     """
     contents, resources = get_exporter(exporter)().from_filename(nb_name)
-    out_name = get_stem(nb_name) + resources.get("output_extension", ".txt")
+    out_name = Path(nb_name).stem + resources.get("output_extension", ".txt")
     return out_name, contents
