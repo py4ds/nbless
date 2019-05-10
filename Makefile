@@ -52,8 +52,11 @@ endif
 
 docs/index.html: $(DOCS) $(TESTS) $(SRC)
 	mv docs html
+	sphinx-apidoc -fo html/source src/nbless src/nbless/cli
+	sphinx-apidoc -fo html/source --tocfile tests tests
 	sphinx-build -M html html/source .
 	mv html docs
+	open docs/index.html
 
 git:
 	git add --all

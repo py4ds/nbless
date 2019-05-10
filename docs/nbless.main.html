@@ -59,6 +59,7 @@
 <li class="toctree-l5"><a class="reference internal" href="#module-nbless.main.nbconv">nbless.main.nbconv module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#module-nbless.main.nbexec">nbless.main.nbexec module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#module-nbless.main.nbless">nbless.main.nbless module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="#module-nbless.main.nbraze">nbless.main.nbraze module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#module-nbless.main.nbread">nbless.main.nbread module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#module-nbless.main.nbsave">nbless.main.nbsave module</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#module-nbless.main.nbuild">nbless.main.nbuild module</a></li>
@@ -170,6 +171,23 @@ slides need to served (not self-contained).</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>filenames</strong> – A list of markdown and code file names.</p></li>
 <li><p><strong>kernel</strong> – The programming language used to run the notebook.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-nbless.main.nbraze">
+<span id="nbless-main-nbraze-module"></span><h2>nbless.main.nbraze module<a class="headerlink" href="#module-nbless.main.nbraze" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="nbless.main.nbraze.nbraze">
+<code class="descclassname">nbless.main.nbraze.</code><code class="descname">nbraze</code><span class="sig-paren">(</span><em>filename: str</em>, <em>extension: str = 'py'</em><span class="sig-paren">)</span> &#x2192; Dict[str, str]<a class="reference internal" href="_modules/nbless/main/nbraze.html#nbraze"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.main.nbraze.nbraze" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create markdown and code files from a Jupyter notebook.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filenames</strong> – The filename of the input jupyter notebook.</p></li>
+<li><p><strong>extension</strong> – The extension for code files.</p></li>
 </ul>
 </dd>
 </dl>

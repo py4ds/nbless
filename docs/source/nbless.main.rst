@@ -28,6 +28,14 @@ nbless.main.nbless module
     :undoc-members:
     :show-inheritance:
 
+nbless.main.nbraze module
+-------------------------
+
+.. automodule:: nbless.main.nbraze
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 nbless.main.nbread module
 -------------------------
 
