@@ -1,0 +1,70 @@
+src.nbless package
+==================
+
+Submodules
+----------
+
+src.nbless.nbconv module
+------------------------
+
+.. automodule:: src.nbless.nbconv
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+src.nbless.nbexec module
+------------------------
+
+.. automodule:: src.nbless.nbexec
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+src.nbless.nbless module
+------------------------
+
+.. automodule:: src.nbless.nbless
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+src.nbless.nbraze module
+------------------------
+
+.. automodule:: src.nbless.nbraze
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+src.nbless.nbread module
+------------------------
+
+.. automodule:: src.nbless.nbread
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+src.nbless.nbsave module
+------------------------
+
+.. automodule:: src.nbless.nbsave
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+src.nbless.nbuild module
+------------------------
+
+.. automodule:: src.nbless.nbuild
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+
+Module contents
+---------------
+
+.. automodule:: src.nbless
+    :members:
+    :undoc-members:
+    :show-inheritance:

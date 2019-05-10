@@ -14,7 +14,7 @@
     <script type="text/javascript" src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="nbless.helpers package" href="nbless.helpers.html" />
+    <link rel="next" title="tests" href="tests.html" />
     <link rel="prev" title="nbless" href="modules.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -52,11 +52,14 @@
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Command-line interface</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">Module reference</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">nbless package</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="nbless.helpers.html">nbless.helpers package</a></li>
-<li class="toctree-l4"><a class="reference internal" href="nbless.main.html">nbless.main package</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-nbless.nbconv">nbless.nbconv module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-nbless.nbexec">nbless.nbexec module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-nbless.nbless">nbless.nbless module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-nbless.nbraze">nbless.nbraze module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-nbless.nbread">nbless.nbread module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-nbless.nbsave">nbless.nbsave module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-nbless.nbuild">nbless.nbuild module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-nbless">Module contents</a></li>
 </ul>
 </li>
@@ -71,7 +74,7 @@
   <li><a href="index.html">Documentation overview</a><ul>
   <li><a href="modules.html">nbless</a><ul>
       <li>Previous: <a href="modules.html" title="previous chapter">nbless</a></li>
-      <li>Next: <a href="nbless.helpers.html" title="next chapter">nbless.helpers package</a></li>
+      <li>Next: <a href="tests.html" title="next chapter">tests</a></li>
   </ul></li>
   </ul></li>
 </ul>
@@ -104,63 +107,14 @@
             
   <div class="section" id="nbless-package">
 <h1>nbless package<a class="headerlink" href="#nbless-package" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="subpackages">
-<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="nbless.helpers.html">nbless.helpers package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="nbless.helpers.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nbless.helpers.html#module-nbless.helpers.get_stem">nbless.helpers.get_stem module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nbless.helpers.html#module-nbless.helpers.read_file">nbless.helpers.read_file module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nbless.helpers.html#module-nbless.helpers.write_file">nbless.helpers.write_file module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nbless.helpers.html#module-nbless.helpers">Module contents</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="nbless.main.html">nbless.main package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="nbless.main.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nbless.main.html#module-nbless.main.nbconv">nbless.main.nbconv module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nbless.main.html#module-nbless.main.nbexec">nbless.main.nbexec module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nbless.main.html#module-nbless.main.nbless">nbless.main.nbless module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nbless.main.html#module-nbless.main.nbraze">nbless.main.nbraze module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nbless.main.html#module-nbless.main.nbread">nbless.main.nbread module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nbless.main.html#module-nbless.main.nbsave">nbless.main.nbsave module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nbless.main.html#module-nbless.main.nbuild">nbless.main.nbuild module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nbless.main.html#module-nbless.main">Module contents</a></li>
-</ul>
-</li>
-</ul>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
 </div>
-</div>
-<div class="section" id="module-nbless">
-<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-nbless" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-nbless.nbconv">
+<span id="nbless-nbconv-module"></span><h2>nbless.nbconv module<a class="headerlink" href="#module-nbless.nbconv" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
-<dt id="nbless.nbuild">
-<code class="descclassname">nbless.</code><code class="descname">nbuild</code><span class="sig-paren">(</span><em>filenames: List[str]</em><span class="sig-paren">)</span> &#x2192; nbformat.notebooknode.NotebookNode<a class="reference internal" href="_modules/nbless/main/nbuild.html#nbuild"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.nbuild" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create an unexecuted Jupyter notebook from markdown and code files.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>filenames</strong> – A list of source file names.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="function">
-<dt id="nbless.nbexec">
-<code class="descclassname">nbless.</code><code class="descname">nbexec</code><span class="sig-paren">(</span><em>nb_name: str</em>, <em>kernel: str = 'python3'</em><span class="sig-paren">)</span> &#x2192; Tuple[str, nbformat.notebooknode.NotebookNode]<a class="reference internal" href="_modules/nbless/main/nbexec.html#nbexec"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.nbexec" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create an executed notebook without modifying the input notebook.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>nb_name</strong> – The <code class="docutils literal notranslate"><span class="pre">NotebookNode</span></code> object to be executed.</p></li>
-<li><p><strong>kernel</strong> – The programming language used to execute the notebook.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="function">
-<dt id="nbless.nbconv">
-<code class="descclassname">nbless.</code><code class="descname">nbconv</code><span class="sig-paren">(</span><em>nb_name: str</em>, <em>exporter: str = 'python'</em><span class="sig-paren">)</span> &#x2192; Tuple[str, str]<a class="reference internal" href="_modules/nbless/main/nbconv.html#nbconv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.nbconv" title="Permalink to this definition">¶</a></dt>
+<dt id="nbless.nbconv.nbconv">
+<code class="descclassname">nbless.nbconv.</code><code class="descname">nbconv</code><span class="sig-paren">(</span><em>nb_name: str</em>, <em>exporter: str = 'python'</em><span class="sig-paren">)</span> &#x2192; Tuple[str, str]<a class="reference internal" href="_modules/nbless/nbconv.html#nbconv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.nbconv.nbconv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert a notebook into various formats using <code class="docutils literal notranslate"><span class="pre">nbformat</span></code> exporters.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -178,9 +132,77 @@ slides need to served (not self-contained).</p>
 </dl>
 </dd></dl>
 
+</div>
+<div class="section" id="module-nbless.nbexec">
+<span id="nbless-nbexec-module"></span><h2>nbless.nbexec module<a class="headerlink" href="#module-nbless.nbexec" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
-<dt id="nbless.nbsave">
-<code class="descclassname">nbless.</code><code class="descname">nbsave</code><span class="sig-paren">(</span><em>filename: str</em>, <em>nb: nbformat.notebooknode.NotebookNode</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/nbless/main/nbsave.html#nbsave"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.nbsave" title="Permalink to this definition">¶</a></dt>
+<dt id="nbless.nbexec.nbexec">
+<code class="descclassname">nbless.nbexec.</code><code class="descname">nbexec</code><span class="sig-paren">(</span><em>nb_name: str</em>, <em>kernel: str = 'python3'</em><span class="sig-paren">)</span> &#x2192; Tuple[str, nbformat.notebooknode.NotebookNode]<a class="reference internal" href="_modules/nbless/nbexec.html#nbexec"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.nbexec.nbexec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an executed notebook without modifying the input notebook.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nb_name</strong> – The <code class="docutils literal notranslate"><span class="pre">NotebookNode</span></code> object to be executed.</p></li>
+<li><p><strong>kernel</strong> – The programming language used to execute the notebook.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-nbless.nbless">
+<span id="nbless-nbless-module"></span><h2>nbless.nbless module<a class="headerlink" href="#module-nbless.nbless" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="nbless.nbless.nbless">
+<code class="descclassname">nbless.nbless.</code><code class="descname">nbless</code><span class="sig-paren">(</span><em>filenames: List[str], kernel: str = 'python3'</em><span class="sig-paren">)</span> &#x2192; nbformat.notebooknode.NotebookNode<a class="reference internal" href="_modules/nbless/nbless.html#nbless"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.nbless.nbless" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an executed Jupyter notebook from markdown and code files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filenames</strong> – A list of markdown and code file names.</p></li>
+<li><p><strong>kernel</strong> – The programming language used to run the notebook.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-nbless.nbraze">
+<span id="nbless-nbraze-module"></span><h2>nbless.nbraze module<a class="headerlink" href="#module-nbless.nbraze" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="nbless.nbraze.nbraze">
+<code class="descclassname">nbless.nbraze.</code><code class="descname">nbraze</code><span class="sig-paren">(</span><em>filename: str</em>, <em>extension: str = 'py'</em><span class="sig-paren">)</span> &#x2192; Dict[str, str]<a class="reference internal" href="_modules/nbless/nbraze.html#nbraze"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.nbraze.nbraze" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create markdown and code files from a Jupyter notebook.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filenames</strong> – The filename of the input jupyter notebook.</p></li>
+<li><p><strong>extension</strong> – The extension for code files.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-nbless.nbread">
+<span id="nbless-nbread-module"></span><h2>nbless.nbread module<a class="headerlink" href="#module-nbless.nbread" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="nbless.nbread.nbread">
+<code class="descclassname">nbless.nbread.</code><code class="descname">nbread</code><span class="sig-paren">(</span><em>filename: str</em><span class="sig-paren">)</span> &#x2192; nbformat.notebooknode.NotebookNode<a class="reference internal" href="_modules/nbless/nbread.html#nbread"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.nbread.nbread" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read in a notebook file as an <code class="docutils literal notranslate"><span class="pre">nbformat</span></code> <code class="docutils literal notranslate"><span class="pre">NotebookNode</span></code> object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> – The filename of the notebook to be read in.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-nbless.nbsave">
+<span id="nbless-nbsave-module"></span><h2>nbless.nbsave module<a class="headerlink" href="#module-nbless.nbsave" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="nbless.nbsave.nbsave">
+<code class="descclassname">nbless.nbsave.</code><code class="descname">nbsave</code><span class="sig-paren">(</span><em>filename: str</em>, <em>nb: nbformat.notebooknode.NotebookNode</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/nbless/nbsave.html#nbsave"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.nbsave.nbsave" title="Permalink to this definition">¶</a></dt>
 <dd><p>Save an nbformat NotebookNode object as an ipynb file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -192,17 +214,24 @@ slides need to served (not self-contained).</p>
 </dl>
 </dd></dl>
 
+</div>
+<div class="section" id="module-nbless.nbuild">
+<span id="nbless-nbuild-module"></span><h2>nbless.nbuild module<a class="headerlink" href="#module-nbless.nbuild" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
-<dt id="nbless.nbread">
-<code class="descclassname">nbless.</code><code class="descname">nbread</code><span class="sig-paren">(</span><em>filename: str</em><span class="sig-paren">)</span> &#x2192; nbformat.notebooknode.NotebookNode<a class="reference internal" href="_modules/nbless/main/nbread.html#nbread"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.nbread" title="Permalink to this definition">¶</a></dt>
-<dd><p>Read in a notebook file as an <code class="docutils literal notranslate"><span class="pre">nbformat</span></code> <code class="docutils literal notranslate"><span class="pre">NotebookNode</span></code> object.</p>
+<dt id="nbless.nbuild.nbuild">
+<code class="descclassname">nbless.nbuild.</code><code class="descname">nbuild</code><span class="sig-paren">(</span><em>filenames: List[str]</em><span class="sig-paren">)</span> &#x2192; nbformat.notebooknode.NotebookNode<a class="reference internal" href="_modules/nbless/nbuild.html#nbuild"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.nbuild.nbuild" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an unexecuted Jupyter notebook from markdown and code files.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>filename</strong> – The filename of the notebook to be read in.</p>
+<dd class="field-odd"><p><strong>filenames</strong> – A list of source file names.</p>
 </dd>
 </dl>
 </dd></dl>
 
+</div>
+<div class="section" id="module-nbless">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-nbless" title="Permalink to this headline">¶</a></h2>
+<p>Nbless: a Python package for programmatic Jupyter notebook workflows.</p>
 </div>
 </div>
 

@@ -52,7 +52,7 @@ endif
 
 docs/index.html: $(DOCS) $(TESTS) $(SRC)
 	mv docs html
-	sphinx-apidoc -fo html/source src/ src/cli
+	sphinx-apidoc -fo html/source src/nbless
 	sphinx-apidoc -fo html/source --tocfile tests tests
 	sphinx-build -M html html/source .
 	mv html docs
