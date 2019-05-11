@@ -7,6 +7,9 @@ Nbless command-line interface (CLI)
 .. click:: cli.nbraze_click:nbraze_click
   :prog: nbraze
 
+.. click:: cli.nbdeck_click:nbdeck_click
+  :prog: nbdeck
+
 .. click:: cli.nbuild_click:nbuild_click
   :prog: nbuild
 

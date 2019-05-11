@@ -12,6 +12,14 @@ nbless.nbconv module
     :undoc-members:
     :show-inheritance:
 
+nbless.nbdeck module
+--------------------
+
+.. automodule:: nbless.nbdeck
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 nbless.nbexec module
 --------------------
 

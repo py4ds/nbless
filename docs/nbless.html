@@ -54,6 +54,7 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">nbless package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-nbless.nbconv">nbless.nbconv module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-nbless.nbdeck">nbless.nbdeck module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-nbless.nbexec">nbless.nbexec module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-nbless.nbless">nbless.nbless module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-nbless.nbraze">nbless.nbraze module</a></li>
@@ -128,6 +129,24 @@
 ‘markdown’, ‘python’, ‘rst’, ‘script’, or ‘slides’.
 pdf requires latex, ‘notebook’ does nothing,
 slides need to served (not self-contained).</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="module-nbless.nbdeck">
+<span id="nbless-nbdeck-module"></span><h2>nbless.nbdeck module<a class="headerlink" href="#module-nbless.nbdeck" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="nbless.nbdeck.nbdeck">
+<code class="descclassname">nbless.nbdeck.</code><code class="descname">nbdeck</code><span class="sig-paren">(</span><em>filename: str</em><span class="sig-paren">)</span> &#x2192; nbformat.notebooknode.NotebookNode<a class="reference internal" href="_modules/nbless/nbdeck.html#nbdeck"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.nbdeck.nbdeck" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set up a Jupyter notebook to be viewed as or converted into slides.</p>
+<p>Sets <cite>slide_type</cite> to <code class="docutils literal notranslate"><span class="pre">slide</span></code> for markdown cells that start with headers.
+After running <code class="docutils literal notranslate"><span class="pre">nbdeck</span></code>, you can
+- view Jupyter notebooks on nbviewer or with the RISE extension
+- create an HTML slideshow with <code class="docutils literal notranslate"><span class="pre">nbconv</span></code> or <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">nbconvert</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> – The filename of the input jupyter notebook.</p>
 </dd>
 </dl>
 </dd></dl>
