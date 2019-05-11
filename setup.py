@@ -20,6 +20,7 @@ setuptools.setup(
             'nbless = cli.nbless_click:nbless_click',
             'nbuild = cli.nbuild_click:nbuild_click',
             'nbraze = cli.nbraze_click:nbraze_click',
+            'nbdeck = cli.nbdeck_click:nbdeck_click',
             'nbexec = cli.nbexec_click:nbexec_click',
             'nbconv = cli.nbconv_click:nbconv_click',
         ]
