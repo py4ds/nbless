@@ -15,5 +15,5 @@ def nbdeck(filename: str) -> nbformat.notebooknode.NotebookNode:
     nb = nbformat.read(filename, as_version=4)
     for n, cell in enumerate(nb.cells):
         if cell.cell_type == "markdown" and cell.source.startswith("#"):
-            nb.cells[n].slide_type = "slide"
+            nb.cells[n].metadata = {"slideshow": {"slide_type": "slide"}}
     return nb
