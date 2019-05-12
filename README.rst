@@ -10,12 +10,12 @@ in
 
 The ``nbless`` python package consists of 6 functions:
 
-- ``nbuild``, which creates a notebook from python scripts and plain text files, e.g. markdown (``.md``) and text (``.txt``) files.
-- ``nbexec``, which runs a notebook from top to bottom and saves an executed version, leaving the source notebook untouched.
 - ``nbconv``, which converts a notebook into various formats.
+- ``nbdeck``, which prepares a notebook to be viewed as or converted into slides.
+- ``nbexec``, which runs a notebook from top to bottom and saves an executed version, leaving the source notebook untouched.
 - ``nbless``, which calls ``nbuild`` and ``nbexec`` to create and execute a notebook.
-- ``nbsave``, which saves notebook objects as files (Python only, no command line interface)
-- ``nbread``, which reads in notebook objects from files (Python only, no command line interface)
+- ``nbraze``, which extracts code and markdown files from a notebook. Code files must all have the same extension (e.g. `.py`).
+- ``nbuild``, which creates a notebook from code and markdown files, e.g. python (`.py`) and R (`.R`) scripts, markdown (``.md``), and text (``.txt``) files.
 
 All of the above function work for Python *and* R code, with the caveat
 that ``nbexec`` and ``nbless`` require the kernel argument to be set to
@@ -42,10 +42,9 @@ Installation
     pip install nbless
 
 or clone the `repo <https://github.com/marskar/nbless>`__, e.g.
-``git clone https://github.com/marskar/nbless`` and either use locally,
-e.g. ``python nbless.py README.md plot.py notes.txt`` or install locally
+``git clone https://github.com/marskar/nbless`` and install locally
 using setup.py (``python setup.py install``) or ``pip``
-(``pip install .``)
+(``pip install .``).
 
 Basic usage: terminal
 ---------------------
@@ -72,7 +71,7 @@ or ``-o`` flag:
     # Or
     nbuild README.md plot.py notes.txt -o notebooks/notebook.ipynb
 
-You can preview the raw notebook output by running nbuild with only the positional arguments:
+You can preview the raw notebook output by running ``nbuild`` with only the positional arguments:
 
 .. code:: sh
 
@@ -135,8 +134,18 @@ or ``-o`` flag:
 If you do not want an executed version of the notebook, run ``nbuild``
 instead of ``nbless``.
 
-Creating a code file with ``nbconv`` in the terminal
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Extracting source files from a Jupyter notebook with ``nbraze`` in the terminal
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code:: sh
+
+    nbraze notebook.ipynb
+
+The ``nbraze`` function takes the contents of `Jupyter Notebook code cells <https://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/Running%20Code.html>`__ and turns them into Python or R code files (``.py`` or ``.R``).
+The contents of `markdown cells <https://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/Working%20With%20Markdown%20Cells.html>`__ are turned into markdown files.
+
+Converting Jupyter notebooks with ``nbconv`` in the terminal
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code:: sh
 
@@ -182,10 +191,24 @@ You can provide a more descriptive name for the output file with the
     # Or
     nbconv notebook.ipynb -o report.html
 
+Creating HTML slides with ``nbdeck`` and ``nbconv`` in the terminal
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+With ``nbdeck``, you can prepare Jupyter slides from source files (e.g. ``source_file1.md``, ``source_file2.py``) like this:
+
+.. code:: sh
+
+    nbless slide_file* -o slides.ipynb
+    nbdeck slides.ipynb
+    nbconv slides.ipynb  -e slides -o slides.html
+
+
 Basic usage: Python environment
 -------------------------------
 
 .. code:: python
+
+    import nbformat
 
     # You can import any or all of the functions from the nbless package.
 
@@ -194,41 +217,45 @@ Basic usage: Python environment
     from nbless import nbexec
     from nbless import nbless
     from nbless import nbconv
-    from nbless import nbsave
-    from nbless import nbread
+    from nbless import nbdeck
+    from nbless import nbraze
 
     # The above imports all 6 functions
     # This can also be done with either of the two lines below.
-    from nbless import nbuild, nbexec, nbless, nbconv, nbsave, nbread
+    from nbless import nbuild, nbexec, nbless, nbconv, nbdeck, nbraze
     from nbless import *
 
     # Simple individual usage
 
     # Create notebook.ipynb in notebooks folder from plot.py and notes.txt
-    nbsave("notebooks/notebook.ipynb", nbuild(["plot.py", "notes.txt"]))
+    # nbuild() returns a notebook object
+    nbformat.write(nbuild(["plot.py", "notes.txt"]), "notebook.ipynb", version=4)
 
-    # nbexec returns a filename string and a notebook object
-    nb_name, nb = nbexec("notebooks/notebook.ipynb")
-    nbsave(nb_name, nb)
+    # Create source files from notebook.ipynb in notebooks folder
+    # nbraze() returns None, instead it creates markdown and code files
+	nbraze("notebook.ipynb")
+    # The default code file for nbraze is Python
+	nbraze("notebook.ipynb", extension="py")
+    # It is also possible to create R files
+	nbraze("notebook.ipynb", extension="R")
+    # nbraze() cannot handle notebooks with a mix of different languages
 
     # Create notebook_executed.ipynb from notebook.ipynb
-    nbsave(*nbexec("notebooks/notebook.ipynb"))
-
-    # Create executed.ipynb from notebook.ipynb in notebooks folder
-    nbsave('executed.ipynb', nbexec("notebooks/notebook.ipynb")[1])
+    # nbexec() returns a notebook object
+    nbformat.write(nbexec("notebook.ipynb"), "notebook.ipynb", version=4)
 
     # Or to run both nbuild and nbexec at once, use nbless
-    nbsave("output/executed.ipynb", nbless(["plot.py", "notes.txt"]))
+    # nbless() returns a notebook object
+    nbformat.write(nbless(["plot.py", "notes.txt"]), "notebook.ipynb", version=4)
 
+    # Create notebook.py from notebook.ipynb in notebooks folder
+    # nbconv() returns a filename and file contents as strings
     def write_file(filename: str, contents: str) -> None:
         with open(filename, 'w') as f:
             f.write(contents)
 
-    # nbconv returns a filename and file contents as strings
     filename, contents = nbconv("notebooks/notebook.ipynb")
     write_file(filename, contents)
-
-    # Create notebook.py from notebook.ipynb in notebooks folder
     write_file(*nbconv("notebooks/notebook.ipynb"))
 
     # Create notebook.html from notebook.ipynb in notebooks folder
@@ -240,14 +267,21 @@ Basic usage: Python environment
     # Create report.html from notebook.ipynb in notebooks folder
     write_file('report.html', nbconv("notebooks/notebook.ipynb", 'html')[1])
 
+    # Create HTML slides from notebook.ipynb in notebooks folder
+    # nbdeck() returns a filename and file contents as strings
+    nbformat.write(nbdeck("notebook.ipynb"), "slides.ipynb", version=4)
+    filename, contents = nbconv("slides.ipynb", "slides")
+    write_file(filename, contents)
+    write_file(*nbconv("notebooks/notebook.ipynb", "slides"))
+
     # Another alternative is to import the package and use it as a namespace.
     import nbless
 
     # Use nbless as a namespace
-    nbsave("notebook.ipynb", nbless.nbuild(["plot.py", "notes.txt"]))
-    nbsave(*nbless.nbexec("notebook.ipynb"))
-    nbsave('executed.ipynb', nbless.nbexec("notebook.ipynb")[1])
-    nbsave("executed.ipynb", nbless.nbless(["plot.py", "notes.txt"]))
+    nbformat.write("notebook.ipynb", nbless.nbuild(["plot.py", "notes.txt"]), version=4)
+    nbformat.write(*nbless.nbexec("notebook.ipynb"), version=4)
+    nbformat.write('executed.ipynb', nbless.nbexec("notebook.ipynb")[1], version=4)
+    nbformat.write("executed.ipynb", nbless.nbless(["plot.py", "notes.txt"]), version=4)
     write_file(*nbless.nbconv("notebook.ipynb"))
     write_file(*nbless.nbconv("notebook.ipynb", "html"))
     write_file('script.py', nbless.nbconv("notebook.ipynb")[1])
@@ -274,13 +308,19 @@ Or if you have `Anaconda <https://www.anaconda.com/download/>`__ or
 Too many file names to type out?
 --------------------------------
 
+The easiest way to handle large numbers of files is to use the ``*`` wildcard in the shell.
+
+.. code:: sh
+
+    nbuild source_file* -o notebook.ipynb
+
 You can use the ``ls`` command to assign all of the relevant names in
 the current directory to a variable and pass this variable as an
 argument to ``nbconvert.py``.
 
 To preserve the order and differentiate files that should be
-incorporated into the notebook, I recommend left padding your file names
-with zeros (e.g. 01\_intro.md, 02\_figure1.py).
+incorporated into the notebook, it is helpful to left pad file names
+with zeros (e.g. ``01\_intro.md``, ``02\_figure1.py``).
 
 Consider the example below:
 
@@ -290,7 +330,7 @@ Consider the example below:
     name_list=`ls 0*.py`
     python nbuild.py `echo $name_list`
 
-In a python environment, I recommend ``os.listdir`` to obtain a list of
+In Python environments, ``os.listdir`` can provide a list of
 all files:
 
 .. code:: python
