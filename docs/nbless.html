@@ -58,7 +58,6 @@
 <li class="toctree-l3"><a class="reference internal" href="#module-nbless.nbexec">nbless.nbexec module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-nbless.nbless">nbless.nbless module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-nbless.nbraze">nbless.nbraze module</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#module-nbless.nbread">nbless.nbread module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-nbless.nbsave">nbless.nbsave module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-nbless.nbuild">nbless.nbuild module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-nbless">Module contents</a></li>
@@ -115,12 +114,12 @@
 <span id="nbless-nbconv-module"></span><h2>nbless.nbconv module<a class="headerlink" href="#module-nbless.nbconv" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="nbless.nbconv.nbconv">
-<code class="descclassname">nbless.nbconv.</code><code class="descname">nbconv</code><span class="sig-paren">(</span><em>nb_name: str</em>, <em>exporter: str = 'python'</em><span class="sig-paren">)</span> &#x2192; Tuple[str, str]<a class="reference internal" href="_modules/nbless/nbconv.html#nbconv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.nbconv.nbconv" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">nbless.nbconv.</code><code class="descname">nbconv</code><span class="sig-paren">(</span><em>filename: str</em>, <em>exporter: str = 'python'</em><span class="sig-paren">)</span> &#x2192; Tuple[str, str]<a class="reference internal" href="_modules/nbless/nbconv.html#nbconv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.nbconv.nbconv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert a notebook into various formats using <code class="docutils literal notranslate"><span class="pre">nbformat</span></code> exporters.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>input_name</strong> – The name of the input notebook.</p></li>
+<li><p><strong>filename</strong> – The name of the input notebook file.</p></li>
 <li><p><strong>exporter</strong> – The exporter that determines the output file type.</p></li>
 </ul>
 </dd>
@@ -146,7 +145,7 @@ After running <code class="docutils literal notranslate"><span class="pre">nbdec
 - create an HTML slideshow with <code class="docutils literal notranslate"><span class="pre">nbconv</span></code> or <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">nbconvert</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>filename</strong> – The filename of the input jupyter notebook.</p>
+<dd class="field-odd"><p><strong>filename</strong> – The name of the input Jupyter notebook file.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -156,12 +155,12 @@ After running <code class="docutils literal notranslate"><span class="pre">nbdec
 <span id="nbless-nbexec-module"></span><h2>nbless.nbexec module<a class="headerlink" href="#module-nbless.nbexec" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
 <dt id="nbless.nbexec.nbexec">
-<code class="descclassname">nbless.nbexec.</code><code class="descname">nbexec</code><span class="sig-paren">(</span><em>nb_name: str</em>, <em>kernel: str = 'python3'</em><span class="sig-paren">)</span> &#x2192; Tuple[str, nbformat.notebooknode.NotebookNode]<a class="reference internal" href="_modules/nbless/nbexec.html#nbexec"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.nbexec.nbexec" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">nbless.nbexec.</code><code class="descname">nbexec</code><span class="sig-paren">(</span><em>filename: str</em>, <em>kernel: str = 'python3'</em><span class="sig-paren">)</span> &#x2192; Tuple[str, nbformat.notebooknode.NotebookNode]<a class="reference internal" href="_modules/nbless/nbexec.html#nbexec"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.nbexec.nbexec" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create an executed notebook without modifying the input notebook.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>nb_name</strong> – The <code class="docutils literal notranslate"><span class="pre">NotebookNode</span></code> object to be executed.</p></li>
+<li><p><strong>filename</strong> – The name of the Jupyter notebook file to be executed.</p></li>
 <li><p><strong>kernel</strong> – The programming language used to execute the notebook.</p></li>
 </ul>
 </dd>
@@ -178,7 +177,7 @@ After running <code class="docutils literal notranslate"><span class="pre">nbdec
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>filenames</strong> – A list of markdown and code file names.</p></li>
+<li><p><strong>filenames</strong> – A list of names of markdown and code files.</p></li>
 <li><p><strong>kernel</strong> – The programming language used to run the notebook.</p></li>
 </ul>
 </dd>
@@ -195,23 +194,9 @@ After running <code class="docutils literal notranslate"><span class="pre">nbdec
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>filenames</strong> – The filename of the input jupyter notebook.</p></li>
+<li><p><strong>filename</strong> – The name of the input Jupyter notebook file.</p></li>
 <li><p><strong>extension</strong> – The extension for code files.</p></li>
 </ul>
-</dd>
-</dl>
-</dd></dl>
-
-</div>
-<div class="section" id="module-nbless.nbread">
-<span id="nbless-nbread-module"></span><h2>nbless.nbread module<a class="headerlink" href="#module-nbless.nbread" title="Permalink to this headline">¶</a></h2>
-<dl class="function">
-<dt id="nbless.nbread.nbread">
-<code class="descclassname">nbless.nbread.</code><code class="descname">nbread</code><span class="sig-paren">(</span><em>filename: str</em><span class="sig-paren">)</span> &#x2192; nbformat.notebooknode.NotebookNode<a class="reference internal" href="_modules/nbless/nbread.html#nbread"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.nbread.nbread" title="Permalink to this definition">¶</a></dt>
-<dd><p>Read in a notebook file as an <code class="docutils literal notranslate"><span class="pre">nbformat</span></code> <code class="docutils literal notranslate"><span class="pre">NotebookNode</span></code> object.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>filename</strong> – The filename of the notebook to be read in.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -226,7 +211,7 @@ After running <code class="docutils literal notranslate"><span class="pre">nbdec
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>filename</strong> – The filename of the output notebook.</p></li>
+<li><p><strong>filename</strong> – The name of the Jupyter notebook file to be saved.</p></li>
 <li><p><strong>nb</strong> – The <code class="docutils literal notranslate"><span class="pre">NotebookNode</span></code> object to be saved to a file.</p></li>
 </ul>
 </dd>

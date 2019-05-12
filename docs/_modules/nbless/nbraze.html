@@ -98,7 +98,7 @@
 <div class="viewcode-block" id="nbraze"><a class="viewcode-back" href="../../nbless.html#nbless.nbraze.nbraze">[docs]</a><span class="k">def</span> <span class="nf">nbraze</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">extension</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;py&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
     <span class="sd">&quot;&quot;&quot;Create markdown and code files from a Jupyter notebook.</span>
 
-<span class="sd">    :param filenames: The filename of the input jupyter notebook.</span>
+<span class="sd">    :param filename: The name of the input Jupyter notebook file.</span>
 <span class="sd">    :param extension: The extension for code files.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">nb</span> <span class="o">=</span> <span class="n">nbformat</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">as_version</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>

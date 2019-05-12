@@ -102,10 +102,26 @@
 <div class="section" id="nbless">
 <h2>nbless<a class="headerlink" href="#nbless" title="Permalink to this headline">¶</a></h2>
 <p>Create an executed Jupyter notebook from markdown and code files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">param in_files</dt>
+<dd class="field-odd"><p>The source files used to create a Jupyter notebook file.</p>
+</dd>
+<dt class="field-even">param kernel</dt>
+<dd class="field-even"><p>The programming language used to run the notebook.</p>
+</dd>
+<dt class="field-odd">param out_file</dt>
+<dd class="field-odd"><p>The name of the output Jupyter notebook file.</p>
+</dd>
+</dl>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>nbless <span class="o">[</span>OPTIONS<span class="o">]</span> IN_FILES...
 </pre></div>
 </div>
 <p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-nbless-k">
+<code class="descname">-k</code><code class="descclassname"></code><code class="descclassname">, </code><code class="descname">--kernel</code><code class="descclassname"> &lt;kernel&gt;</code><a class="headerlink" href="#cmdoption-nbless-k" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="option">
 <dt id="cmdoption-nbless-o">
 <code class="descname">-o</code><code class="descclassname"></code><code class="descclassname">, </code><code class="descname">--out_file</code><code class="descclassname"> &lt;out&gt;</code><a class="headerlink" href="#cmdoption-nbless-o" title="Permalink to this definition">¶</a></dt>
@@ -122,6 +138,17 @@
 <div class="section" id="nbraze">
 <h2>nbraze<a class="headerlink" href="#nbraze" title="Permalink to this headline">¶</a></h2>
 <p>Create markdown and code files from a Jupyter notebook.</p>
+<dl class="field-list simple">
+<dt class="field-odd">param in_file</dt>
+<dd class="field-odd"><p>The name of the input Jupyter notebook file.</p>
+</dd>
+<dt class="field-even">param extension</dt>
+<dd class="field-even"><p>The extension for code files.</p>
+</dd>
+<dt class="field-odd">param out_file</dt>
+<dd class="field-odd"><p>The name of the output Jupyter notebook file.</p>
+</dd>
+</dl>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>nbraze <span class="o">[</span>OPTIONS<span class="o">]</span> IN_FILE
 </pre></div>
 </div>
@@ -142,6 +169,14 @@
 <div class="section" id="nbdeck">
 <h2>nbdeck<a class="headerlink" href="#nbdeck" title="Permalink to this headline">¶</a></h2>
 <p>Set up a notebook to be viewed as or converted into slides.</p>
+<dl class="field-list simple">
+<dt class="field-odd">param in_file</dt>
+<dd class="field-odd"><p>The name of the input Jupyter notebook file.</p>
+</dd>
+<dt class="field-even">param out_file</dt>
+<dd class="field-even"><p>The name of the output Jupyter notebook file.</p>
+</dd>
+</dl>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>nbdeck <span class="o">[</span>OPTIONS<span class="o">]</span> IN_FILE
 </pre></div>
 </div>
@@ -162,6 +197,14 @@
 <div class="section" id="nbuild">
 <h2>nbuild<a class="headerlink" href="#nbuild" title="Permalink to this headline">¶</a></h2>
 <p>Create an unexecuted Jupyter notebook from markdown and code files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">param in_files</dt>
+<dd class="field-odd"><p>The source files used to create a Jupyter notebook file.</p>
+</dd>
+<dt class="field-even">param out_file</dt>
+<dd class="field-even"><p>The name of the output Jupyter notebook file.</p>
+</dd>
+</dl>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>nbuild <span class="o">[</span>OPTIONS<span class="o">]</span> IN_FILES...
 </pre></div>
 </div>
@@ -182,6 +225,23 @@
 <div class="section" id="nbconv">
 <h2>nbconv<a class="headerlink" href="#nbconv" title="Permalink to this headline">¶</a></h2>
 <p>Convert a notebook into various formats using <code class="docutils literal notranslate"><span class="pre">nbformat</span></code> exporters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">param in_file</dt>
+<dd class="field-odd"><p>The name of the input Jupyter notebook file.</p>
+</dd>
+<dt class="field-even">param exporter</dt>
+<dd class="field-even"><p>The exporter that determines the output file type.</p>
+</dd>
+<dt class="field-odd">param out_file</dt>
+<dd class="field-odd"><p>The name of the output Jupyter notebook file.</p>
+</dd>
+<dt class="field-even">note</dt>
+<dd class="field-even"><p>The exporter type must be ‘asciidoc’, ‘pdf’, ‘html’, ‘latex’,
+‘markdown’, ‘python’, ‘rst’, ‘script’, or ‘slides’.
+pdf requires latex, ‘notebook’ does nothing,
+slides need to served (not self-contained).</p>
+</dd>
+</dl>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>nbconv <span class="o">[</span>OPTIONS<span class="o">]</span> IN_FILE
 </pre></div>
 </div>
@@ -207,6 +267,17 @@
 <div class="section" id="nbexec">
 <h2>nbexec<a class="headerlink" href="#nbexec" title="Permalink to this headline">¶</a></h2>
 <p>Create an executed notebook without modifying the input notebook.</p>
+<dl class="field-list simple">
+<dt class="field-odd">param in_file</dt>
+<dd class="field-odd"><p>The name of the input Jupyter notebook file.</p>
+</dd>
+<dt class="field-even">param kernel</dt>
+<dd class="field-even"><p>The programming language used to execute the notebook.</p>
+</dd>
+<dt class="field-odd">param out_file</dt>
+<dd class="field-odd"><p>The name of the output Jupyter notebook file.</p>
+</dd>
+</dl>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>nbexec <span class="o">[</span>OPTIONS<span class="o">]</span> IN_FILE
 </pre></div>
 </div>

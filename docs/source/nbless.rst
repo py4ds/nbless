@@ -44,14 +44,6 @@ nbless.nbraze module
     :undoc-members:
     :show-inheritance:
 
-nbless.nbread module
---------------------
-
-.. automodule:: nbless.nbread
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
 nbless.nbsave module
 --------------------
 

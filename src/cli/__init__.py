@@ -1,1 +1,1 @@
-"""Command-line interfaces for the main Nbless functions."""
+"""Shell commands for programmatic Jupyter notebook workflows."""

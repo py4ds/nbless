@@ -6,7 +6,7 @@ PYTHON = .venv/bin/python3
 LINTER = black
 DOCS = $(wildcard docs/source/*.rst docs/source/*.md docs/source/*.ipynb)
 TESTS = $(wildcard tests/*.py)
-SRC = $(wildcard src/*/*/*.py)
+SRC = $(wildcard src/*/*.py)
 
 
 init: .git/

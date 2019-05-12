@@ -8,7 +8,7 @@ import nbformat
 def nbraze(filename: str, extension: str = "py") -> Dict[str, str]:
     """Create markdown and code files from a Jupyter notebook.
 
-    :param filenames: The filename of the input jupyter notebook.
+    :param filename: The name of the input Jupyter notebook file.
     :param extension: The extension for code files.
     """
     nb = nbformat.read(filename, as_version=4)
