@@ -49,6 +49,8 @@
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Project overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#documentation-and-code">Documentation and Code</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#basic-usage-terminal">Basic usage: terminal</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#creating-a-jupyter-notebook-with-nbuild-in-the-terminal">Creating a Jupyter notebook with <code class="docutils literal notranslate"><span class="pre">nbuild</span></code> in the terminal</a></li>
@@ -109,11 +111,14 @@
             
   <div class="section" id="nbless-a-python-package-for-programmatic-jupyter-notebook-workflows">
 <h1>Nbless: a Python package for programmatic Jupyter notebook workflows<a class="headerlink" href="#nbless-a-python-package-for-programmatic-jupyter-notebook-workflows" title="Permalink to this headline">¶</a></h1>
-<p>Using <code class="docutils literal notranslate"><span class="pre">nbless</span></code> you can create and execute <a class="reference external" href="http://jupyter-notebook.readthedocs.io/en/latest/examples/Notebook/What%20is%20the%20Jupyter%20Notebook.html">Jupyter
+<p><a class="reference external" href="https://pypi.python.org/pypi/nbless"><img alt="PyPI" src="https://img.shields.io/pypi/v/nbless.svg" /></a></p>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">nbless</span></code> Python package allows you to (de)construct, convert, and execute <a class="reference external" href="http://jupyter-notebook.readthedocs.io/en/latest/examples/Notebook/What%20is%20the%20Jupyter%20Notebook.html">Jupyter
 Notebooks</a>
 in</p>
 <ul class="simple">
-<li><p>your terminal or</p></li>
+<li><p>your terminal (e.g. <code class="docutils literal notranslate"><span class="pre">bash</span></code>, <code class="docutils literal notranslate"><span class="pre">zsh</span></code>, <code class="docutils literal notranslate"><span class="pre">fish</span></code>, etc.) or</p></li>
 <li><p>your favorite Python environment (e.g. <a class="reference external" href="https://www.jetbrains.com/pycharm/">PyCharm</a> or <a class="reference external" href="https://code.visualstudio.com/docs/python/python-tutorial">Visual Studio Code</a>).</p></li>
 </ul>
 <p>The <code class="docutils literal notranslate"><span class="pre">nbless</span></code> python package consists of 6 functions:</p>
@@ -133,10 +138,17 @@ Python code, you will have to put the R code in Python scripts (<code class="doc
 and use <a class="reference external" href="https://rpy2.readthedocs.io/">rpy2</a> with the default kernel
 (<code class="docutils literal notranslate"><span class="pre">python3</span></code>).</p>
 <p>You can also run the <code class="docutils literal notranslate"><span class="pre">nbless</span></code> functions in an R environment using the
-<code class="docutils literal notranslate"><span class="pre">reticulate</span></code> R package.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">nb</span></code> functions rely on the <code class="docutils literal notranslate"><span class="pre">nbconvert</span></code> and <code class="docutils literal notranslate"><span class="pre">nbformat</span></code> modules
-that are included with <code class="docutils literal notranslate"><span class="pre">jupyter</span></code>.</p>
-<p>The command line interface relies on the <code class="docutils literal notranslate"><span class="pre">click</span></code> library.</p>
+<a class="reference external" href="https://rstudio.github.io/reticulate/">reticulate</a> R package.</p>
+<p>All <code class="docutils literal notranslate"><span class="pre">nbless</span></code> functions and commands rely on the <a class="reference external" href="https://nbconvert.readthedocs.io/">nbconvert</a> and <a class="reference external" href="http://nbformat.readthedocs.io/">nbformat</a> modules that are included with the <code class="docutils literal notranslate"><span class="pre">jupyter</span></code> Python library.
+The command line interface relies on the <a class="reference external" href="https://click.palletsprojects.com/">click</a> Python library.</p>
+<p>For a related package that provides programmatic tools for working with <a class="reference external" href="https://rmarkdown.rstudio.com/authoring_quick_tour.html">R Markdown</a> (Rmd) files,
+check out the <a class="reference external" href="https://marskar.github.io/rmdawn/">Rmdawn Python package</a>.</p>
+</div>
+<div class="section" id="documentation-and-code">
+<h2>Documentation and Code<a class="headerlink" href="#documentation-and-code" title="Permalink to this headline">¶</a></h2>
+<p>The documentation is hosted at <a class="reference external" href="https://marskar.github.io/nbless/">https://marskar.github.io/nbless/</a>.</p>
+<p>The code is hosted at <a class="reference external" href="https://github.com/marskar/nbless">https://github.com/marskar/nbless</a>.</p>
+</div>
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pip install nbless

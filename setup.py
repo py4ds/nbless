@@ -8,7 +8,7 @@ setuptools.setup(
     version="0.2.24",
     author="Martin Skarzynski",
     author_email="marskar@gmail.com",
-    description="Create Jupyter notebooks from Markdown and Python scripts.",
+    description="Construct, deconstruct, convert, and run Jupyter notebooks.",
     long_description=long_description,
     long_description_content_type="text/x-rst",
     url="https://github.com/marskar/nbless",

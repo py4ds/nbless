@@ -1,11 +1,16 @@
 Nbless: a Python package for programmatic Jupyter notebook workflows
 ====================================================================
 
-Using ``nbless`` you can create and execute `Jupyter
+|PyPI|
+
+Introduction
+------------
+
+The ``nbless`` Python package allows you to (de)construct, convert, and execute `Jupyter
 Notebooks <http://jupyter-notebook.readthedocs.io/en/latest/examples/Notebook/What%20is%20the%20Jupyter%20Notebook.html>`__
 in
 
-- your terminal or
+- your terminal (e.g. ``bash``, ``zsh``, ``fish``, etc.) or
 - your favorite Python environment (e.g. `PyCharm <https://www.jetbrains.com/pycharm/>`__ or `Visual Studio Code <https://code.visualstudio.com/docs/python/python-tutorial>`__).
 
 The ``nbless`` python package consists of 6 functions:
@@ -27,12 +32,20 @@ and use `rpy2 <https://rpy2.readthedocs.io/>`__ with the default kernel
 (``python3``).
 
 You can also run the ``nbless`` functions in an R environment using the
-``reticulate`` R package.
+`reticulate <https://rstudio.github.io/reticulate/>`__ R package.
 
-The ``nb`` functions rely on the ``nbconvert`` and ``nbformat`` modules
-that are included with ``jupyter``.
+All ``nbless`` functions and commands rely on the `nbconvert <https://nbconvert.readthedocs.io/>`__ and `nbformat <http://nbformat.readthedocs.io/>`__ modules that are included with the ``jupyter`` Python library.
+The command line interface relies on the `click <https://click.palletsprojects.com/>`__ Python library.
 
-The command line interface relies on the ``click`` library.
+For a related package that provides programmatic tools for working with `R Markdown <https://rmarkdown.rstudio.com/authoring_quick_tour.html>`__ (Rmd) files,
+check out the `Rmdawn Python package <https://marskar.github.io/rmdawn/>`__.
+
+Documentation and Code
+----------------------
+
+The documentation is hosted at https://marskar.github.io/nbless/.
+
+The code is hosted at https://github.com/marskar/nbless.
 
 Installation
 ------------
@@ -338,3 +351,7 @@ all files:
     from os import listdir
     from os.path import isfile, join
     onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
+
+
+.. |PyPI| image:: https://img.shields.io/pypi/v/nbless.svg
+   :target: https://pypi.python.org/pypi/nbless
