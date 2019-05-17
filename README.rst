@@ -199,7 +199,7 @@ With ``nbdeck``, you can prepare Jupyter slides from source files (e.g. ``source
 .. code:: sh
 
     nbless slide_file* -o slides.ipynb
-    nbdeck slides.ipynb
+    nbdeck slides.ipynb -o slides.ipynb
     nbconv slides.ipynb  -e slides -o slides.html
 
 
