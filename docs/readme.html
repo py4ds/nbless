@@ -262,7 +262,7 @@ nbconv notebook.ipynb -o report.html
 <h3>Creating HTML slides with <code class="docutils literal notranslate"><span class="pre">nbdeck</span></code> and <code class="docutils literal notranslate"><span class="pre">nbconv</span></code> in the terminal<a class="headerlink" href="#creating-html-slides-with-nbdeck-and-nbconv-in-the-terminal" title="Permalink to this headline">¶</a></h3>
 <p>With <code class="docutils literal notranslate"><span class="pre">nbdeck</span></code>, you can prepare Jupyter slides from source files (e.g. <code class="docutils literal notranslate"><span class="pre">source_file1.md</span></code>, <code class="docutils literal notranslate"><span class="pre">source_file2.py</span></code>) like this:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>nbless slide_file* -o slides.ipynb
-nbdeck slides.ipynb
+nbdeck slides.ipynb -o slides.ipynb
 nbconv slides.ipynb  -e slides -o slides.html
 </pre></div>
 </div>
