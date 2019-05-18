@@ -50,8 +50,9 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Project overview</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#documentation-and-code">Documentation and Code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#documentation-and-code">Documentation and code</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#r-and-python-interoperability">R and Python interoperability</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#basic-usage-terminal">Basic usage: terminal</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#creating-a-jupyter-notebook-with-nbuild-in-the-terminal">Creating a Jupyter notebook with <code class="docutils literal notranslate"><span class="pre">nbuild</span></code> in the terminal</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#executing-a-notebook-with-nbexec-in-the-terminal">Executing a notebook with <code class="docutils literal notranslate"><span class="pre">nbexec</span></code> in the terminal</a></li>
@@ -67,6 +68,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#too-many-file-names-to-type-out">Too many file names to type out?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#related-projects">Related projects</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Command-line interface</a></li>
@@ -121,31 +123,20 @@ in</p>
 <li><p>your terminal (e.g. <code class="docutils literal notranslate"><span class="pre">bash</span></code>, <code class="docutils literal notranslate"><span class="pre">zsh</span></code>, <code class="docutils literal notranslate"><span class="pre">fish</span></code>, etc.) or</p></li>
 <li><p>your favorite Python environment (e.g. <a class="reference external" href="https://www.jetbrains.com/pycharm/">PyCharm</a> or <a class="reference external" href="https://code.visualstudio.com/docs/python/python-tutorial">Visual Studio Code</a>).</p></li>
 </ul>
-<p>The <code class="docutils literal notranslate"><span class="pre">nbless</span></code> python package consists of 6 functions:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">nbless</span></code> Python package consists of 6 Python functions and shell commands:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">nbconv</span></code>, which converts a notebook into various formats.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">nbdeck</span></code>, which prepares a notebook to be viewed as or converted into slides.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">nbexec</span></code>, which runs a notebook from top to bottom and saves an executed version, leaving the source notebook untouched.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nbexec</span></code>, which runs a notebook from top to bottom and saves an executed version.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">nbless</span></code>, which calls <code class="docutils literal notranslate"><span class="pre">nbuild</span></code> and <code class="docutils literal notranslate"><span class="pre">nbexec</span></code> to create and execute a notebook.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">nbraze</span></code>, which extracts code and markdown files from a notebook. Code files must all have the same extension (e.g. <cite>.py</cite>).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">nbuild</span></code>, which creates a notebook from code and markdown files, e.g. python (<cite>.py</cite>) and R (<cite>.R</cite>) scripts, markdown (<code class="docutils literal notranslate"><span class="pre">.md</span></code>), and text (<code class="docutils literal notranslate"><span class="pre">.txt</span></code>) files.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nbraze</span></code>, which extracts code and markdown files from a notebook.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nbuild</span></code>, which creates a notebook from source files, e.g. Python (<cite>.py</cite>) and R (<cite>.R</cite>) scripts, markdown (<code class="docutils literal notranslate"><span class="pre">.md</span></code>), and text (<code class="docutils literal notranslate"><span class="pre">.txt</span></code>) files.</p></li>
 </ul>
-<p>All of the above function work for Python <em>and</em> R code, with the caveat
-that <code class="docutils literal notranslate"><span class="pre">nbexec</span></code> and <code class="docutils literal notranslate"><span class="pre">nbless</span></code> require the kernel argument to be set to
-<code class="docutils literal notranslate"><span class="pre">ir</span></code> if R code files (<code class="docutils literal notranslate"><span class="pre">.R</span></code>) are included.</p>
-<p>If you want to execute a Jupyter notebook that contains both R and
-Python code, you will have to put the R code in Python scripts (<code class="docutils literal notranslate"><span class="pre">.py</span></code>)
-and use <a class="reference external" href="https://rpy2.readthedocs.io/">rpy2</a> with the default kernel
-(<code class="docutils literal notranslate"><span class="pre">python3</span></code>).</p>
-<p>You can also run the <code class="docutils literal notranslate"><span class="pre">nbless</span></code> functions in an R environment using the
-<a class="reference external" href="https://rstudio.github.io/reticulate/">reticulate</a> R package.</p>
-<p>All <code class="docutils literal notranslate"><span class="pre">nbless</span></code> functions and commands rely on the <a class="reference external" href="https://nbconvert.readthedocs.io/">nbconvert</a> and <a class="reference external" href="http://nbformat.readthedocs.io/">nbformat</a> modules that are included with the <code class="docutils literal notranslate"><span class="pre">jupyter</span></code> Python library.
-The command line interface relies on the <a class="reference external" href="https://click.palletsprojects.com/">click</a> Python library.</p>
 <p>For a related package that provides programmatic tools for working with <a class="reference external" href="https://rmarkdown.rstudio.com/authoring_quick_tour.html">R Markdown</a> (Rmd) files,
 check out the <a class="reference external" href="https://marskar.github.io/rmdawn/">Rmdawn Python package</a>.</p>
 </div>
 <div class="section" id="documentation-and-code">
-<h2>Documentation and Code<a class="headerlink" href="#documentation-and-code" title="Permalink to this headline">¶</a></h2>
+<h2>Documentation and code<a class="headerlink" href="#documentation-and-code" title="Permalink to this headline">¶</a></h2>
 <p>The documentation is hosted at <a class="reference external" href="https://marskar.github.io/nbless/">https://marskar.github.io/nbless/</a>.</p>
 <p>The code is hosted at <a class="reference external" href="https://github.com/marskar/nbless">https://github.com/marskar/nbless</a>.</p>
 </div>
@@ -158,6 +149,22 @@ check out the <a class="reference external" href="https://marskar.github.io/rmda
 <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/marskar/nbless</span></code> and install locally
 using setup.py (<code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">install</span></code>) or <code class="docutils literal notranslate"><span class="pre">pip</span></code>
 (<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">.</span></code>).</p>
+</div>
+<div class="section" id="r-and-python-interoperability">
+<h2>R and Python interoperability<a class="headerlink" href="#r-and-python-interoperability" title="Permalink to this headline">¶</a></h2>
+<p>All of the Nbless functions and commands work for Python <em>and</em> R code, with the caveat
+that <code class="docutils literal notranslate"><span class="pre">nbexec</span></code> and <code class="docutils literal notranslate"><span class="pre">nbless</span></code> require the kernel argument to be set to
+<code class="docutils literal notranslate"><span class="pre">ir</span></code> if R code files (<code class="docutils literal notranslate"><span class="pre">.R</span></code>) are included.</p>
+<p>If you want to execute a Jupyter notebook that contains both R and
+Python code, you will have to put the R code in Python scripts (<code class="docutils literal notranslate"><span class="pre">.py</span></code>)
+and use the <a class="reference external" href="https://rpy2.readthedocs.io/">rpy2</a> Python library with the default kernel
+(<code class="docutils literal notranslate"><span class="pre">python3</span></code>).</p>
+<p>Code files extracted from code cells with <code class="docutils literal notranslate"><span class="pre">nbraze</span></code> must all have the same extension (e.g. <cite>.py</cite>).
+The <code class="docutils literal notranslate"><span class="pre">language_info</span></code> key is not always defined, so <code class="docutils literal notranslate"><span class="pre">nbraze</span></code> does not try to infer the programming language from Jupyter notebook metadata.</p>
+<p>You can also run the Nbless functions in an R environment using the
+<a class="reference external" href="https://rstudio.github.io/reticulate/">reticulate</a> R package.</p>
+<p>All Nbless functions and commands rely on the <a class="reference external" href="https://nbconvert.readthedocs.io/">nbconvert</a> and <a class="reference external" href="http://nbformat.readthedocs.io/">nbformat</a> modules that are included with the <code class="docutils literal notranslate"><span class="pre">jupyter</span></code> Python library.
+The command line interface relies on the <a class="reference external" href="https://click.palletsprojects.com/">click</a> Python library.</p>
 </div>
 <div class="section" id="basic-usage-terminal">
 <h2>Basic usage: terminal<a class="headerlink" href="#basic-usage-terminal" title="Permalink to this headline">¶</a></h2>
@@ -386,9 +393,6 @@ installing them separately.</p>
 <p>You can use the <code class="docutils literal notranslate"><span class="pre">ls</span></code> command to assign all of the relevant names in
 the current directory to a variable and pass this variable as an
 argument to <code class="docutils literal notranslate"><span class="pre">nbconvert.py</span></code>.</p>
-<p>To preserve the order and differentiate files that should be
-incorporated into the notebook, it is helpful to left pad file names
-with zeros (e.g. <code class="docutils literal notranslate"><span class="pre">01\_intro.md</span></code>, <code class="docutils literal notranslate"><span class="pre">02\_figure1.py</span></code>).</p>
 <p>Consider the example below:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>touch <span class="o">{</span><span class="m">01</span>..09<span class="o">}</span>.py
 <span class="nv">name_list</span><span class="o">=</span><span class="sb">`</span>ls <span class="m">0</span>*.py<span class="sb">`</span>
@@ -402,6 +406,18 @@ all files:</p>
 <span class="n">onlyfiles</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">listdir</span><span class="p">(</span><span class="n">mypath</span><span class="p">)</span> <span class="k">if</span> <span class="n">isfile</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">mypath</span><span class="p">,</span> <span class="n">f</span><span class="p">))]</span>
 </pre></div>
 </div>
+<p>To preserve the order and differentiate files that should be
+incorporated into the notebook, it may be helpful to left pad file names
+with zeros (e.g. <code class="docutils literal notranslate"><span class="pre">01\_intro.md</span></code>, <code class="docutils literal notranslate"><span class="pre">02\_figure1.R</span></code>).
+This works well for R scripts, but Python files that start with numbers cannot be imported.</p>
+</div>
+<div class="section" id="related-projects">
+<h2>Related projects<a class="headerlink" href="#related-projects" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pandoc.org/MANUAL.html#creating-jupyter-notebooks-with-pandoc">pandoc</a></p></li>
+<li><p><a class="reference external" href="https://github.com/mwouts/jupytext">jupytext</a></p></li>
+<li><p><a class="reference external" href="https://github.com/aaren/notedown">notedown</a></p></li>
+</ul>
 </div>
 </div>
 

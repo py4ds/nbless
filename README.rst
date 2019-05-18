@@ -13,34 +13,19 @@ in
 - your terminal (e.g. ``bash``, ``zsh``, ``fish``, etc.) or
 - your favorite Python environment (e.g. `PyCharm <https://www.jetbrains.com/pycharm/>`__ or `Visual Studio Code <https://code.visualstudio.com/docs/python/python-tutorial>`__).
 
-The ``nbless`` python package consists of 6 functions:
+The ``nbless`` Python package consists of 6 Python functions and shell commands:
 
 - ``nbconv``, which converts a notebook into various formats.
 - ``nbdeck``, which prepares a notebook to be viewed as or converted into slides.
-- ``nbexec``, which runs a notebook from top to bottom and saves an executed version, leaving the source notebook untouched.
+- ``nbexec``, which runs a notebook from top to bottom and saves an executed version.
 - ``nbless``, which calls ``nbuild`` and ``nbexec`` to create and execute a notebook.
-- ``nbraze``, which extracts code and markdown files from a notebook. Code files must all have the same extension (e.g. `.py`).
-- ``nbuild``, which creates a notebook from code and markdown files, e.g. python (`.py`) and R (`.R`) scripts, markdown (``.md``), and text (``.txt``) files.
-
-All of the above function work for Python *and* R code, with the caveat
-that ``nbexec`` and ``nbless`` require the kernel argument to be set to
-``ir`` if R code files (``.R``) are included.
-
-If you want to execute a Jupyter notebook that contains both R and
-Python code, you will have to put the R code in Python scripts (``.py``)
-and use `rpy2 <https://rpy2.readthedocs.io/>`__ with the default kernel
-(``python3``).
-
-You can also run the ``nbless`` functions in an R environment using the
-`reticulate <https://rstudio.github.io/reticulate/>`__ R package.
-
-All ``nbless`` functions and commands rely on the `nbconvert <https://nbconvert.readthedocs.io/>`__ and `nbformat <http://nbformat.readthedocs.io/>`__ modules that are included with the ``jupyter`` Python library.
-The command line interface relies on the `click <https://click.palletsprojects.com/>`__ Python library.
+- ``nbraze``, which extracts code and markdown files from a notebook.
+- ``nbuild``, which creates a notebook from source files, e.g. Python (`.py`) and R (`.R`) scripts, markdown (``.md``), and text (``.txt``) files.
 
 For a related package that provides programmatic tools for working with `R Markdown <https://rmarkdown.rstudio.com/authoring_quick_tour.html>`__ (Rmd) files,
 check out the `Rmdawn Python package <https://marskar.github.io/rmdawn/>`__.
 
-Documentation and Code
+Documentation and code
 ----------------------
 
 The documentation is hosted at https://marskar.github.io/nbless/.
@@ -58,6 +43,27 @@ or clone the `repo <https://github.com/marskar/nbless>`__, e.g.
 ``git clone https://github.com/marskar/nbless`` and install locally
 using setup.py (``python setup.py install``) or ``pip``
 (``pip install .``).
+
+R and Python interoperability
+-----------------------------
+
+All of the Nbless functions and commands work for Python *and* R code, with the caveat
+that ``nbexec`` and ``nbless`` require the kernel argument to be set to
+``ir`` if R code files (``.R``) are included.
+
+If you want to execute a Jupyter notebook that contains both R and
+Python code, you will have to put the R code in Python scripts (``.py``)
+and use the `rpy2 <https://rpy2.readthedocs.io/>`__ Python library with the default kernel
+(``python3``).
+
+Code files extracted from code cells with ``nbraze`` must all have the same extension (e.g. `.py`).
+The ``language_info`` key is not always defined, so ``nbraze`` does not try to infer the programming language from Jupyter notebook metadata.
+
+You can also run the Nbless functions in an R environment using the
+`reticulate <https://rstudio.github.io/reticulate/>`__ R package.
+
+All Nbless functions and commands rely on the `nbconvert <https://nbconvert.readthedocs.io/>`__ and `nbformat <http://nbformat.readthedocs.io/>`__ modules that are included with the ``jupyter`` Python library.
+The command line interface relies on the `click <https://click.palletsprojects.com/>`__ Python library.
 
 Basic usage: terminal
 ---------------------
@@ -331,10 +337,6 @@ You can use the ``ls`` command to assign all of the relevant names in
 the current directory to a variable and pass this variable as an
 argument to ``nbconvert.py``.
 
-To preserve the order and differentiate files that should be
-incorporated into the notebook, it is helpful to left pad file names
-with zeros (e.g. ``01\_intro.md``, ``02\_figure1.py``).
-
 Consider the example below:
 
 .. code:: sh
@@ -352,6 +354,17 @@ all files:
     from os.path import isfile, join
     onlyfiles = [f for f in listdir(mypath) if isfile(join(mypath, f))]
 
+To preserve the order and differentiate files that should be
+incorporated into the notebook, it may be helpful to left pad file names
+with zeros (e.g. ``01\_intro.md``, ``02\_figure1.R``).
+This works well for R scripts, but Python files that start with numbers cannot be imported.
+
+Related projects
+----------------
+
+- `pandoc <https://pandoc.org/MANUAL.html#creating-jupyter-notebooks-with-pandoc>`__
+- `jupytext <https://github.com/mwouts/jupytext>`__
+- `notedown <https://github.com/aaren/notedown>`__
 
 .. |PyPI| image:: https://img.shields.io/pypi/v/nbless.svg
    :target: https://pypi.python.org/pypi/nbless
