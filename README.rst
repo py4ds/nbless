@@ -366,5 +366,13 @@ Related projects
 - `jupytext <https://github.com/mwouts/jupytext>`__
 - `notedown <https://github.com/aaren/notedown>`__
 
+Next Steps
+----------
+
+Currently, notebook metadata is lost when using ``nbraze``/``nbuild``/``nbless``.
+- Enable ``nbuild``/``nbless`` to accept metadata via a ``metadata.json`` file.
+- Enable ``nbraze`` to output metadata via a ``metadata.json`` file.
+
+
 .. |PyPI| image:: https://img.shields.io/pypi/v/nbless.svg
    :target: https://pypi.python.org/pypi/nbless
