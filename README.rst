@@ -370,6 +370,7 @@ Next Steps
 ----------
 
 Currently, notebook metadata is lost when using ``nbraze``/``nbuild``/``nbless``.
+
 - Enable ``nbuild``/``nbless`` to accept metadata via a ``metadata.json`` file.
 - Enable ``nbraze`` to output metadata via a ``metadata.json`` file.
 
