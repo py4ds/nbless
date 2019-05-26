@@ -104,12 +104,12 @@
 <p>Nbless: a Python package for programmatic Jupyter notebook workflows.</p>
 <dl class="function">
 <dt id="nbless.nbless">
-<code class="descclassname">nbless.</code><code class="descname">nbless</code><span class="sig-paren">(</span><em>filenames: List[str], kernel: str = 'python3'</em><span class="sig-paren">)</span> &#x2192; nbformat.notebooknode.NotebookNode<a class="reference internal" href="_modules/nbless/nbless.html#nbless"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.nbless" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">nbless.</code><code class="descname">nbless</code><span class="sig-paren">(</span><em>in_files: List[str], kernel: str = 'python3'</em><span class="sig-paren">)</span> &#x2192; nbformat.notebooknode.NotebookNode<a class="reference internal" href="_modules/nbless/nbless.html#nbless"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.nbless" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create an executed Jupyter notebook from markdown and code files.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>filenames</strong> – A list of names of markdown and code files.</p></li>
+<li><p><strong>in_files</strong> – A list of names of markdown and code files.</p></li>
 <li><p><strong>kernel</strong> – The programming language used to run the notebook.</p></li>
 </ul>
 </dd>
@@ -118,23 +118,23 @@
 
 <dl class="function">
 <dt id="nbless.nbuild">
-<code class="descclassname">nbless.</code><code class="descname">nbuild</code><span class="sig-paren">(</span><em>filenames: List[str]</em><span class="sig-paren">)</span> &#x2192; nbformat.notebooknode.NotebookNode<a class="reference internal" href="_modules/nbless/nbuild.html#nbuild"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.nbuild" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">nbless.</code><code class="descname">nbuild</code><span class="sig-paren">(</span><em>in_files: Union[List[str], List[pathlib.Path]]</em><span class="sig-paren">)</span> &#x2192; nbformat.notebooknode.NotebookNode<a class="reference internal" href="_modules/nbless/nbuild.html#nbuild"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.nbuild" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create an unexecuted Jupyter notebook from markdown and code files.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>filenames</strong> – A list of source file names.</p>
+<dd class="field-odd"><p><strong>in_files</strong> – A list of source file names.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="nbless.nbexec">
-<code class="descclassname">nbless.</code><code class="descname">nbexec</code><span class="sig-paren">(</span><em>filename: str</em>, <em>kernel: str = 'python3'</em><span class="sig-paren">)</span> &#x2192; Tuple[str, nbformat.notebooknode.NotebookNode]<a class="reference internal" href="_modules/nbless/nbexec.html#nbexec"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.nbexec" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">nbless.</code><code class="descname">nbexec</code><span class="sig-paren">(</span><em>in_file: str</em>, <em>kernel: str = 'python3'</em><span class="sig-paren">)</span> &#x2192; Tuple[str, nbformat.notebooknode.NotebookNode]<a class="reference internal" href="_modules/nbless/nbexec.html#nbexec"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.nbexec" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create an executed notebook without modifying the input notebook.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>filename</strong> – The name of the Jupyter notebook file to be executed.</p></li>
+<li><p><strong>in_file</strong> – The name of the Jupyter notebook file to be executed.</p></li>
 <li><p><strong>kernel</strong> – The programming language used to execute the notebook.</p></li>
 </ul>
 </dd>
@@ -143,12 +143,12 @@
 
 <dl class="function">
 <dt id="nbless.nbconv">
-<code class="descclassname">nbless.</code><code class="descname">nbconv</code><span class="sig-paren">(</span><em>filename: str</em>, <em>exporter: str = 'python'</em><span class="sig-paren">)</span> &#x2192; Tuple[str, str]<a class="reference internal" href="_modules/nbless/nbconv.html#nbconv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.nbconv" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">nbless.</code><code class="descname">nbconv</code><span class="sig-paren">(</span><em>in_file: Union[str, pathlib.Path], exporter: str = 'python'</em><span class="sig-paren">)</span> &#x2192; List[str]<a class="reference internal" href="_modules/nbless/nbconv.html#nbconv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.nbconv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert a notebook into various formats using <code class="docutils literal notranslate"><span class="pre">nbformat</span></code> exporters.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>filename</strong> – The name of the input notebook file.</p></li>
+<li><p><strong>in_file</strong> – The name of the input notebook file.</p></li>
 <li><p><strong>exporter</strong> – The exporter that determines the output file type.</p></li>
 </ul>
 </dd>
@@ -163,7 +163,7 @@ slides need to served (not self-contained).</p>
 
 <dl class="function">
 <dt id="nbless.nbdeck">
-<code class="descclassname">nbless.</code><code class="descname">nbdeck</code><span class="sig-paren">(</span><em>filename: str</em><span class="sig-paren">)</span> &#x2192; nbformat.notebooknode.NotebookNode<a class="reference internal" href="_modules/nbless/nbdeck.html#nbdeck"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.nbdeck" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">nbless.</code><code class="descname">nbdeck</code><span class="sig-paren">(</span><em>in_file: str</em><span class="sig-paren">)</span> &#x2192; nbformat.notebooknode.NotebookNode<a class="reference internal" href="_modules/nbless/nbdeck.html#nbdeck"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.nbdeck" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set up a Jupyter notebook to be viewed as or converted into slides.</p>
 <p>Sets <cite>slide_type</cite> to <code class="docutils literal notranslate"><span class="pre">slide</span></code> for markdown cells that start with headers.
 After running <code class="docutils literal notranslate"><span class="pre">nbdeck</span></code>, you can
@@ -171,19 +171,19 @@ After running <code class="docutils literal notranslate"><span class="pre">nbdec
 - create an HTML slideshow with <code class="docutils literal notranslate"><span class="pre">nbconv</span></code> or <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">nbconvert</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>filename</strong> – The name of the input Jupyter notebook file.</p>
+<dd class="field-odd"><p><strong>in_file</strong> – The name of the input Jupyter notebook file.</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="nbless.nbraze">
-<code class="descclassname">nbless.</code><code class="descname">nbraze</code><span class="sig-paren">(</span><em>filename: str</em>, <em>extension: str = 'py'</em><span class="sig-paren">)</span> &#x2192; Dict[str, str]<a class="reference internal" href="_modules/nbless/nbraze.html#nbraze"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.nbraze" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">nbless.</code><code class="descname">nbraze</code><span class="sig-paren">(</span><em>in_file: str</em>, <em>extension: str = 'py'</em><span class="sig-paren">)</span> &#x2192; Dict[str, str]<a class="reference internal" href="_modules/nbless/nbraze.html#nbraze"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.nbraze" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create markdown and code files from a Jupyter notebook.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>filename</strong> – The name of the input Jupyter notebook file.</p></li>
+<li><p><strong>in_file</strong> – The name of the input Jupyter notebook file.</p></li>
 <li><p><strong>extension</strong> – The extension for code files.</p></li>
 </ul>
 </dd>

@@ -88,9 +88,62 @@
           <div class="body" role="main">
             
   <h1>Source code for test_nbless</h1><div class="highlight"><pre>
-<div class="viewcode-block" id="test_nbless"><a class="viewcode-back" href="../test_nbless.html#test_nbless.test_nbless">[docs]</a><span></span><span class="k">def</span> <span class="nf">test_nbless</span><span class="p">():</span>
-    <span class="sd">&quot;&quot;&quot;Test nbless&quot;&quot;&quot;</span>
-    <span class="k">assert</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">5</span></div>
+<span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="k">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">List</span>
+
+<span class="kn">import</span> <span class="nn">nbformat</span>
+<span class="kn">import</span> <span class="nn">pytest</span>
+
+<span class="kn">from</span> <span class="nn">nbless</span> <span class="k">import</span> <span class="n">nbless</span><span class="p">,</span> <span class="n">nbuild</span><span class="p">,</span> <span class="n">nbconv</span>
+
+
+<div class="viewcode-block" id="make_tempfiles"><a class="viewcode-back" href="../test_nbless.html#test_nbless.make_tempfiles">[docs]</a><span class="k">def</span> <span class="nf">make_tempfiles</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Path</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;Helper function to create a list of pathlib Path objects.&quot;&quot;&quot;</span>
+    <span class="n">md</span> <span class="o">=</span> <span class="n">tmp_path</span> <span class="o">/</span> <span class="s2">&quot;intro.md&quot;</span>
+    <span class="n">py</span> <span class="o">=</span> <span class="n">tmp_path</span> <span class="o">/</span> <span class="s2">&quot;plot.py&quot;</span>
+    <span class="n">txt</span> <span class="o">=</span> <span class="n">tmp_path</span> <span class="o">/</span> <span class="s2">&quot;discussion.txt&quot;</span>
+    <span class="n">md</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="s2">&quot;# Introduction</span><span class="se">\n</span><span class="s2">Here&#39;s a plot made with the matplotlib.&quot;</span><span class="p">)</span>
+    <span class="n">py</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="s2">&quot;import numpy as np</span><span class="se">\n</span><span class="s2">import matplotlib.pyplot as plt</span><span class="se">\n</span><span class="s2">&quot;</span>
+                  <span class="s2">&quot;N = 50</span><span class="se">\n</span><span class="s2">x = y = colors = np.random.rand(N)</span><span class="se">\n</span><span class="s2">&quot;</span>
+                  <span class="s2">&quot;area = np.pi * (15 * np.random.rand(N)) ** 2</span><span class="se">\n</span><span class="s2">&quot;</span>
+                  <span class="s2">&quot;plt.scatter(x, y, s=area, c=colors, alpha=0.5)</span><span class="se">\n</span><span class="s2">plt.show()&quot;</span>
+                  <span class="p">)</span>
+    <span class="n">txt</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="s2">&quot;Discussion</span><span class="se">\n</span><span class="s2">Matplotlib is verbose, but makes cool plots!&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">md</span><span class="p">,</span> <span class="n">py</span><span class="p">,</span> <span class="n">txt</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="make_temp_notebook"><a class="viewcode-back" href="../test_nbless.html#test_nbless.make_temp_notebook">[docs]</a><span class="k">def</span> <span class="nf">make_temp_notebook</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Path</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Helper function to create a list of pathlib Path objects.&quot;&quot;&quot;</span>
+    <span class="n">nb</span> <span class="o">=</span> <span class="n">tmp_path</span> <span class="o">/</span> <span class="s2">&quot;notebook.ipynb&quot;</span>
+    <span class="n">nb</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">nbformat</span><span class="o">.</span><span class="n">writes</span><span class="p">(</span><span class="n">nbuild</span><span class="p">(</span><span class="n">make_tempfiles</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">))))</span>
+    <span class="k">return</span> <span class="n">nb</span></div>
+
+
+<div class="viewcode-block" id="test_nbuild"><a class="viewcode-back" href="../test_nbless.html#test_nbless.test_nbuild">[docs]</a><span class="k">def</span> <span class="nf">test_nbuild</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Run nbuild() to create a temporary notebook file from 3 tempfiles.&quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">tempfile</span> <span class="ow">in</span> <span class="n">make_tempfiles</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="n">nbuild</span><span class="p">([</span><span class="n">tempfile</span><span class="p">])</span><span class="o">.</span><span class="n">cells</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">source</span> <span class="o">==</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">read_text</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="test_nbless"><a class="viewcode-back" href="../test_nbless.html#test_nbless.test_nbless">[docs]</a><span class="k">def</span> <span class="nf">test_nbless</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Run nbless() to create and execute a temporary notebook file.&quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">tempfile</span> <span class="ow">in</span> <span class="n">make_tempfiles</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="n">nbless</span><span class="p">([</span><span class="n">tempfile</span><span class="p">])</span><span class="o">.</span><span class="n">cells</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">source</span> <span class="o">==</span> <span class="n">tempfile</span><span class="o">.</span><span class="n">read_text</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="test_raises"><a class="viewcode-back" href="../test_nbless.html#test_nbless.test_raises">[docs]</a><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s1">&#39;not_exporters&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;htm&#39;</span><span class="p">,</span> <span class="s1">&#39;ipython&#39;</span><span class="p">,</span> <span class="s1">&#39;markup&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">test_raises</span><span class="p">(</span><span class="n">not_exporters</span><span class="p">,</span> <span class="n">tmp_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Make sure a ValueError is raised if nbconv() gets a bad exporter.&quot;&quot;&quot;</span>
+    <span class="n">nb</span> <span class="o">=</span> <span class="n">make_temp_notebook</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">pytest</span><span class="o">.</span><span class="n">raises</span><span class="p">(</span><span class="ne">ValueError</span><span class="p">):</span>
+        <span class="n">nbconv</span><span class="p">(</span><span class="n">in_file</span><span class="o">=</span><span class="n">nb</span><span class="p">,</span> <span class="n">exporter</span><span class="o">=</span><span class="n">not_exporters</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="test_nbconv"><a class="viewcode-back" href="../test_nbless.html#test_nbless.test_nbconv">[docs]</a><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">parametrize</span><span class="p">(</span><span class="s1">&#39;exporters&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;html&#39;</span><span class="p">,</span> <span class="s1">&#39;asciidoc&#39;</span><span class="p">,</span> <span class="s1">&#39;rst&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">test_nbconv</span><span class="p">(</span><span class="n">exporters</span><span class="p">,</span> <span class="n">tmp_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Convert ``tempfiles`` with each exporter in ``exporters``.&quot;&quot;&quot;</span>
+    <span class="n">nb</span> <span class="o">=</span> <span class="n">make_temp_notebook</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">nbconv</span><span class="p">(</span><span class="n">in_file</span><span class="o">=</span><span class="n">nb</span><span class="p">,</span> <span class="n">exporter</span><span class="o">=</span><span class="n">exporters</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="n">exporters</span><span class="p">)</span></div>
 </pre></div>
 
           </div>

@@ -5,17 +5,17 @@ from pathlib import Path
 import nbformat
 
 
-def nbraze(filename: str, extension: str = "py") -> Dict[str, str]:
+def nbraze(in_file: str, extension: str = "py") -> Dict[str, str]:
     """Create markdown and code files from a Jupyter notebook.
 
-    :param filename: The name of the input Jupyter notebook file.
+    :param in_file: The name of the input Jupyter notebook file.
     :param extension: The extension for code files.
     """
-    nb = nbformat.read(filename, as_version=4)
+    nb = nbformat.read(in_file, as_version=4)
     filenames = (
-        f"{Path(filename).stem}_cell{n}.md"
+        f"{Path(in_file).stem}_cell{n}.md"
         if cell.cell_type == "markdown"
-        else f"{Path(filename).stem}_cell{n}.{extension}"
+        else f"{Path(in_file).stem}_cell{n}.{extension}"
         for n, cell in enumerate(nb.cells)
     )
     sources = (
