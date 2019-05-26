@@ -15,7 +15,7 @@ docs: docs/index.html
 patch-release: patch release
 
 
-.venv/bin/activate: setup.py
+.venv/bin/activate: setup.py requirements.txt
 ifneq ($(ENV), $(filter $(ENV),conda venv))
 	pip install $(ENV)
 endif
@@ -28,9 +28,9 @@ endif
 ifeq ($(ENV), pipenv)
 	test -d .venv || pipenv --three
 	pipenv install pip
-	pipenv install --editable .
+	pipenv install -r requirements.txt
 else
-	${PYTHON} -m pip install --editable .
+	${PYTHON} -m pip install -r requirements.txt
 endif
 	touch .venv/bin/activate
 
