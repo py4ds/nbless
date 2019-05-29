@@ -32,13 +32,13 @@ def make_temp_notebook(tmp_path: Path) -> Path:
 def test_nbuild(tmp_path: Path) -> None:
     """Run nbuild() to create a temporary notebook file from 3 tempfiles."""
     for tempfile in make_tempfiles(tmp_path):
-        assert nbuild([tempfile]).cells[0].source == tempfile.read_text()
+        assert nbuild([tempfile.name]).cells[0].source == tempfile.read_text()
 
 
 def test_nbless(tmp_path: Path) -> None:
     """Run nbless() to create and execute a temporary notebook file."""
     for tempfile in make_tempfiles(tmp_path):
-        assert nbless([tempfile]).cells[0].source == tempfile.read_text()
+        assert nbless([tempfile.name]).cells[0].source == tempfile.read_text()
 
 
 @pytest.mark.parametrize('not_exporters', ['htm', 'ipython', 'markup'])
@@ -46,11 +46,12 @@ def test_raises(not_exporters, tmp_path: Path) -> None:
     """Make sure a ValueError is raised if nbconv() gets a bad exporter."""
     nb = make_temp_notebook(tmp_path)
     with pytest.raises(ValueError):
-        nbconv(in_file=nb, exporter=not_exporters)
+        nbconv(in_file=nb.name, exporter=not_exporters)
 
 
 @pytest.mark.parametrize('exporters', ['html', 'asciidoc', 'rst'])
 def test_nbconv(exporters, tmp_path: Path) -> None:
     """Convert ``tempfiles`` with each exporter in ``exporters``."""
     nb = make_temp_notebook(tmp_path)
-    assert nbconv(in_file=nb, exporter=exporters)[0].endswith("." + exporters)
+    assert nbconv(in_file=nb.name,
+                  exporter=exporters)[0].endswith("." + exporters)
