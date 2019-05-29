@@ -60,11 +60,8 @@ templates_path = ['_templates']
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
 #
-from recommonmark.parser import CommonMarkParser
 
-source_parsers = {'.md': CommonMarkParser}
-
-source_suffix = ['.rst', '.md', '.ipynb']
+source_suffix = ['.rst', '.ipynb']
 
 # The master toctree document.
 master_doc = 'index'
