@@ -9,7 +9,6 @@ before_install:
   - export HOME=/home/travis
 install:
   - pip install -U tox-travis pytest-mypy jupyter
-
 script: tox
 deploy:
   provider: pypi
