@@ -1,7 +1,7 @@
 language: python
 python:
 - 3.6
-install: pip install -U tox-travis pytest-mypy recommonmark jupyter
+install: pip install -U tox-travis pytest-mypy jupyter pypandoc
 script: tox
 deploy:
   provider: pypi
