@@ -1,6 +1,7 @@
 # If ENV is pipenv, run export PIPENV_VENV_IN_PROJECT=1
 # Otherwise, .venv will not be in the current project.
 
+README = README.rst
 ENV = venv
 PYTHON = .venv/bin/python3
 LINTER = black
@@ -50,7 +51,7 @@ else
 endif
 	${PYTHON} -m $(LINTER) src tests
 
-docs/index.html: $(DOCS) $(TESTS) $(SRC)
+docs/index.html: $(README) $(DOCS) $(TESTS) $(SRC)
 	mv docs html
 	sphinx-apidoc -fo html/source src/nbless/ src/nbless/nb*
 	sphinx-apidoc -fo html/source --tocfile tests tests
