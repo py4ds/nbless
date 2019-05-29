@@ -2,6 +2,6 @@
 jupyter==1.0.0
 click==7.0
 pytest
-pytest-mypy
+pytest-mypy==0.3.2
 matplotlib
 numpy==1.16.4
