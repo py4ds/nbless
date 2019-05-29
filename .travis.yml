@@ -8,6 +8,12 @@ before_install:
   - sudo apt-get install -y pandoc
   - export HOME=/home/travis
 install:
+  - wget https://hackage.haskell.org/package/pandoc-1.17.0.3/pandoc-1.17.0.3.tar.gz
+  - tar xvzf pandoc-1.17.0.3.tar.gz
+  - cd pandoc-1.17.0.3
+  - curl -sSL https://get.haskellstack.org/ | sh
+  - stack setup
+  - stack install
   - pip install -U tox-travis pytest-mypy jupyter
 script: tox
 deploy:
