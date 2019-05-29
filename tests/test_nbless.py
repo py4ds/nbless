@@ -7,7 +7,7 @@ import pytest
 from nbless import nbless, nbuild, nbconv
 
 
-def make_tempfiles(tmp_path: Path) -> List[Path]:
+def make_tempfiles(tmp_path: Path) -> List[str]:
     """Helper function to create a list of pathlib Path objects."""
     md = tmp_path / "intro.md"
     py = tmp_path / "plot.py"
@@ -19,26 +19,26 @@ def make_tempfiles(tmp_path: Path) -> List[Path]:
                   "plt.scatter(x, y, s=area, c=colors, alpha=0.5)\nplt.show()"
                   )
     txt.write_text("Discussion\nMatplotlib is verbose, but makes cool plots!")
-    return [md, py, txt]
+    return [md.as_posix(), py.as_posix(), txt.as_posix()]
 
 
-def make_temp_notebook(tmp_path: Path) -> Path:
+def make_temp_notebook(tmp_path: Path) -> str:
     """Helper function to create a list of pathlib Path objects."""
     nb = tmp_path / "notebook.ipynb"
     nb.write_text(nbformat.writes(nbuild(make_tempfiles(tmp_path))))
-    return nb
+    return nb.as_posix()
 
 
 def test_nbuild(tmp_path: Path) -> None:
     """Run nbuild() to create a temporary notebook file from 3 tempfiles."""
     for tempfile in make_tempfiles(tmp_path):
-        assert nbuild([tempfile.name]).cells[0].source == tempfile.read_text()
+        assert nbuild([tempfile]).cells[0].source == Path(tempfile).read_text()
 
 
 def test_nbless(tmp_path: Path) -> None:
     """Run nbless() to create and execute a temporary notebook file."""
     for tempfile in make_tempfiles(tmp_path):
-        assert nbless([tempfile.name]).cells[0].source == tempfile.read_text()
+        assert nbless([tempfile]).cells[0].source == Path(tempfile).read_text()
 
 
 @pytest.mark.parametrize('not_exporters', ['htm', 'ipython', 'markup'])
@@ -46,12 +46,12 @@ def test_raises(not_exporters, tmp_path: Path) -> None:
     """Make sure a ValueError is raised if nbconv() gets a bad exporter."""
     nb = make_temp_notebook(tmp_path)
     with pytest.raises(ValueError):
-        nbconv(in_file=nb.name, exporter=not_exporters)
+        nbconv(in_file=nb, exporter=not_exporters)
 
 
 @pytest.mark.parametrize('exporters', ['html', 'asciidoc', 'rst'])
 def test_nbconv(exporters, tmp_path: Path) -> None:
     """Convert ``tempfiles`` with each exporter in ``exporters``."""
     nb = make_temp_notebook(tmp_path)
-    assert nbconv(in_file=nb.name,
+    assert nbconv(in_file=nb,
                   exporter=exporters)[0].endswith("." + exporters)
