@@ -14,7 +14,6 @@ setuptools.setup(
     url="https://github.com/marskar/nbless",
     package_dir={"": "src"},
     packages=setuptools.find_packages('src'),
-    # scripts=['nbless.py', 'nbuild.py', 'nbexec.py'],
     entry_points={
         'console_scripts': [
             'nbless = cli.nbless_click:nbless_click',
@@ -35,6 +34,7 @@ setuptools.setup(
     ],
     install_requires=[
         'click',
-        'jupyter'
+        'jupyter',
+        'pypandoc'
     ]
 )
