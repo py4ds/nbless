@@ -24,4 +24,4 @@ jobs:
           command: |
             . .venv/bin/activate
             black src tests
-            pytest -v
+            pytest --verbose --mypy --mypy-ignore-missing-imports --doctest-modules

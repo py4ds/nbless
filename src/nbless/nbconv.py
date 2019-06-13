@@ -19,16 +19,16 @@ def nbconv(in_file: str, exporter: str = None) -> Tuple[str, str]:
     in_file_path = Path(in_file)
     if not exporter:
         ext_exp_dict = {
-            '.asciidoc': 'asciidoc',
-            '.adoc': 'asciidoc',
-            '.asc': 'asciidoc',
-            '.pdf': 'pdf',
-            '.html': 'html',
-            '.tex': 'latex',
-            '.md': 'markdown',
-            '.py': 'python',
-            '.R': 'script',
-            '.rst': 'rst'
+            ".asciidoc": "asciidoc",
+            ".adoc": "asciidoc",
+            ".asc": "asciidoc",
+            ".pdf": "pdf",
+            ".html": "html",
+            ".tex": "latex",
+            ".md": "markdown",
+            ".py": "python",
+            ".R": "script",
+            ".rst": "rst",
         }
         if in_file_path.suffix in ext_exp_dict:
             exporter = ext_exp_dict[in_file_path.suffix]

@@ -18,8 +18,5 @@ def nbraze(in_file: str, extension: str = "py") -> Dict[str, str]:
         else f"{Path(in_file).stem}_cell{n}.{extension}"
         for n, cell in enumerate(nb.cells)
     )
-    sources = (
-        cell.source
-        for cell in nb.cells
-    )
+    sources = (cell.source for cell in nb.cells)
     return dict(zip(filenames, sources))

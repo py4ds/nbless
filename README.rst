@@ -376,7 +376,7 @@ Currently, notebook metadata is lost when using ``nbraze``/``nbuild``/``nbless``
 
 .. |Build| image:: https://circleci.com/gh/marskar/nbless.svg?style=svg
    :target: https://circleci.com/gh/marskar/nbless
-.. |License| image:: https://img.shields.io/badge/License-MIT-brightgreen.svg
+.. |License| image:: https://img.shields.io/badge/License-MIT-purple.svg
    :target: https://opensource.org/licenses/MIT
 .. |PyPI| image:: https://img.shields.io/pypi/v/nbless.svg
    :target: https://pypi.python.org/pypi/nbless

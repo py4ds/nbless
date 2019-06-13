@@ -13,11 +13,12 @@ def make_tempfiles(tmp_path: Path) -> List[str]:
     py = tmp_path / "plot.py"
     txt = tmp_path / "discussion.txt"
     md.write_text("# Introduction\nHere's a plot made with the matplotlib.")
-    py.write_text("import numpy as np\nimport matplotlib.pyplot as plt\n"
-                  "N = 50\nx = y = colors = np.random.rand(N)\n"
-                  "area = np.pi * (15 * np.random.rand(N)) ** 2\n"
-                  "plt.scatter(x, y, s=area, c=colors, alpha=0.5)\nplt.show()"
-                  )
+    py.write_text(
+        "import numpy as np\nimport matplotlib.pyplot as plt\n"
+        "N = 50\nx = y = colors = np.random.rand(N)\n"
+        "area = np.pi * (15 * np.random.rand(N)) ** 2\n"
+        "plt.scatter(x, y, s=area, c=colors, alpha=0.5)\nplt.show()"
+    )
     txt.write_text("Discussion\nMatplotlib is verbose, but makes cool plots!")
     return [md.as_posix(), py.as_posix(), txt.as_posix()]
 
@@ -44,25 +45,25 @@ def test_nbless_cell_contents(tmp_path: Path) -> None:
 def test_nbuild_cell_type(tmp_path: Path) -> None:
     """Run nbuild() to create a temporary notebook file from 3 tempfiles."""
     cells = nbuild(make_tempfiles(tmp_path)).cells
-    assert [c.cell_type for c in cells] == ['markdown', 'code', 'markdown']
+    assert [c.cell_type for c in cells] == ["markdown", "code", "markdown"]
 
 
 def test_nbless_cell_type(tmp_path: Path) -> None:
     """Run nbless() to create and execute a 3-cell notebook file."""
     cells = nbless(make_tempfiles(tmp_path)).cells
-    assert [c.cell_type for c in cells] == ['markdown', 'code', 'markdown']
+    assert [c.cell_type for c in cells] == ["markdown", "code", "markdown"]
 
 
 def test_nbexec(tmp_path: Path) -> None:
     """Run nbexec() to execute a temporary notebook file."""
     for cell in nbexec(make_temp_notebook(tmp_path)).cells:
-        if cell.cell_type == 'code':
+        if cell.cell_type == "code":
             assert cell.execution_count
             for output in cell.outputs:
                 assert output
 
 
-@pytest.mark.parametrize('not_exporters', ['htm', 'ipython', 'markup'])
+@pytest.mark.parametrize("not_exporters", ["htm", "ipython", "markup"])
 def test_raises(not_exporters, tmp_path: Path) -> None:
     """Make sure a ValueError is raised if nbconv() gets a bad exporter."""
     nb = make_temp_notebook(tmp_path)
@@ -70,9 +71,8 @@ def test_raises(not_exporters, tmp_path: Path) -> None:
         nbconv(in_file=nb, exporter=not_exporters)
 
 
-@pytest.mark.parametrize('exporters', ['html', 'asciidoc', 'rst'])
+@pytest.mark.parametrize("exporters", ["html", "asciidoc", "rst"])
 def test_nbconv(exporters, tmp_path: Path) -> None:
     """Convert ``tempfiles`` with each exporter in ``exporters``."""
     nb = make_temp_notebook(tmp_path)
-    assert nbconv(in_file=nb,
-                  exporter=exporters)[0].endswith("." + exporters)
+    assert nbconv(in_file=nb, exporter=exporters)[0].endswith("." + exporters)

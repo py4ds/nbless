@@ -8,8 +8,7 @@ from nbless.nbuild import nbuild
 
 
 @click.command()
-@click.argument("in_files", nargs=-1, required=True,
-                type=click.Path(exists=True))
+@click.argument("in_files", nargs=-1, required=True, type=click.Path(exists=True))
 @click.option("-o", "--out_file", "out")
 def nbuild_click(in_files: List[str], out: str) -> None:
     """Create an unexecuted Jupyter notebook from markdown and code files.
