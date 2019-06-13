@@ -33,7 +33,7 @@ def nbconv(in_file: str, exporter: str = None) -> Tuple[str, str]:
         if in_file_path.suffix in ext_exp_dict:
             exporter = ext_exp_dict[in_file_path.suffix]
         else:
-            return "Unable to infer exporter type!"
+            print("Unable to infer exporter type!")
     contents, resources = get_exporter(exporter)().from_filename(in_file)
     out_name = in_file_path.stem + resources.get("output_extension", ".txt")
-    return [out_name, contents]
+    return out_name, contents

@@ -4,6 +4,7 @@ python:
 - 3.6
 - 3.7
 install:
+  - export HOME=/home/travis
   - pip install -U tox-travis pytest-mypy jupyter
 script: tox
 deploy:

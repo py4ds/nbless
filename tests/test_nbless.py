@@ -29,16 +29,28 @@ def make_temp_notebook(tmp_path: Path) -> str:
     return nb.as_posix()
 
 
-def test_nbuild(tmp_path: Path) -> None:
-    """Run nbuild() to create a temporary notebook file from 3 tempfiles."""
+def test_nbuild_cell_contents(tmp_path: Path) -> None:
+    """Run nbuild() to create 3 temporary notebook files from 3 tempfiles."""
     for tempfile in make_tempfiles(tmp_path):
         assert nbuild([tempfile]).cells[0].source == Path(tempfile).read_text()
 
 
-def test_nbless(tmp_path: Path) -> None:
-    """Run nbless() to create and execute a temporary notebook file."""
+def test_nbless_cell_contents(tmp_path: Path) -> None:
+    """Run nbless() to create and execute three notebook files."""
     for tempfile in make_tempfiles(tmp_path):
         assert nbless([tempfile]).cells[0].source == Path(tempfile).read_text()
+
+
+def test_nbuild_cell_type(tmp_path: Path) -> None:
+    """Run nbuild() to create a temporary notebook file from 3 tempfiles."""
+    cells = nbuild(make_tempfiles(tmp_path)).cells
+    assert [c.cell_type for c in cells] == ['markdown', 'code', 'markdown']
+
+
+def test_nbless_cell_type(tmp_path: Path) -> None:
+    """Run nbless() to create and execute a 3-cell notebook file."""
+    cells = nbless(make_tempfiles(tmp_path)).cells
+    assert [c.cell_type for c in cells] == ['markdown', 'code', 'markdown']
 
 
 def test_nbexec(tmp_path: Path) -> None:
@@ -48,6 +60,7 @@ def test_nbexec(tmp_path: Path) -> None:
             assert cell.execution_count
             for output in cell.outputs:
                 assert output
+
 
 @pytest.mark.parametrize('not_exporters', ['htm', 'ipython', 'markup'])
 def test_raises(not_exporters, tmp_path: Path) -> None:
