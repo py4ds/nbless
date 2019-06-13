@@ -374,8 +374,8 @@ Currently, notebook metadata is lost when using ``nbraze``/``nbuild``/``nbless``
 - Enable ``nbuild``/``nbless`` to accept metadata via a ``metadata.json`` file.
 - Enable ``nbraze`` to output metadata via a ``metadata.json`` file.
 
-.. |Build| image:: https://travis-ci.org/marskar/nbless.svg?branch=master
-   :target: https://travis-ci.org/marskar/nbless
+.. |Build| image:: https://circleci.com/gh/marskar/nbless.svg?style=svg
+   :target: https://circleci.com/gh/marskar/nbless
 .. |License| image:: https://img.shields.io/badge/License-MIT-brightgreen.svg
    :target: https://opensource.org/licenses/MIT
 .. |PyPI| image:: https://img.shields.io/pypi/v/nbless.svg
