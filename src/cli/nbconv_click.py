@@ -17,10 +17,10 @@ def nbconv_click(in_file: str, exporter: str, out: str) -> None:
     :param out_file: The name of the output Jupyter notebook file.
     :note: The exporter type must be 'asciidoc', 'pdf', 'html', 'latex',
            'markdown', 'python', 'rst', 'script', or 'slides'.
-           pdf requires latex, 'notebook' does nothing,
-           slides need to served (not self-contained).
+           All formats except 'HTML' require pandoc.
+           Exporting to pdf requires latex.
     """
-    name, contents = nbconv(in_file, exporter) if exporter else nbconv(in_file)
+    name, contents = nbconv(in_file, exporter)
     if out:
         Path(out).write_text(contents)
     else:
