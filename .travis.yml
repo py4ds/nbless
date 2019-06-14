@@ -6,6 +6,7 @@ python:
 install:
   - pip install -U pytest-mypy jupyter
   - sudo apt-get install pandoc
+script: pytest --verbose --mypy --mypy-ignore-missing-imports --doctest-modules
 deploy:
   provider: pypi
   distributions: sdist bdist_wheel
