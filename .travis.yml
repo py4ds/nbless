@@ -4,7 +4,7 @@ python:
 - 3.6
 - 3.7
 install:
-  - pip install -U pytest-mypy jupyter
+  - pip install -U pytest-mypy jupyter click
   - sudo apt-get install pandoc
 script: pytest --verbose --mypy --mypy-ignore-missing-imports --doctest-modules
 deploy:
