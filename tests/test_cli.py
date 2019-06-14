@@ -3,11 +3,10 @@ from typing import List
 
 import nbformat
 import pytest
-import click
 from click.testing import CliRunner
 
-from nbless import nbuild
 from cli import nbless_cli, nbuild_cli, nbexec_cli, nbconv_cli
+from nbless import nbuild
 
 
 def make_tempfiles(tmp_path: Path) -> List[str]:
@@ -69,3 +68,14 @@ def test_nbexec_cli(tmp_path: Path) -> None:
                 assert cell.execution_count
                 for output in cell.outputs:
                     assert output
+
+
+def test_nbconv_cli(tmp_path: Path) -> None:
+    """Convert ``tempfiles`` with each exporter in ``exporters``."""
+    runner = CliRunner()
+    with runner.isolated_filesystem():
+        nb = make_temp_notebook(tmp_path)
+        runner.invoke(nbconv_cli.nbconv_cli, [nb, '-e', 'html'])
+        assert Path('notebook.html').read_text().startswith('<!DOCTYPE html>\n')
+        runner.invoke(nbconv_cli.nbconv_cli, [nb, '-o', 'report.html'])
+        assert Path('report.html').read_text().startswith('<!DOCTYPE html>\n')
