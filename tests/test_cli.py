@@ -6,8 +6,8 @@ import pytest
 import click
 from click.testing import CliRunner
 
+from cli import nbless_cli, nbuild_cli, nbexec_cli, nbconv_cli
 
-from nbless.cli import nbless_cli, nbuild_cli, nbexec_cli, nbconv_cli
 
 def make_tempfiles(tmp_path: Path) -> List[str]:
     """Helper function to create a list of pathlib Path objects."""
@@ -24,7 +24,10 @@ def make_tempfiles(tmp_path: Path) -> List[str]:
     txt.write_text("Discussion\nMatplotlib is verbose, but makes cool plots!")
     return [md.as_posix(), py.as_posix(), txt.as_posix()]
 
+
 def test_nbless_cli(tmp_path: Path) -> None:
     runner = CliRunner()
-    result = runner.invoke(nbless_cli, make_tempfiles(tmp_path))
-    assert result.exit_code == 0
+    with runner.isolated_filesystem():
+        with open('hello.txt', 'w') as f:
+            f.write('Hello World!')
+        assert Path("hello.txt").read_text() == 'Hello World!'
