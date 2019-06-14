@@ -1,6 +1,4 @@
 #!/usr/bin/env python
-from typing import Tuple
-
 import nbformat
 from nbconvert.preprocessors import ExecutePreprocessor
 from nbformat.notebooknode import NotebookNode

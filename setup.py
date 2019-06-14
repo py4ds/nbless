@@ -16,12 +16,12 @@ setuptools.setup(
     packages=setuptools.find_packages('src'),
     entry_points={
         'console_scripts': [
-            'nbless = cli.nbless_click:nbless_click',
-            'nbuild = cli.nbuild_click:nbuild_click',
-            'nbraze = cli.nbraze_click:nbraze_click',
-            'nbdeck = cli.nbdeck_click:nbdeck_click',
-            'nbexec = cli.nbexec_click:nbexec_click',
-            'nbconv = cli.nbconv_click:nbconv_click',
+            'nbless = cli.nbless_cli:nbless_cli',
+            'nbuild = cli.nbuild_cli:nbuild_cli',
+            'nbraze = cli.nbraze_cli:nbraze_cli',
+            'nbdeck = cli.nbdeck_cli:nbdeck_cli',
+            'nbexec = cli.nbexec_cli:nbexec_cli',
+            'nbconv = cli.nbconv_cli:nbconv_cli',
         ]
     },
     classifiers=[
@@ -36,5 +36,6 @@ setuptools.setup(
         'click',
         'jupyter',
         'pypandoc'
-    ]
+    ],
+    python_requires='>=3.6'
 )
