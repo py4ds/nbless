@@ -1,0 +1,18 @@
+dist: xenial
+language: python
+python:
+- 3.6
+- 3.7
+install:
+  - pip install -U pytest-mypy jupyter
+  - sudo apt-get install pandoc
+deploy:
+  provider: pypi
+  distributions: sdist bdist_wheel
+  user: marskar
+  password:
+    secure: QuBYpMPSzWdtUswn5KrThGfO942Bc911tC/PD17DSygtKbirqx7XAPusIl/m0BPSeP9Dr3Gdzot4q3pmNOoqMfcVBUGiBDPljbYVC6K8x662+5ungOQu4IWreMYOJ/Hjzgpies2it0uZFnbfVqLvxbgU0FJYFMXl6j9OpE88MrxrCSkyQb6kDv1wfo8lKEw2qV78Oj8OKM9TI7mD2rvyQA86ZxwACrat8Om0u4z8De/Xn4k1xGB6ToJ64aC/MyLhEL63zp6GX3mLkJDWAr0Ppq85jFalA9ZN9u/SfAYrYAFhEgaM7k0CQKBKKzSTz+TgeC39BtQay3XUvDwoGOiDl618SUM5SgiLys27S+kbcITuwxxthvT+4jxSI98Lbu78mfjWRldYOWuYmWYC7h4HqjE5dhWiy8y9MeyVsmU3hvDWH3lq6QA5yFQRwdBK7xwxxUEhISMgCn7ikOlgieVPZn/pm8Hgsc4RIWPv3iCVGEuFCl7GolU8gqEn6OEpGPePR0wM963kJRnPvUpLSFZYidwf1VDkeiWiFDxzA6DMsX1vZfI936OVFAKkpq6r4VpR65pkfs7oV0aOPJvbLDOB4Rr665a5W6eysIIpEoqw8YxEkAOQ0y1mHlCfzcego5IiKScwrR2dpa56kTbB/zsDD/VVXI7kOzzKbOca4XYTRD4=
+  on:
+    tags: true
+    repo: marskar/nbless
+    python: 3.7
