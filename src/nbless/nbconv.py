@@ -18,7 +18,11 @@ def nbconv(in_file: str, exporter: str = '', out: str = '') -> Tuple[str, str]:
            Exporting to pdf requires latex.
     """
     in_path = Path(in_file)
-    if not exporter:
+    if not out and not exporter:
+        print("Setting exporter to HTML!")
+        exporter = "html"
+    elif out and not exporter:
+        out_path = Path(out)
         ext_exp_dict = {
             ".asciidoc": "asciidoc",
             ".adoc": "asciidoc",
@@ -31,10 +35,12 @@ def nbconv(in_file: str, exporter: str = '', out: str = '') -> Tuple[str, str]:
             ".R": "script",
             ".rst": "rst",
         }
-        if in_path.suffix in ext_exp_dict:
-            exporter = ext_exp_dict[in_path.suffix]
+        if out_path.suffix in ext_exp_dict:
+            exporter = ext_exp_dict[out_path.suffix]
         else:
-            print("Unable to infer exporter type!")
+            print("Unable to infer exporter type from output filename!")
+            print("Setting exporter to HTML!")
+            exporter = "html"
     contents, resources = get_exporter(exporter)().from_filename(in_file)
     if not out:
         name = in_path.stem + resources.get("output_extension", ".txt")

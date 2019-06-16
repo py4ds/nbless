@@ -79,3 +79,5 @@ def test_nbconv_cli(tmp_path: Path) -> None:
         assert Path('notebook.html').read_text().startswith('<!DOCTYPE html>\n')
         runner.invoke(nbconv_cli.nbconv_cli, [nb, '-o', 'report.html'])
         assert Path('report.html').read_text().startswith('<!DOCTYPE html>\n')
+        runner.invoke(nbconv_cli.nbconv_cli, [nb, '-o', 'report.adoc'])
+        assert Path('report.adoc').read_text().startswith('\n[[introduction]]')
