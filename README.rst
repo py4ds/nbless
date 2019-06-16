@@ -24,14 +24,14 @@ The ``nbless`` Python package consists of 6 Python functions and shell commands:
 - ``nbuild``, which creates a notebook from source files, e.g. Python (`.py`) and R (`.R`) scripts, markdown (``.md``), and text (``.txt``) files.
 
 For a related package that provides programmatic tools for working with `R Markdown <https://rmarkdown.rstudio.com/authoring_quick_tour.html>`__ (Rmd) files,
-check out the `Rmdawn Python package <https://marskar.github.io/rmdawn/>`__.
+check out the `Rmdawn Python package <https://py4ds.github.io/rmdawn/>`__.
 
 Documentation and code
 ----------------------
 
-The documentation is hosted at https://marskar.github.io/nbless/.
+The documentation is hosted at https://py4ds.github.io/nbless/.
 
-The code is hosted at https://github.com/marskar/nbless.
+The code is hosted at https://github.com/py4ds/nbless.
 
 Installation
 ------------
@@ -40,8 +40,8 @@ Installation
 
     pip install nbless
 
-or clone the `repo <https://github.com/marskar/nbless>`__, e.g.
-``git clone https://github.com/marskar/nbless`` and install locally
+or clone the `repo <https://github.com/py4ds/nbless>`__, e.g.
+``git clone https://github.com/py4ds/nbless`` and install locally
 using setup.py (``python setup.py install``) or ``pip``
 (``pip install .``).
 
@@ -375,8 +375,8 @@ Currently, notebook metadata is lost when using ``nbraze``/``nbuild``/``nbless``
 - Enable ``nbuild``/``nbless`` to accept metadata via a ``metadata.json`` file.
 - Enable ``nbraze`` to output metadata via a ``metadata.json`` file.
 
-.. |Build| image:: https://travis-ci.org/marskar/nbless.svg?branch=master
-   :target: https://travis-ci.org/marskar/nbless
+.. |Build| image:: https://travis-ci.org/py4ds/nbless.svg?branch=master
+   :target: https://travis-ci.org/py4ds/nbless
 .. |Chat| image:: https://badges.gitter.im/py4ds/nbless.svg
    :alt: Join the chat at https://gitter.im/py4ds/nbless
    :target: https://gitter.im/py4ds/nbless?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
@@ -387,8 +387,8 @@ Currently, notebook metadata is lost when using ``nbraze``/``nbuild``/``nbless``
 .. |Repo status| image:: https://www.repostatus.org/badges/latest/active.svg
    :alt: Project Status: Active – The project has reached a stable, usable state and is being actively developed.
    :target: https://www.repostatus.org/#active
-.. |PyUp| image:: https://pyup.io/repos/github/marskar/nbless/shield.svg
-   :target: https://pyup.io/repos/github/marskar/nbless/
+.. |PyUp| image:: https://pyup.io/repos/github/py4ds/nbless/shield.svg
+   :target: https://pyup.io/repos/github/py4ds/nbless/
 .. |Python versions| image:: https://img.shields.io/pypi/pyversions/nbless.svg
    :alt: PyPI - Python Version
    :target: https://www.python.org/downloads/
