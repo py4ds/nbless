@@ -4,8 +4,9 @@ python:
 - 3.6
 - 3.7
 install:
-  - pip install -U tox-travis pytest-mypy jupyter
-script: tox
+  - pip install -U pytest-mypy jupyter click matplotlib numpy
+  - sudo apt-get install pandoc
+script: pytest --verbose --mypy --mypy-ignore-missing-imports --doctest-modules
 deploy:
   provider: pypi
   distributions: sdist bdist_wheel
@@ -16,6 +17,3 @@ deploy:
     tags: true
     repo: marskar/nbless
     python: 3.7
-addons:
-  apt_packages:
-    - pandoc

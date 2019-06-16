@@ -9,7 +9,7 @@ from nbless.nbconv import nbconv
 @click.argument("in_file")
 @click.option("-e", "--exporter", "exporter")
 @click.option("-o", "--out_file", "out")
-def nbconv_click(in_file: str, exporter: str, out: str) -> None:
+def nbconv_cli(in_file: str, exporter: str, out: str) -> None:
     """Convert a notebook into various formats using ``nbformat`` exporters.
 
     :param in_file: The name of the input Jupyter notebook file.
@@ -17,10 +17,10 @@ def nbconv_click(in_file: str, exporter: str, out: str) -> None:
     :param out_file: The name of the output Jupyter notebook file.
     :note: The exporter type must be 'asciidoc', 'pdf', 'html', 'latex',
            'markdown', 'python', 'rst', 'script', or 'slides'.
-           pdf requires latex, 'notebook' does nothing,
-           slides need to served (not self-contained).
+           All formats except 'HTML' require pandoc.
+           Exporting to pdf requires latex.
     """
-    name, contents = nbconv(in_file, exporter) if exporter else nbconv(in_file)
+    name, contents = nbconv(in_file, exporter)
     if out:
         Path(out).write_text(contents)
     else:

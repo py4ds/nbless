@@ -3,21 +3,19 @@ import sys
 import click
 import nbformat
 
-from nbless.nbexec import nbexec
+from nbless.nbdeck import nbdeck
 
 
 @click.command()
 @click.argument("in_file")
-@click.option("-k", "--kernel", "kernel")
 @click.option("-o", "--out_file", "out")
-def nbexec_click(in_file: str, kernel: str, out: str) -> None:
-    """Create an executed notebook without modifying the input notebook.
+def nbdeck_cli(in_file: str, out: str) -> None:
+    """Set up a notebook to be viewed as or converted into slides.
 
     :param in_file: The name of the input Jupyter notebook file.
-    :param kernel: The programming language used to execute the notebook.
     :param out_file: The name of the output Jupyter notebook file.
     """
-    nb = nbexec(in_file, kernel) if kernel else nbexec(in_file)
+    nb = nbdeck(in_file)
     if out:
         nbformat.write(nb, out, version=4)
     else:

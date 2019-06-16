@@ -13,10 +13,10 @@ def nbuild(in_files: List[str]) -> NotebookNode:
     """
     nb = new_notebook()
     nb.cells = [
-            new_code_cell(Path(name).read_text())
-            if name.endswith((".py", ".R"))
-            else new_markdown_cell(Path(name).read_text())
-            for name in in_files
-        ]
+        new_code_cell(Path(name).read_text())
+        if name.endswith((".py", ".R"))
+        else new_markdown_cell(Path(name).read_text())
+        for name in in_files
+    ]
 
     return nb
