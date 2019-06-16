@@ -2,7 +2,7 @@ Nbless: a Python package for programmatic Jupyter notebook workflows
 ====================================================================
 
 
-|Build| |Chat| |License| |PyPI| |Status| |Updates| |Versions|
+|Build| |Chat| |License| |PyPI| |Python versions| |PyUp| |Repo status|  
 
 Introduction
 ------------
@@ -384,11 +384,11 @@ Currently, notebook metadata is lost when using ``nbraze``/``nbuild``/``nbless``
    :target: https://opensource.org/licenses/MIT
 .. |PyPI| image:: https://img.shields.io/pypi/v/nbless.svg
    :target: https://pypi.python.org/pypi/nbless
-.. |Status| image:: https://www.repostatus.org/badges/latest/active.svg
+.. |Repo status| image:: https://www.repostatus.org/badges/latest/active.svg
    :alt: Project Status: Active – The project has reached a stable, usable state and is being actively developed.
    :target: https://www.repostatus.org/#active
-.. |Updates| image:: https://pyup.io/repos/github/marskar/nbless/shield.svg
+.. |PyUp| image:: https://pyup.io/repos/github/marskar/nbless/shield.svg
    :target: https://pyup.io/repos/github/marskar/nbless/
-.. |Versions| image:: https://img.shields.io/pypi/pyversions/nbless.svg
+.. |Python versions| image:: https://img.shields.io/pypi/pyversions/nbless.svg
    :alt: PyPI - Python Version
    :target: https://www.python.org/downloads/
