@@ -1,6 +1,10 @@
 Nbless: a Python package for programmatic Jupyter notebook workflows
 ====================================================================
 
+.. image:: https://badges.gitter.im/py4ds/nbless.svg
+   :alt: Join the chat at https://gitter.im/py4ds/nbless
+   :target: https://gitter.im/py4ds/nbless?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
+
 |Build| |License| |PyPI| |Status| |Updates| |Versions|
 
 Introduction
