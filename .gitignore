@@ -8,6 +8,7 @@ dist/*
 build/
 *.egg-info/
 *.egg
+.coverage
 
 docs/_build/
 bin/
@@ -17,3 +18,4 @@ etc/
 include/
 lib/
 share/
+
