@@ -59,11 +59,6 @@ docs/index.html: $(README) $(DOCS) $(TESTS) $(SRC)
 	mv html docs
 	open docs/index.html
 
-git:
-	git add --all
-	[ -z "`git status --porcelain`" ] || git commit
-	git push
-
 clean:
 	rm -rf docs/_modules
 	rm -rf docs/searchindex.js
@@ -76,20 +71,14 @@ clean:
 	find . -name '*.egg-info' -exec rm -rf {} +
 	find . -name '*.egg' -exec rm -f {} +
 
-patch: git
-	bumpversion --current-version `python setup.py --version` patch setup.py
-	git commit --all --message "Bump version to `python setup.py --version`"
-	git push
+patch:
+	bumpversion patch
 
-minor: git
-	bumpversion --current-version `python setup.py --version` minor setup.py
-	git commit --all --message "Bump version to `python setup.py --version`"
-	git push
+minor:
+	bumpversion minor
 
-major: git
-	bumpversion --current-version `python setup.py --version` major setup.py
-	git commit --all --message "Bump version to `python setup.py --version`"
-	git push
+major:
+	bumpversion major
 
 dist: clean
 	python setup.py sdist bdist_wheel
