@@ -73,12 +73,15 @@ clean:
 
 patch:
 	bumpversion patch
+	git push origin master --tags
 
 minor:
 	bumpversion minor
+	git push origin master --tags
 
 major:
 	bumpversion major
+	git push origin master --tags
 
 dist: clean
 	python setup.py sdist bdist_wheel
