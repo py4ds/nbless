@@ -13,4 +13,5 @@ wheel==0.33.4
 tox==3.12.1
 coverage==4.5.3
 Sphinx==2.1.1
+sphinxcontrib.fulltoc==1.2.0
 twine==1.13.0

@@ -53,9 +53,9 @@ endif
 
 docs/index.html: $(README) $(DOCS) $(TESTS) $(SRC)
 	mv docs html
-	sphinx-apidoc -fo html/source src/nbless/ src/nbless/nb*
-	sphinx-apidoc -fo html/source --tocfile tests tests
-	sphinx-build -M html html/source .
+	.venv/bin/sphinx-apidoc -fo html/source src/nbless/ src/nbless/nb*
+	.venv/bin/sphinx-apidoc -fo html/source --tocfile test_modules tests
+	.venv/bin/sphinx-build -M html html/source .
 	mv html docs
 	open docs/index.html
 

@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>nbless.nbuild &#8212; Nbless 0.2.18 documentation</title>
+    <title>nbless.nbuild &#8212; Nbless 0.2.27 documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
@@ -49,7 +49,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../../readme.html">Project overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../cli.html">Command-line interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../modules.html">Module reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../tests.html">Test reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../test_modules.html">Test reference</a></li>
 </ul>
 
 <div class="relations">
@@ -103,11 +103,11 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">nb</span> <span class="o">=</span> <span class="n">new_notebook</span><span class="p">()</span>
     <span class="n">nb</span><span class="o">.</span><span class="n">cells</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="n">new_code_cell</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">())</span>
-            <span class="k">if</span> <span class="n">name</span><span class="o">.</span><span class="n">endswith</span><span class="p">((</span><span class="s2">&quot;.py&quot;</span><span class="p">,</span> <span class="s2">&quot;.R&quot;</span><span class="p">))</span>
-            <span class="k">else</span> <span class="n">new_markdown_cell</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">())</span>
-            <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">in_files</span>
-        <span class="p">]</span>
+        <span class="n">new_code_cell</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">())</span>
+        <span class="k">if</span> <span class="n">name</span><span class="o">.</span><span class="n">endswith</span><span class="p">((</span><span class="s2">&quot;.py&quot;</span><span class="p">,</span> <span class="s2">&quot;.R&quot;</span><span class="p">))</span>
+        <span class="k">else</span> <span class="n">new_markdown_cell</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">())</span>
+        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">in_files</span>
+    <span class="p">]</span>
 
     <span class="k">return</span> <span class="n">nb</span></div>
 </pre></div>

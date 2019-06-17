@@ -8,7 +8,7 @@ Welcome to Nbless's documentation!
    Project overview <readme.rst>
    Command-line interface <cli.rst>
    Module reference <modules.rst>
-   Test reference <tests.rst>
+   Test reference <test_modules.rst>
 
 
 
