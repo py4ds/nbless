@@ -7,5 +7,5 @@ from nbless.nbdeck import nbdeck
 from nbless.nbraze import nbraze
 
 __author__ = "Martin Skarzynski"
-__version__ = "__version__ = '0.2.26'"
+__version__ = "__version__ = '0.2.27'"
 __all__ = ["nbless", "nbuild", "nbexec", "nbconv", "nbdeck", "nbraze"]
