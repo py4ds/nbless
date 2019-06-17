@@ -1,33 +1,9 @@
 from pathlib import Path
-from typing import List
 
-import nbformat
 import pytest
+from tests.make_temp import make_tempfiles, make_temp_notebook
 
-from nbless import nbless, nbuild, nbexec, nbconv
-
-
-def make_tempfiles(tmp_path: Path) -> List[str]:
-    """Helper function to create a list of pathlib Path objects."""
-    md = tmp_path / "intro.md"
-    py = tmp_path / "plot.py"
-    txt = tmp_path / "discussion.txt"
-    md.write_text("# Introduction\nHere's a plot made with the matplotlib.")
-    py.write_text(
-        "import numpy as np\nimport matplotlib.pyplot as plt\n"
-        "N = 50\nx = y = colors = np.random.rand(N)\n"
-        "area = np.pi * (15 * np.random.rand(N)) ** 2\n"
-        "plt.scatter(x, y, s=area, c=colors, alpha=0.5)\nplt.show()"
-    )
-    txt.write_text("Discussion\nMatplotlib is verbose, but makes cool plots!")
-    return [md.as_posix(), py.as_posix(), txt.as_posix()]
-
-
-def make_temp_notebook(tmp_path: Path) -> str:
-    """Helper function to create a list of pathlib Path objects."""
-    nb = tmp_path / "notebook.ipynb"
-    nb.write_text(nbformat.writes(nbuild(make_tempfiles(tmp_path))))
-    return nb.as_posix()
+from nbless import nbless, nbuild, nbexec, nbconv, nbraze, nbdeck
 
 
 def test_nbuild_one_cell(tmp_path: Path) -> None:
@@ -82,3 +58,24 @@ def test_nbconv(exporters, tmp_path: Path) -> None:
     """Convert ``tempfiles`` with each exporter in ``exporters``."""
     nb = make_temp_notebook(tmp_path)
     assert nbconv(in_file=nb, exporter=exporters)[0].endswith("." + exporters)
+
+
+def test_nbraze(tmp_path: Path):
+    """Extract code and markdown files from the cells of an input notebook."""
+    file_dict = nbraze(make_temp_notebook(tmp_path))
+    assert [Path(f).suffix for f in file_dict] == [".md", ".py", ".md"]
+    assert file_dict["notebook_cell0.md"].startswith("# Background\nMatplotlib")
+    assert file_dict["notebook_cell1.py"].startswith("import numpy as np\n")
+    assert file_dict["notebook_cell2.md"].startswith("# Discussion\nMatplotlib")
+
+
+def test_nbdeck(tmp_path: Path):
+    """ Set up a Jupyter notebook to be viewed as or converted into slides."""
+    cells = nbdeck(make_temp_notebook(tmp_path)).cells
+    c = 0
+    for cell in cells:
+        if cell.cell_type == "markdown" and cell.source.startswith("#"):
+            c += 1
+            assert cell.metadata.slideshow == {"slide_type": "slide"}
+    assert c == 2
+    assert len(cells) == 3

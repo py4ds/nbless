@@ -387,8 +387,8 @@ Currently, notebook metadata is lost when using ``nbraze``/``nbuild``/``nbless``
 .. |Repo status| image:: https://www.repostatus.org/badges/latest/active.svg
    :alt: Project Status: Active – The project has reached a stable, usable state and is being actively developed.
    :target: https://www.repostatus.org/#active
-.. |PyUp| image:: https://pyup.io/repos/github/marskar/nbless/shield.svg
-   :target: https://pyup.io/repos/github/marskar/nbless/
+.. |PyUp| image:: https://pyup.io/repos/github/py4ds/nbless/shield.svg
+   :target: https://pyup.io/repos/github/py4ds/nbless/
 .. |Python versions| image:: https://img.shields.io/pypi/pyversions/nbless.svg
    :alt: PyPI - Python Version
    :target: https://www.python.org/downloads/
