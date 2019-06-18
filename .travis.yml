@@ -17,3 +17,5 @@ deploy:
     tags: true
     repo: marskar/nbless
     python: 3.7
+after_success:
+  - codecov
