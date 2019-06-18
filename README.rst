@@ -16,12 +16,12 @@ in
 
 The ``nbless`` Python package consists of 6 Python functions and shell commands:
 
-- ``nbconv``, which converts a notebook into various formats.
-- ``nbdeck``, which prepares a notebook to be viewed as or converted into slides.
-- ``nbexec``, which runs a notebook from top to bottom and saves an executed version.
-- ``nbless``, which calls ``nbuild`` and ``nbexec`` to create and execute a notebook.
-- ``nbraze``, which extracts code and markdown files from a notebook.
-- ``nbuild``, which creates a notebook from source files, e.g. Python (`.py`) and R (`.R`) scripts, markdown (``.md``), and text (``.txt``) files.
+- nbconv_, which converts a notebook into various formats.
+- nbdeck_, which prepares a notebook to be viewed as or converted into slides.
+- nbexec_, which runs a notebook from top to bottom and saves an executed version.
+- nbless_, which calls ``nbuild`` and ``nbexec`` to create and execute a notebook.
+- nbraze_, which extracts code and markdown files from a notebook.
+- nbuild_, which creates a notebook from source files, e.g. Python (`.py`) and R (`.R`) scripts, markdown (``.md``), and text (``.txt``) files.
 
 For a related package that provides programmatic tools for working with `R Markdown <https://rmarkdown.rstudio.com/authoring_quick_tour.html>`__ (Rmd) files,
 check out the `Rmdawn Python package <https://py4ds.github.io/rmdawn/>`__.
@@ -45,62 +45,111 @@ or clone the `repo <https://github.com/py4ds/nbless>`__, e.g.
 using setup.py (``python setup.py install``) or ``pip``
 (``pip install .``).
 
-R and Python interoperability
------------------------------
+Usage
+-----
 
-All of the Nbless functions and commands work for Python *and* R code, with the caveat
-that ``nbexec`` and ``nbless`` require the kernel argument to be set to
-``ir`` if R code files (``.R``) are included.
+.. _nbconv:
 
-If you want to execute a Jupyter notebook that contains both R and
-Python code, you will have to put the R code in Python scripts (``.py``)
-and use the `rpy2 <https://rpy2.readthedocs.io/>`__ Python library with the default kernel
-(``python3``).
+Converting Jupyter notebooks with ``nbconv``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Code files extracted from code cells with ``nbraze`` must all have the same extension (e.g. `.py`).
-The ``language_info`` key is not always defined, so ``nbraze`` does not try to infer the programming language from Jupyter notebook metadata.
+The ``nbconv`` shell command and Python function can export a
+notebook to many different formats using the ``nbconvert`` library.
+Converting to all formats except HTML requires pandoc.
+Exporting to PDF requires LaTeX.
 
-You can also run the Nbless functions in an R environment using the
-`reticulate <https://rstudio.github.io/reticulate/>`__ R package.
+The supported exporters are
 
-All Nbless functions and commands rely on the `nbconvert <https://nbconvert.readthedocs.io/>`__ and `nbformat <http://nbformat.readthedocs.io/>`__ modules that are included with the ``jupyter`` Python library.
-The command line interface relies on the `click <https://click.palletsprojects.com/>`__ Python library.
+    - asciidoc
+    - pdf
+    - html
+    - latex
+    - markdown
+    - python
+    - rst
+    - script
+    - slides
 
-Basic usage: terminal
----------------------
-
-Creating a Jupyter notebook with ``nbuild`` in the terminal
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. code:: sh
-
-    nbuild README.md plot.py notes.txt > notebooks/notebook.ipynb
-
-The ``nbuild`` function takes the contents of Python or R code files
-(``.py`` or ``.R``) and stores them as `Jupyter Notebook code
-cells <https://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/Running%20Code.html>`__.
-The contents of all other files are stored in `markdown
-cells <https://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/Working%20With%20Markdown%20Cells.html>`__.
-
-Instead of redirecting to a file (``>``), you can use the ``--out_file``
-or ``-o`` flag:
+For example, ``nbconv`` can create a python script by extracting
+the content from code cells and discarding all output and markdown
+content.
 
 .. code:: sh
 
-    nbuild README.md plot.py notes.txt --out_file notebooks/notebook.ipynb
+    nbconv notebook.ipynb --exporter python
     # Or
-    nbuild README.md plot.py notes.txt -o notebooks/notebook.ipynb
+    nbconv notebook.ipynb -e python
 
-You can preview the raw notebook output by running ``nbuild`` with only the positional arguments:
+
+In the example above, the output file would be ``notebook.py``, but you can
+provide a more descriptive name for the output file with the ``--out_file`` or
+``-o`` flag:
 
 .. code:: sh
 
-    nbuild README.md plot.py notes.txt
+    nbconv notebook.ipynb --out_file script.py
+    # Or
+    nbconv notebook.ipynb -o script.py
 
-If you only want to execute a notebook, run ``nbexec`` as described below.
+If the ``exporter`` is not provided, ``nbconv`` will try to infer the exporter type
+from the ``out_file`` extension.
 
-Executing a notebook with ``nbexec`` in the terminal
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+If neither the ``exporter`` or ``out_file`` arguments are provided, the exporter will be set to html.
+
+.. code:: sh
+
+    nbconv notebook.ipynb
+
+.. code:: python
+
+    from pathlib import Path
+    import nbformat
+    from nbless import nbconv
+
+    # Create notebook.py from notebook.ipynb in notebooks folder
+    # nbconv() returns a filename and file contents as strings
+    def write_file(filename: str, contents: str) -> None:
+        with open(filename, 'w') as f:
+            f.write(contents)
+
+    filename, contents = nbconv("notebooks/notebook.ipynb")
+    write_file(filename, contents)
+    write_file(*nbconv("notebooks/notebook.ipynb"))
+
+    # Create notebook.html from notebook.ipynb in notebooks folder
+    write_file(*nbconv("notebooks/notebook.ipynb", "html"))
+
+    # Create script.py from notebook.ipynb in notebooks folder
+    write_file('script.py', nbconv("notebooks/notebook.ipynb")[1])
+
+    # Create report.html from notebook.ipynb in notebooks folder
+    write_file('report.html', nbconv("notebooks/notebook.ipynb", 'html')[1])
+
+    # Create HTML slides from notebook.ipynb in notebooks folder
+    # nbdeck() returns a filename and file contents as strings
+    nbformat.write(nbdeck("notebook.ipynb"), "slides.ipynb", version=4)
+    filename, contents = nbconv("slides.ipynb", "slides")
+    write_file(filename, contents)
+    write_file(*nbconv("notebooks/notebook.ipynb", "slides"))
+
+
+.. _nbdeck:
+
+Creating HTML slides with ``nbdeck`` and ``nbconv``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+With ``nbdeck``, you can prepare Jupyter slides from source files (e.g. ``source_file1.md``, ``source_file2.py``) like this:
+
+.. code:: sh
+
+    nbless slide_file* -o slides.ipynb
+    nbdeck slides.ipynb -o slides.ipynb
+    nbconv slides.ipynb  -e slides -o slides.html
+
+.. _nbexec:
+
+Executing a notebook with ``nbexec``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code:: sh
 
@@ -129,8 +178,11 @@ You can preview the default output filename and the raw notebook output by runni
 If you want to combine ``nbuild`` and ``nbexec`` in one step, use
 ``nbless`` as described below.
 
-Creating and executing a Jupyter notebook with ``nbless`` in the terminal
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. _nbless:
+
+Creating and executing a Jupyter notebook with ``nbless``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Run ``nbless`` in your terminal, providing all of the names of the
 source files as arguments, e.g.
@@ -154,8 +206,10 @@ or ``-o`` flag:
 If you do not want an executed version of the notebook, run ``nbuild``
 instead of ``nbless``.
 
-Extracting source files from a Jupyter notebook with ``nbraze`` in the terminal
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. _nbraze:
+
+Extracting source files from a Jupyter notebook with ``nbraze``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code:: sh
 
@@ -164,64 +218,49 @@ Extracting source files from a Jupyter notebook with ``nbraze`` in the terminal
 The ``nbraze`` function takes the contents of `Jupyter Notebook code cells <https://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/Running%20Code.html>`__ and turns them into Python or R code files (``.py`` or ``.R``).
 The contents of `markdown cells <https://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/Working%20With%20Markdown%20Cells.html>`__ are turned into markdown files.
 
-Converting Jupyter notebooks with ``nbconv`` in the terminal
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. _nbuild:
+
+Creating a Jupyter notebook with ``nbuild``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+The ``nbuild`` shell command and Python function takes the contents of Python or R code files
+(``.py`` or ``.R``) and stores them as `Jupyter Notebook code
+cells <https://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/Running%20Code.html>`__.
+The contents of all other files are stored in `markdown
+cells <https://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/Working%20With%20Markdown%20Cells.html>`__.
 
 .. code:: sh
 
-    nbconv notebook.ipynb
+    nbuild README.md plot.py notes.txt > notebooks/notebook.ipynb
 
-The ``nbconv`` command by default created a python script by extracting
-the content from code cells and discarding all output and markdown
-content.
 
-In the example above, the output file would be ``notebook.py``, but it
-is possible to specify a different filename:
+Instead of redirecting to a file (``>``), you can use the ``--out_file``
+or ``-o`` flag:
 
 .. code:: sh
 
-    nbconv notebook.ipynb --out_file script.py
+    nbuild README.md plot.py notes.txt --out_file notebooks/notebook.ipynb
     # Or
-    nbconv notebook.ipynb -o script.py
+    nbuild README.md plot.py notes.txt -o notebooks/notebook.ipynb
 
-You can preview the default output filename and the raw notebook output by running nbconv with only the positional arguments:
-
-.. code:: sh
-
-    nbconv notebook.ipynb
-
-
-Creating an HTML file with ``nbconv`` in the terminal
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The example below is similar to creating a python script, except it
-creates an HTML document, which includes output and the content of
-markdown and code cells.
+You can preview the raw notebook output by running ``nbuild`` with only the positional arguments:
 
 .. code:: sh
 
-    nbconv notebook.ipynb -e html
+    nbuild README.md plot.py notes.txt
 
-You can provide a more descriptive name for the output file with the
-``--out_file`` or ``-o`` flag:
+The ``nbuild`` Python function does create a file on its own. To create a notebook file, use the ``nbformat`` library.
 
-.. code:: sh
+.. code:: python
 
-    nbconv notebook.ipynb --out_file report.html
-    # Or
-    nbconv notebook.ipynb -o report.html
+    import nbformat
+    from nbless import nbuild
 
-Creating HTML slides with ``nbdeck`` and ``nbconv`` in the terminal
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-With ``nbdeck``, you can prepare Jupyter slides from source files (e.g. ``source_file1.md``, ``source_file2.py``) like this:
-
-.. code:: sh
-
-    nbless slide_file* -o slides.ipynb
-    nbdeck slides.ipynb -o slides.ipynb
-    nbconv slides.ipynb  -e slides -o slides.html
-
+    # Create notebook.ipynb from plot.py and notes.txt
+    nb = nbuild(["plot.py", "notes.txt"])
+    nbformat.write(nb, "notebook.ipynb")
 
 Basic usage: Python environment
 -------------------------------

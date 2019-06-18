@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Python Module Index &#8212; Nbless 0.2.27 documentation</title>
+    <title>R and Python interoperability &#8212; Nbless 0.2.27 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -14,14 +14,12 @@
     <script type="text/javascript" src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-
+    <link rel="prev" title="tests package" href="tests.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
   
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
-
-
 
   </head><body>
   <div class="document">
@@ -48,18 +46,19 @@
 
 <h3>Navigation</h3>
 <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="readme.html">Project overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">Command-line interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules.html">Module reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="test_modules.html">Test reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="interop.html">R and Python interoperability</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">R and Python interoperability</a></li>
 </ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="tests.html" title="previous chapter">tests package</a></li>
   </ul></li>
 </ul>
 </div>
@@ -89,48 +88,22 @@
 
           <div class="body" role="main">
             
-
-   <h1>Python Module Index</h1>
-
-   <div class="modindex-jumpbox">
-   <a href="#cap-n"><strong>n</strong></a> | 
-   <a href="#cap-t"><strong>t</strong></a>
-   </div>
-
-   <table class="indextable modindextable">
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-n"><td></td><td>
-       <strong>n</strong></td><td></td></tr>
-     <tr>
-       <td></td>
-       <td>
-       <a href="nbless.html#module-nbless"><code class="xref">nbless</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-t"><td></td><td>
-       <strong>t</strong></td><td></td></tr>
-     <tr>
-       <td><img src="_static/minus.png" class="toggler"
-              id="toggle-1" style="display: none" alt="-" /></td>
-       <td>
-       <a href="tests.html#module-tests"><code class="xref">tests</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="tests.html#module-tests.make_temp"><code class="xref">tests.make_temp</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="tests.html#module-tests.test_cli"><code class="xref">tests.test_cli</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="tests.html#module-tests.test_nbless"><code class="xref">tests.test_nbless</code></a></td><td>
-       <em></em></td></tr>
-   </table>
+  <div class="section" id="r-and-python-interoperability">
+<h1>R and Python interoperability<a class="headerlink" href="#r-and-python-interoperability" title="Permalink to this headline">¶</a></h1>
+<p>All of the Nbless functions and commands work for Python <em>and</em> R code, with the caveat
+that <code class="docutils literal notranslate"><span class="pre">nbexec</span></code> and <code class="docutils literal notranslate"><span class="pre">nbless</span></code> require the kernel argument to be set to
+<code class="docutils literal notranslate"><span class="pre">ir</span></code> if R code files (<code class="docutils literal notranslate"><span class="pre">.R</span></code>) are included.</p>
+<p>If you want to execute a Jupyter notebook that contains both R and
+Python code, you will have to put the R code in Python scripts (<code class="docutils literal notranslate"><span class="pre">.py</span></code>)
+and use the <a class="reference external" href="https://rpy2.readthedocs.io/">rpy2</a> Python library with the default kernel
+(<code class="docutils literal notranslate"><span class="pre">python3</span></code>).</p>
+<p>Code files extracted from code cells with <code class="docutils literal notranslate"><span class="pre">nbraze</span></code> must all have the same extension (e.g. <cite>.py</cite>).
+If the <code class="docutils literal notranslate"><span class="pre">language_info</span></code> key is defined in the Jupyter notebook metadata, <code class="docutils literal notranslate"><span class="pre">nbraze</span></code> will try to infer the programming language.</p>
+<p>You can also run the Nbless functions in an R environment using the
+<a class="reference external" href="https://rstudio.github.io/reticulate/">reticulate</a> R package.</p>
+<p>All Nbless functions and commands rely on the <a class="reference external" href="https://nbconvert.readthedocs.io/">nbconvert</a> and <a class="reference external" href="http://nbformat.readthedocs.io/">nbformat</a> modules that are included with the <code class="docutils literal notranslate"><span class="pre">jupyter</span></code> Python library.
+The command line interface relies on the <a class="reference external" href="https://click.palletsprojects.com/">click</a> Python library.</p>
+</div>
 
 
           </div>
@@ -146,6 +119,9 @@
       Powered by <a href="http://sphinx-doc.org/">Sphinx 2.1.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
+      |
+      <a href="_sources/interop.rst.txt"
+          rel="nofollow">Page source</a>
     </div>
 
     

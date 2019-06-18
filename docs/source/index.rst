@@ -9,6 +9,7 @@ Welcome to Nbless's documentation!
    Command-line interface <cli.rst>
    Module reference <modules.rst>
    Test reference <test_modules.rst>
+   R and Python interoperability <interop.rst>
 
 
 
