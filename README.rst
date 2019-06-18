@@ -2,7 +2,7 @@ Nbless: a Python package for programmatic Jupyter notebook workflows
 ====================================================================
 
 
-|Build| |Chat| |License| |PyPI| |Python versions| |PyUp| |Repo status|
+|Build| |Chat| |Coverage| |License| |PyPI| |Python versions| |PyUp| |Repo status|
 
 Introduction
 ------------
