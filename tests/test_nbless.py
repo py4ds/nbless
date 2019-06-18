@@ -62,11 +62,11 @@ def test_nbconv(exporters, tmp_path: Path) -> None:
 
 def test_nbraze(tmp_path: Path):
     """Extract code and markdown files from the cells of an input notebook."""
-    file_dict = nbraze(make_temp_notebook(tmp_path))
-    assert [Path(f).suffix for f in file_dict] == [".md", ".py", ".md"]
-    assert file_dict["notebook_cell0.md"].startswith("# Background\nMatplotlib")
-    assert file_dict["notebook_cell1.py"].startswith("import numpy as np\n")
-    assert file_dict["notebook_cell2.md"].startswith("# Discussion\nMatplotlib")
+    fdict = nbraze(make_temp_notebook(tmp_path))
+    assert [Path(f).suffix for f in fdict] == [".md", ".py", ".md"]
+    assert fdict["notebook_cell0.md"].startswith("# Background\nMatplotlib")
+    assert fdict["notebook_cell1.py"].startswith("import numpy as np\n")
+    assert fdict["notebook_cell2.md"].startswith("# Discussion\nMatplotlib")
 
 
 def test_nbdeck(tmp_path: Path):

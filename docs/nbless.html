@@ -1,0 +1,227 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>nbless package &#8212; Nbless 0.2.27 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="tests" href="test_modules.html" />
+    <link rel="prev" title="nbless" href="modules.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Nbless</a></h1>
+
+
+
+<p class="blurb">A Python package for programmatic Jupyter notebook workflows</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=marskar&repo=nbless&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="readme.html">Project overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Command-line interface</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Module reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">nbless package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-nbless">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="test_modules.html">Test reference</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="modules.html">nbless</a><ul>
+      <li>Previous: <a href="modules.html" title="previous chapter">nbless</a></li>
+      <li>Next: <a href="test_modules.html" title="next chapter">tests</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="nbless-package">
+<h1>nbless package<a class="headerlink" href="#nbless-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-nbless">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-nbless" title="Permalink to this headline">¶</a></h2>
+<p>Nbless: a Python package for programmatic Jupyter notebook workflows.</p>
+<dl class="function">
+<dt id="nbless.nbless">
+<code class="sig-prename descclassname">nbless.</code><code class="sig-name descname">nbless</code><span class="sig-paren">(</span><em class="sig-param">in_files: List[str], kernel: str = 'python3'</em><span class="sig-paren">)</span> &#x2192; nbformat.notebooknode.NotebookNode<a class="reference internal" href="_modules/nbless/nbless.html#nbless"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.nbless" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an executed Jupyter notebook from markdown and code files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>in_files</strong> – A list of names of markdown and code files.</p></li>
+<li><p><strong>kernel</strong> – The programming language used to run the notebook.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="nbless.nbuild">
+<code class="sig-prename descclassname">nbless.</code><code class="sig-name descname">nbuild</code><span class="sig-paren">(</span><em class="sig-param">in_files: List[str]</em><span class="sig-paren">)</span> &#x2192; nbformat.notebooknode.NotebookNode<a class="reference internal" href="_modules/nbless/nbuild.html#nbuild"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.nbuild" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an unexecuted Jupyter notebook from markdown and code files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>in_files</strong> – A list of source file names.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="nbless.nbexec">
+<code class="sig-prename descclassname">nbless.</code><code class="sig-name descname">nbexec</code><span class="sig-paren">(</span><em class="sig-param">in_file: str</em>, <em class="sig-param">kernel: str = 'python3'</em><span class="sig-paren">)</span> &#x2192; nbformat.notebooknode.NotebookNode<a class="reference internal" href="_modules/nbless/nbexec.html#nbexec"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.nbexec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an executed notebook without modifying the input notebook.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>in_file</strong> – The name of the Jupyter notebook file to be executed.</p></li>
+<li><p><strong>kernel</strong> – The programming language used to execute the notebook.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="nbless.nbconv">
+<code class="sig-prename descclassname">nbless.</code><code class="sig-name descname">nbconv</code><span class="sig-paren">(</span><em class="sig-param">in_file: str</em>, <em class="sig-param">exporter: str = ''</em>, <em class="sig-param">out: str = ''</em><span class="sig-paren">)</span> &#x2192; Tuple[str, str]<a class="reference internal" href="_modules/nbless/nbconv.html#nbconv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.nbconv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a notebook into various formats using <code class="docutils literal notranslate"><span class="pre">nbformat</span></code> exporters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>in_file</strong> – The name of the input notebook file.</p></li>
+<li><p><strong>out</strong> – The name of the output file.</p></li>
+<li><p><strong>exporter</strong> – The exporter that determines the output file type.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A 2-tuple of the output file’s 1) name and 2) contents.</p>
+</dd>
+<dt class="field-odd">Note</dt>
+<dd class="field-odd"><p>The exporter type must be ‘asciidoc’, ‘pdf’, ‘html’, ‘latex’,
+‘markdown’, ‘python’, ‘rst’, ‘script’, or ‘slides’.
+All formats except ‘HTML’ require pandoc.
+Exporting to pdf requires latex.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="nbless.nbdeck">
+<code class="sig-prename descclassname">nbless.</code><code class="sig-name descname">nbdeck</code><span class="sig-paren">(</span><em class="sig-param">in_file: str</em><span class="sig-paren">)</span> &#x2192; nbformat.notebooknode.NotebookNode<a class="reference internal" href="_modules/nbless/nbdeck.html#nbdeck"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.nbdeck" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set up a Jupyter notebook to be viewed as or converted into slides.</p>
+<p>Sets <cite>slide_type</cite> to <code class="docutils literal notranslate"><span class="pre">slide</span></code> for markdown cells that start with headers.
+After running <code class="docutils literal notranslate"><span class="pre">nbdeck</span></code>, you can
+- view Jupyter notebooks on nbviewer or with the RISE extension
+- create an HTML slideshow with <code class="docutils literal notranslate"><span class="pre">nbconv</span></code> or <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">nbconvert</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>in_file</strong> – The name of the input Jupyter notebook file.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="nbless.nbraze">
+<code class="sig-prename descclassname">nbless.</code><code class="sig-name descname">nbraze</code><span class="sig-paren">(</span><em class="sig-param">in_file: str</em>, <em class="sig-param">extension: str = 'py'</em><span class="sig-paren">)</span> &#x2192; Dict[str, str]<a class="reference internal" href="_modules/nbless/nbraze.html#nbraze"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.nbraze" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create markdown and code files from a Jupyter notebook.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>in_file</strong> – The name of the input Jupyter notebook file.</p></li>
+<li><p><strong>extension</strong> – The extension for code files.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2019, Martin Skarzynski.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.1.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/nbless.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+    <a href="https://github.com/marskar/nbless" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>

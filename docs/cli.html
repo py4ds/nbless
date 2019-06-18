@@ -1,0 +1,332 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Nbless command-line interface (CLI) &#8212; Nbless 0.2.27 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="nbless" href="modules.html" />
+    <link rel="prev" title="Nbless: a Python package for programmatic Jupyter notebook workflows" href="readme.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Nbless</a></h1>
+
+
+
+<p class="blurb">A Python package for programmatic Jupyter notebook workflows</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=marskar&repo=nbless&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="readme.html">Project overview</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Command-line interface</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#nbless">nbless</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nbraze">nbraze</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nbdeck">nbdeck</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nbuild">nbuild</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nbconv">nbconv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nbexec">nbexec</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Module reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_modules.html">Test reference</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="readme.html" title="previous chapter">Nbless: a Python package for programmatic Jupyter notebook workflows</a></li>
+      <li>Next: <a href="modules.html" title="next chapter">nbless</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="nbless-command-line-interface-cli">
+<h1>Nbless command-line interface (CLI)<a class="headerlink" href="#nbless-command-line-interface-cli" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="nbless">
+<h2>nbless<a class="headerlink" href="#nbless" title="Permalink to this headline">¶</a></h2>
+<p>Create an executed Jupyter notebook from markdown and code files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">param in_files</dt>
+<dd class="field-odd"><p>The source files used to create a Jupyter notebook file.</p>
+</dd>
+<dt class="field-even">param kernel</dt>
+<dd class="field-even"><p>The programming language used to run the notebook.</p>
+</dd>
+<dt class="field-odd">param out_file</dt>
+<dd class="field-odd"><p>The name of the output Jupyter notebook file.</p>
+</dd>
+</dl>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>nbless <span class="o">[</span>OPTIONS<span class="o">]</span> IN_FILES...
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-nbless-k">
+<code class="sig-name descname">-k</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--kernel</code><code class="sig-prename descclassname"> &lt;kernel&gt;</code><a class="headerlink" href="#cmdoption-nbless-k" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-nbless-o">
+<code class="sig-name descname">-o</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--out_file</code><code class="sig-prename descclassname"> &lt;out&gt;</code><a class="headerlink" href="#cmdoption-nbless-o" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="option">
+<dt id="cmdoption-nbless-arg-in-files">
+<code class="sig-name descname">IN_FILES</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-nbless-arg-in-files" title="Permalink to this definition">¶</a></dt>
+<dd><p>Required argument(s)</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nbraze">
+<h2>nbraze<a class="headerlink" href="#nbraze" title="Permalink to this headline">¶</a></h2>
+<p>Create markdown and code files from a Jupyter notebook.</p>
+<dl class="field-list simple">
+<dt class="field-odd">param in_file</dt>
+<dd class="field-odd"><p>The name of the input Jupyter notebook file.</p>
+</dd>
+<dt class="field-even">param extension</dt>
+<dd class="field-even"><p>The extension for code files.</p>
+</dd>
+<dt class="field-odd">param out_file</dt>
+<dd class="field-odd"><p>The name of the output Jupyter notebook file.</p>
+</dd>
+</dl>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>nbraze <span class="o">[</span>OPTIONS<span class="o">]</span> IN_FILE
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-nbraze-e">
+<code class="sig-name descname">-e</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--extension</code><code class="sig-prename descclassname"> &lt;ext&gt;</code><a class="headerlink" href="#cmdoption-nbraze-e" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="option">
+<dt id="cmdoption-nbraze-arg-in-file">
+<code class="sig-name descname">IN_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-nbraze-arg-in-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nbdeck">
+<h2>nbdeck<a class="headerlink" href="#nbdeck" title="Permalink to this headline">¶</a></h2>
+<p>Set up a notebook to be viewed as or converted into slides.</p>
+<dl class="field-list simple">
+<dt class="field-odd">param in_file</dt>
+<dd class="field-odd"><p>The name of the input Jupyter notebook file.</p>
+</dd>
+<dt class="field-even">param out_file</dt>
+<dd class="field-even"><p>The name of the output Jupyter notebook file.</p>
+</dd>
+</dl>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>nbdeck <span class="o">[</span>OPTIONS<span class="o">]</span> IN_FILE
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-nbdeck-o">
+<code class="sig-name descname">-o</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--out_file</code><code class="sig-prename descclassname"> &lt;out&gt;</code><a class="headerlink" href="#cmdoption-nbdeck-o" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="option">
+<dt id="cmdoption-nbdeck-arg-in-file">
+<code class="sig-name descname">IN_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-nbdeck-arg-in-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nbuild">
+<h2>nbuild<a class="headerlink" href="#nbuild" title="Permalink to this headline">¶</a></h2>
+<p>Create an unexecuted Jupyter notebook from markdown and code files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">param in_files</dt>
+<dd class="field-odd"><p>The source files used to create a Jupyter notebook file.</p>
+</dd>
+<dt class="field-even">param out_file</dt>
+<dd class="field-even"><p>The name of the output Jupyter notebook file.</p>
+</dd>
+</dl>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>nbuild <span class="o">[</span>OPTIONS<span class="o">]</span> IN_FILES...
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-nbuild-o">
+<code class="sig-name descname">-o</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--out_file</code><code class="sig-prename descclassname"> &lt;out&gt;</code><a class="headerlink" href="#cmdoption-nbuild-o" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="option">
+<dt id="cmdoption-nbuild-arg-in-files">
+<code class="sig-name descname">IN_FILES</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-nbuild-arg-in-files" title="Permalink to this definition">¶</a></dt>
+<dd><p>Required argument(s)</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nbconv">
+<h2>nbconv<a class="headerlink" href="#nbconv" title="Permalink to this headline">¶</a></h2>
+<p>Convert a notebook into various formats using <code class="docutils literal notranslate"><span class="pre">nbformat</span></code> exporters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">param in_file</dt>
+<dd class="field-odd"><p>The name of the input Jupyter notebook file.</p>
+</dd>
+<dt class="field-even">param exporter</dt>
+<dd class="field-even"><p>The exporter that determines the output file type.</p>
+</dd>
+<dt class="field-odd">param out</dt>
+<dd class="field-odd"><p>The name of the output Jupyter notebook file.</p>
+</dd>
+<dt class="field-even">note</dt>
+<dd class="field-even"><p>The exporter type must be ‘asciidoc’, ‘pdf’, ‘html’, ‘latex’,
+‘markdown’, ‘python’, ‘rst’, ‘script’, or ‘slides’.
+All formats except ‘HTML’ require pandoc.
+Exporting to pdf requires latex.</p>
+</dd>
+</dl>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>nbconv <span class="o">[</span>OPTIONS<span class="o">]</span> IN_FILE
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-nbconv-e">
+<code class="sig-name descname">-e</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--exporter</code><code class="sig-prename descclassname"> &lt;exporter&gt;</code><a class="headerlink" href="#cmdoption-nbconv-e" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-nbconv-o">
+<code class="sig-name descname">-o</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--out_file</code><code class="sig-prename descclassname"> &lt;out&gt;</code><a class="headerlink" href="#cmdoption-nbconv-o" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="option">
+<dt id="cmdoption-nbconv-arg-in-file">
+<code class="sig-name descname">IN_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-nbconv-arg-in-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</div>
+<div class="section" id="nbexec">
+<h2>nbexec<a class="headerlink" href="#nbexec" title="Permalink to this headline">¶</a></h2>
+<p>Create an executed notebook without modifying the input notebook.</p>
+<dl class="field-list simple">
+<dt class="field-odd">param in_file</dt>
+<dd class="field-odd"><p>The name of the input Jupyter notebook file.</p>
+</dd>
+<dt class="field-even">param kernel</dt>
+<dd class="field-even"><p>The programming language used to execute the notebook.</p>
+</dd>
+<dt class="field-odd">param out_file</dt>
+<dd class="field-odd"><p>The name of the output Jupyter notebook file.</p>
+</dd>
+</dl>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>nbexec <span class="o">[</span>OPTIONS<span class="o">]</span> IN_FILE
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="option">
+<dt id="cmdoption-nbexec-k">
+<code class="sig-name descname">-k</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--kernel</code><code class="sig-prename descclassname"> &lt;kernel&gt;</code><a class="headerlink" href="#cmdoption-nbexec-k" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-nbexec-o">
+<code class="sig-name descname">-o</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--out_file</code><code class="sig-prename descclassname"> &lt;out&gt;</code><a class="headerlink" href="#cmdoption-nbexec-o" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="option">
+<dt id="cmdoption-nbexec-arg-in-file">
+<code class="sig-name descname">IN_FILE</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-nbexec-arg-in-file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2019, Martin Skarzynski.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.1.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/cli.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+    <a href="https://github.com/marskar/nbless" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>

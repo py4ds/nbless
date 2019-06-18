@@ -60,10 +60,10 @@
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -92,7 +92,9 @@
 <li><a href="nbless/nbless.html">nbless.nbless</a></li>
 <li><a href="nbless/nbraze.html">nbless.nbraze</a></li>
 <li><a href="nbless/nbuild.html">nbless.nbuild</a></li>
-<li><a href="test_nbless.html">test_nbless</a></li>
+<li><a href="tests/make_temp.html">tests.make_temp</a></li>
+<li><a href="tests/test_cli.html">tests.test_cli</a></li>
+<li><a href="tests/test_nbless.html">tests.test_nbless</a></li>
 </ul>
 
           </div>
@@ -105,7 +107,7 @@
       &copy;2019, Martin Skarzynski.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.0.1</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.1.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
     </div>

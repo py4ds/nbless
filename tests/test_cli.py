@@ -58,7 +58,7 @@ def test_nbconv_cli(tmp_path: Path) -> None:
     with runner.isolated_filesystem():
         nb = make_temp_notebook(tmp_path)
         runner.invoke(nbconv_cli.nbconv_cli, [nb, '-e', 'html'])
-        assert Path('notebook.html').read_text().startswith('<!DOCTYPE html>\n')
+        assert Path('notebook.html').read_text().startswith('<!DOCTYPE html>')
         runner.invoke(nbconv_cli.nbconv_cli, [nb, '-o', 'report.html'])
         assert Path('report.html').read_text().startswith('<!DOCTYPE html>\n')
         runner.invoke(nbconv_cli.nbconv_cli, [nb, '-o', 'report.adoc'])

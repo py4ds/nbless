@@ -5,6 +5,6 @@ Module contents
 ---------------
 
 .. automodule:: nbless
-    :members:
-    :undoc-members:
-    :show-inheritance:
+   :members:
+   :undoc-members:
+   :show-inheritance:

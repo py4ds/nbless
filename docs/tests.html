@@ -1,0 +1,248 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>tests package &#8212; Nbless 0.2.27 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="tests" href="test_modules.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Nbless</a></h1>
+
+
+
+<p class="blurb">A Python package for programmatic Jupyter notebook workflows</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=marskar&repo=nbless&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="readme.html">Project overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Command-line interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Module reference</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="test_modules.html">Test reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">tests package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-tests.make_temp">tests.make_temp module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-tests.test_cli">tests.test_cli module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-tests.test_nbless">tests.test_nbless module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-tests">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="test_modules.html">tests</a><ul>
+      <li>Previous: <a href="test_modules.html" title="previous chapter">tests</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="tests-package">
+<h1>tests package<a class="headerlink" href="#tests-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-tests.make_temp">
+<span id="tests-make-temp-module"></span><h2>tests.make_temp module<a class="headerlink" href="#module-tests.make_temp" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="tests.make_temp.make_temp_notebook">
+<code class="sig-prename descclassname">tests.make_temp.</code><code class="sig-name descname">make_temp_notebook</code><span class="sig-paren">(</span><em class="sig-param">tmp_path: pathlib.Path</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/tests/make_temp.html#make_temp_notebook"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.make_temp.make_temp_notebook" title="Permalink to this definition">¶</a></dt>
+<dd><p>Helper function to create a list of pathlib Path objects.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tests.make_temp.make_tempfiles">
+<code class="sig-prename descclassname">tests.make_temp.</code><code class="sig-name descname">make_tempfiles</code><span class="sig-paren">(</span><em class="sig-param">tmp_path: pathlib.Path</em><span class="sig-paren">)</span> &#x2192; List[str]<a class="reference internal" href="_modules/tests/make_temp.html#make_tempfiles"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.make_temp.make_tempfiles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Helper function to create a list of pathlib Path objects.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-tests.test_cli">
+<span id="tests-test-cli-module"></span><h2>tests.test_cli module<a class="headerlink" href="#module-tests.test_cli" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="tests.test_cli.test_nbconv_cli">
+<code class="sig-prename descclassname">tests.test_cli.</code><code class="sig-name descname">test_nbconv_cli</code><span class="sig-paren">(</span><em class="sig-param">tmp_path: pathlib.Path</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/tests/test_cli.html#test_nbconv_cli"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_cli.test_nbconv_cli" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert <code class="docutils literal notranslate"><span class="pre">tempfiles</span></code> with each exporter in <code class="docutils literal notranslate"><span class="pre">exporters</span></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tests.test_cli.test_nbdeck_cli">
+<code class="sig-prename descclassname">tests.test_cli.</code><code class="sig-name descname">test_nbdeck_cli</code><span class="sig-paren">(</span><em class="sig-param">tmp_path: pathlib.Path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/test_cli.html#test_nbdeck_cli"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_cli.test_nbdeck_cli" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set up a Jupyter notebook to be viewed as or converted into slides.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tests.test_cli.test_nbexec_cli">
+<code class="sig-prename descclassname">tests.test_cli.</code><code class="sig-name descname">test_nbexec_cli</code><span class="sig-paren">(</span><em class="sig-param">tmp_path: pathlib.Path</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/tests/test_cli.html#test_nbexec_cli"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_cli.test_nbexec_cli" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run nbexec() to execute a temporary notebook file.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tests.test_cli.test_nbless_cli">
+<code class="sig-prename descclassname">tests.test_cli.</code><code class="sig-name descname">test_nbless_cli</code><span class="sig-paren">(</span><em class="sig-param">tmp_path: pathlib.Path</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/tests/test_cli.html#test_nbless_cli"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_cli.test_nbless_cli" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="tests.test_cli.test_nbraze_cli">
+<code class="sig-prename descclassname">tests.test_cli.</code><code class="sig-name descname">test_nbraze_cli</code><span class="sig-paren">(</span><em class="sig-param">tmp_path: pathlib.Path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/test_cli.html#test_nbraze_cli"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_cli.test_nbraze_cli" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract code and markdown files from the cells of an input notebook.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tests.test_cli.test_nbuild_cli">
+<code class="sig-prename descclassname">tests.test_cli.</code><code class="sig-name descname">test_nbuild_cli</code><span class="sig-paren">(</span><em class="sig-param">tmp_path: pathlib.Path</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/tests/test_cli.html#test_nbuild_cli"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_cli.test_nbuild_cli" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-tests.test_nbless">
+<span id="tests-test-nbless-module"></span><h2>tests.test_nbless module<a class="headerlink" href="#module-tests.test_nbless" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="tests.test_nbless.test_nbconv">
+<code class="sig-prename descclassname">tests.test_nbless.</code><code class="sig-name descname">test_nbconv</code><span class="sig-paren">(</span><em class="sig-param">exporters</em>, <em class="sig-param">tmp_path: pathlib.Path</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/tests/test_nbless.html#test_nbconv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_nbless.test_nbconv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert <code class="docutils literal notranslate"><span class="pre">tempfiles</span></code> with each exporter in <code class="docutils literal notranslate"><span class="pre">exporters</span></code>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tests.test_nbless.test_nbdeck">
+<code class="sig-prename descclassname">tests.test_nbless.</code><code class="sig-name descname">test_nbdeck</code><span class="sig-paren">(</span><em class="sig-param">tmp_path: pathlib.Path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/test_nbless.html#test_nbdeck"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_nbless.test_nbdeck" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set up a Jupyter notebook to be viewed as or converted into slides.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tests.test_nbless.test_nbexec">
+<code class="sig-prename descclassname">tests.test_nbless.</code><code class="sig-name descname">test_nbexec</code><span class="sig-paren">(</span><em class="sig-param">tmp_path: pathlib.Path</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/tests/test_nbless.html#test_nbexec"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_nbless.test_nbexec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run nbexec() to execute a temporary notebook file.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tests.test_nbless.test_nbless_one_cell">
+<code class="sig-prename descclassname">tests.test_nbless.</code><code class="sig-name descname">test_nbless_one_cell</code><span class="sig-paren">(</span><em class="sig-param">tmp_path: pathlib.Path</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/tests/test_nbless.html#test_nbless_one_cell"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_nbless.test_nbless_one_cell" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run nbless() to create and execute three notebook files.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tests.test_nbless.test_nbless_three_cells">
+<code class="sig-prename descclassname">tests.test_nbless.</code><code class="sig-name descname">test_nbless_three_cells</code><span class="sig-paren">(</span><em class="sig-param">tmp_path: pathlib.Path</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/tests/test_nbless.html#test_nbless_three_cells"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_nbless.test_nbless_three_cells" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run nbless() to create and execute a 3-cell notebook file.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tests.test_nbless.test_nbraze">
+<code class="sig-prename descclassname">tests.test_nbless.</code><code class="sig-name descname">test_nbraze</code><span class="sig-paren">(</span><em class="sig-param">tmp_path: pathlib.Path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/test_nbless.html#test_nbraze"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_nbless.test_nbraze" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract code and markdown files from the cells of an input notebook.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tests.test_nbless.test_nbuild_one_cell">
+<code class="sig-prename descclassname">tests.test_nbless.</code><code class="sig-name descname">test_nbuild_one_cell</code><span class="sig-paren">(</span><em class="sig-param">tmp_path: pathlib.Path</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/tests/test_nbless.html#test_nbuild_one_cell"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_nbless.test_nbuild_one_cell" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run nbuild() to create 3 temporary notebook files from 3 tempfiles.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tests.test_nbless.test_nbuild_three_cells">
+<code class="sig-prename descclassname">tests.test_nbless.</code><code class="sig-name descname">test_nbuild_three_cells</code><span class="sig-paren">(</span><em class="sig-param">tmp_path: pathlib.Path</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/tests/test_nbless.html#test_nbuild_three_cells"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_nbless.test_nbuild_three_cells" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run nbuild() to create a temporary notebook file from 3 tempfiles.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tests.test_nbless.test_raises">
+<code class="sig-prename descclassname">tests.test_nbless.</code><code class="sig-name descname">test_raises</code><span class="sig-paren">(</span><em class="sig-param">not_exporters</em>, <em class="sig-param">tmp_path: pathlib.Path</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/tests/test_nbless.html#test_raises"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_nbless.test_raises" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make sure a ValueError is raised if nbconv() gets a bad exporter.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-tests">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-tests" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2019, Martin Skarzynski.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.1.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/tests.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+    <a href="https://github.com/marskar/nbless" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>
