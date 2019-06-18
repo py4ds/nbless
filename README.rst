@@ -380,6 +380,8 @@ Currently, notebook metadata is lost when using ``nbraze``/``nbuild``/``nbless``
 .. |Chat| image:: https://badges.gitter.im/py4ds/nbless.svg
    :alt: Join the chat at https://gitter.im/py4ds/nbless
    :target: https://gitter.im/py4ds/nbless?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
+.. |Coverage| image:: https://img.shields.io/codecov/c/gh/py4ds/nbless.svg
+   :target: https://codecov.io/gh/py4ds/nbless
 .. |License| image:: https://img.shields.io/badge/License-MIT-purple.svg
    :target: https://opensource.org/licenses/MIT
 .. |PyPI| image:: https://img.shields.io/pypi/v/nbless.svg
