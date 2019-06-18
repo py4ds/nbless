@@ -59,9 +59,6 @@
 <li class="toctree-l3"><a class="reference internal" href="#creating-and-executing-a-jupyter-notebook-with-nbless">Creating and executing a Jupyter notebook with <code class="docutils literal notranslate"><span class="pre">nbless</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#extracting-source-files-from-a-jupyter-notebook-with-nbraze">Extracting source files from a Jupyter notebook with <code class="docutils literal notranslate"><span class="pre">nbraze</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#creating-a-jupyter-notebook-with-nbuild">Creating a Jupyter notebook with <code class="docutils literal notranslate"><span class="pre">nbuild</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#basic-usage-python-environment">Basic usage: Python environment</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#missing-a-dependency">Missing a dependency?</a></li>
 </ul>
 </li>
@@ -154,7 +151,7 @@ using setup.py (<code class="docutils literal notranslate"><span class="pre">pyt
 <h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="converting-jupyter-notebooks-with-nbconv">
 <span id="nbconv"></span><h3>Converting Jupyter notebooks with <code class="docutils literal notranslate"><span class="pre">nbconv</span></code><a class="headerlink" href="#converting-jupyter-notebooks-with-nbconv" title="Permalink to this headline">¶</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">nbconv</span></code> shell command and Python function can export a
+<p>The <code class="docutils literal notranslate"><span class="pre">nbconv</span></code> shell command can export a
 notebook to many different formats using the <code class="docutils literal notranslate"><span class="pre">nbconvert</span></code> library.
 Converting to all formats except HTML requires pandoc.
 Exporting to PDF requires LaTeX.</p>
@@ -194,100 +191,164 @@ from the <code class="docutils literal notranslate"><span class="pre">out_file</
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>nbconv notebook.ipynb
 </pre></div>
 </div>
+<p>Unlike the shell command,
+the <code class="docutils literal notranslate"><span class="pre">nbconv</span></code> Python function does not create a file on its own.
+To create a converted file with Python, use the <code class="docutils literal notranslate"><span class="pre">pathlib</span></code> library.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
-<span class="kn">import</span> <span class="nn">nbformat</span>
 <span class="kn">from</span> <span class="nn">nbless</span> <span class="kn">import</span> <span class="n">nbconv</span>
 
-<span class="c1"># Create notebook.py from notebook.ipynb in notebooks folder</span>
-<span class="c1"># nbconv() returns a filename and file contents as strings</span>
-<span class="k">def</span> <span class="nf">write_file</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">contents</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">contents</span><span class="p">)</span>
+<span class="c1"># Create notebook.py from notebook.ipynb</span>
+<span class="n">filename</span><span class="p">,</span> <span class="n">contents</span> <span class="o">=</span> <span class="n">nbconv</span><span class="p">(</span><span class="s2">&quot;notebook.ipynb&quot;</span><span class="p">,</span> <span class="s2">&quot;python&quot;</span><span class="p">)</span>
+<span class="n">Path</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">contents</span><span class="p">)</span>
 
-<span class="n">filename</span><span class="p">,</span> <span class="n">contents</span> <span class="o">=</span> <span class="n">nbconv</span><span class="p">(</span><span class="s2">&quot;notebooks/notebook.ipynb&quot;</span><span class="p">)</span>
-<span class="n">write_file</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">contents</span><span class="p">)</span>
-<span class="n">write_file</span><span class="p">(</span><span class="o">*</span><span class="n">nbconv</span><span class="p">(</span><span class="s2">&quot;notebooks/notebook.ipynb&quot;</span><span class="p">))</span>
-
-<span class="c1"># Create notebook.html from notebook.ipynb in notebooks folder</span>
-<span class="n">write_file</span><span class="p">(</span><span class="o">*</span><span class="n">nbconv</span><span class="p">(</span><span class="s2">&quot;notebooks/notebook.ipynb&quot;</span><span class="p">,</span> <span class="s2">&quot;html&quot;</span><span class="p">))</span>
-
-<span class="c1"># Create script.py from notebook.ipynb in notebooks folder</span>
-<span class="n">write_file</span><span class="p">(</span><span class="s1">&#39;script.py&#39;</span><span class="p">,</span> <span class="n">nbconv</span><span class="p">(</span><span class="s2">&quot;notebooks/notebook.ipynb&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
-
-<span class="c1"># Create report.html from notebook.ipynb in notebooks folder</span>
-<span class="n">write_file</span><span class="p">(</span><span class="s1">&#39;report.html&#39;</span><span class="p">,</span> <span class="n">nbconv</span><span class="p">(</span><span class="s2">&quot;notebooks/notebook.ipynb&quot;</span><span class="p">,</span> <span class="s1">&#39;html&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
-
-<span class="c1"># Create HTML slides from notebook.ipynb in notebooks folder</span>
-<span class="c1"># nbdeck() returns a filename and file contents as strings</span>
-<span class="n">nbformat</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">nbdeck</span><span class="p">(</span><span class="s2">&quot;notebook.ipynb&quot;</span><span class="p">),</span> <span class="s2">&quot;slides.ipynb&quot;</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-<span class="n">filename</span><span class="p">,</span> <span class="n">contents</span> <span class="o">=</span> <span class="n">nbconv</span><span class="p">(</span><span class="s2">&quot;slides.ipynb&quot;</span><span class="p">,</span> <span class="s2">&quot;slides&quot;</span><span class="p">)</span>
-<span class="n">write_file</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">contents</span><span class="p">)</span>
-<span class="n">write_file</span><span class="p">(</span><span class="o">*</span><span class="n">nbconv</span><span class="p">(</span><span class="s2">&quot;notebooks/notebook.ipynb&quot;</span><span class="p">,</span> <span class="s2">&quot;slides&quot;</span><span class="p">))</span>
+<span class="c1"># Create report.html from notebook.ipynb</span>
+<span class="n">filename</span><span class="p">,</span> <span class="n">contents</span> <span class="o">=</span> <span class="n">nbconv</span><span class="p">(</span><span class="s2">&quot;notebook.ipynb&quot;</span><span class="p">,</span> <span class="s2">&quot;html&quot;</span><span class="p">)</span>
+<span class="n">Path</span><span class="p">(</span><span class="s1">&#39;report.html&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">contents</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="creating-html-slides-with-nbdeck-and-nbconv">
 <span id="nbdeck"></span><h3>Creating HTML slides with <code class="docutils literal notranslate"><span class="pre">nbdeck</span></code> and <code class="docutils literal notranslate"><span class="pre">nbconv</span></code><a class="headerlink" href="#creating-html-slides-with-nbdeck-and-nbconv" title="Permalink to this headline">¶</a></h3>
-<p>With <code class="docutils literal notranslate"><span class="pre">nbdeck</span></code>, you can prepare Jupyter slides from source files (e.g. <code class="docutils literal notranslate"><span class="pre">source_file1.md</span></code>, <code class="docutils literal notranslate"><span class="pre">source_file2.py</span></code>) like this:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>nbless slide_file* -o slides.ipynb
-nbdeck slides.ipynb -o slides.ipynb
+<p>With <code class="docutils literal notranslate"><span class="pre">nbdeck</span></code>, you can prepare HTML slides from a Jupyter notebook.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>nbdeck notebook.ipynb -o slides.ipynb
 nbconv slides.ipynb  -e slides -o slides.html
+</pre></div>
+</div>
+<p>You can run <code class="docutils literal notranslate"><span class="pre">nbdeck</span></code> without <code class="docutils literal notranslate"><span class="pre">nbconv</span></code>,
+if you do not want to create HTML slides and instead want to use
+<a class="reference external" href="https://nbviewer.jupyter.org/">nbviewer</a> or the
+<a class="reference external" href="https://github.com/damianavila/RISE#rise">RISE extension</a>.
+If an <code class="docutils literal notranslate"><span class="pre">out_file</span></code> name is not provided, the notebook file contents will be
+printed.
+You can provide a more descriptive name for the executed output notebook with
+the <code class="docutils literal notranslate"><span class="pre">--out_file</span></code> or <code class="docutils literal notranslate"><span class="pre">-o</span></code> flag or by redirecting the output to a file with
+<code class="docutils literal notranslate"><span class="pre">&gt;</span></code>.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>nbdeck notebook.ipynb --out_file slides.ipynb
+<span class="c1"># Or</span>
+nbdeck notebook.ipynb -o slides.ipynb
+<span class="c1"># Or</span>
+nbdeck notebook.ipynb &gt; slides.ipynb
+</pre></div>
+</div>
+<p>Unlike the shell command,
+the <code class="docutils literal notranslate"><span class="pre">nbdeck</span></code> Python function does not create a file on its own.
+To create a converted file, use the <code class="docutils literal notranslate"><span class="pre">nbformat</span></code> and  <code class="docutils literal notranslate"><span class="pre">pathlib</span></code> libraries.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nbformat</span>
+<span class="kn">from</span> <span class="nn">nbless</span> <span class="kn">import</span> <span class="n">nbconv</span><span class="p">,</span> <span class="n">nbdeck</span>
+
+<span class="c1"># Create HTML slides from notebook.ipynb in notebooks folder</span>
+<span class="n">nbformat</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">nbdeck</span><span class="p">(</span><span class="s2">&quot;notebook.ipynb&quot;</span><span class="p">),</span> <span class="s2">&quot;slides.ipynb&quot;</span><span class="p">)</span>
+<span class="n">filename</span><span class="p">,</span> <span class="n">contents</span> <span class="o">=</span> <span class="n">nbconv</span><span class="p">(</span><span class="s2">&quot;slides.ipynb&quot;</span><span class="p">,</span> <span class="s2">&quot;slides&quot;</span><span class="p">)</span>
+<span class="n">Path</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">contents</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="executing-a-notebook-with-nbexec">
 <span id="nbexec"></span><h3>Executing a notebook with <code class="docutils literal notranslate"><span class="pre">nbexec</span></code><a class="headerlink" href="#executing-a-notebook-with-nbexec" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">nbexec</span></code> command runs the input notebook from top to bottom.
+If an <code class="docutils literal notranslate"><span class="pre">out_file</span></code> name is not provided, the executed notebook contents will be
+printed.</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>nbexec notebook.ipynb
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">nbexec</span></code> command creates a copy of the input notebook, runs it
-from top to bottom and saves it. If an <code class="docutils literal notranslate"><span class="pre">out_file</span></code> name is not
-provided, the new filename will be the original filename with
-<code class="docutils literal notranslate"><span class="pre">_executed.ipynb</span></code> appended to it.</p>
-<p>You can provide a more descriptive name for the executed output (<code class="docutils literal notranslate"><span class="pre">-o</span></code>)
-notebook:</p>
+<p>You can provide a more descriptive name for the executed output notebook with
+the <code class="docutils literal notranslate"><span class="pre">--out_file</span></code> or <code class="docutils literal notranslate"><span class="pre">-o</span></code> flag or by redirecting the output to a file with
+<code class="docutils literal notranslate"><span class="pre">&gt;</span></code>.</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>nbexec notebook.ipynb --out_file executed.ipynb
 <span class="c1"># Or</span>
 nbexec notebook.ipynb -o executed.ipynb
+<span class="c1"># Or</span>
+nbexec notebook.ipynb &gt; executed.ipynb
 </pre></div>
 </div>
-<p>You can preview the default output filename and the raw notebook output by running nbexec with only the positional arguments:</p>
+<p>The default kernel is <code class="docutils literal notranslate"><span class="pre">python3</span></code>, but it is possible to specify the kernel
+that will be used to run notebook with the <code class="docutils literal notranslate"><span class="pre">--kernel</span></code> or <code class="docutils literal notranslate"><span class="pre">-k</span></code> flag.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>nbexec notebook.ipynb --kernel ir --out_file notebook.ipynb
+<span class="c1"># Or</span>
+nbexec notebook.ipynb -k ir -o notebook.ipynb
+</pre></div>
+</div>
+<p>You can preview the default output filename and the raw notebook output by
+running <code class="docutils literal notranslate"><span class="pre">nbexec</span></code> with only the positional argument:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>nbexec notebook.ipynb
 </pre></div>
 </div>
-<p>If you want to combine <code class="docutils literal notranslate"><span class="pre">nbuild</span></code> and <code class="docutils literal notranslate"><span class="pre">nbexec</span></code> in one step, use
-<code class="docutils literal notranslate"><span class="pre">nbless</span></code> as described below.</p>
+<p>Unlike the shell command,
+the <code class="docutils literal notranslate"><span class="pre">nbexec</span></code> Python function does not create a file on its own.
+To create a notebook file, use the <code class="docutils literal notranslate"><span class="pre">nbformat</span></code> library.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nbformat</span>
+<span class="kn">from</span> <span class="nn">nbless</span> <span class="kn">import</span> <span class="n">nbexec</span>
+
+<span class="c1"># Create notebook.ipynb from notebook.ipynb</span>
+    <span class="n">nb</span> <span class="o">=</span> <span class="n">nbexec</span><span class="p">(</span><span class="s2">&quot;notebook.ipynb&quot;</span><span class="p">)</span>
+<span class="n">nbformat</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">nb</span><span class="p">,</span> <span class="s2">&quot;executed.ipynb&quot;</span><span class="p">)</span>
+    <span class="n">Rnb</span> <span class="o">=</span> <span class="n">nbexec</span><span class="p">(</span><span class="s2">&quot;Rnotebook.ipynb&quot;</span><span class="p">)</span>
+<span class="n">nbformat</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">Rnb</span><span class="p">,</span> <span class="s2">&quot;Rexecuted.ipynb&quot;</span><span class="p">,</span> <span class="n">kernel</span><span class="o">=</span><span class="s2">&quot;ir&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="creating-and-executing-a-jupyter-notebook-with-nbless">
 <span id="nbless"></span><h3>Creating and executing a Jupyter notebook with <code class="docutils literal notranslate"><span class="pre">nbless</span></code><a class="headerlink" href="#creating-and-executing-a-jupyter-notebook-with-nbless" title="Permalink to this headline">¶</a></h3>
-<p>Run <code class="docutils literal notranslate"><span class="pre">nbless</span></code> in your terminal, providing all of the names of the
-source files as arguments, e.g.</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>nbless README.md plot.py notes.txt &gt; output/executed.ipynb
+<p>The <code class="docutils literal notranslate"><span class="pre">nbless</span></code> shell command executes a notebook created from code and markdown/text files.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>nbless README.md plot.py notes.txt &gt; executed.ipynb
 </pre></div>
 </div>
-<p>The default name of the first notebook is <code class="docutils literal notranslate"><span class="pre">unexecuted.ipynb</span></code> while the
-executed notebook is called <code class="docutils literal notranslate"><span class="pre">executed.ipynb</span></code> by default.</p>
+<p>The default kernel is <code class="docutils literal notranslate"><span class="pre">python3</span></code>, but it is possible to specify the kernel that will be used to run notebook with the
+<code class="docutils literal notranslate"><span class="pre">--kernel</span></code> or <code class="docutils literal notranslate"><span class="pre">-k</span></code> flag.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>nbless README.md plot.py notes.txt --kernel ir &gt; Rnotebook.ipynb
+<span class="c1"># Or</span>
+nbless README.md plot.py notes.txt -k ir &gt; Rnotebook.ipynb
+</pre></div>
+</div>
 <p>Instead of redirecting to a file (<code class="docutils literal notranslate"><span class="pre">&gt;</span></code>), you can use the <code class="docutils literal notranslate"><span class="pre">--out_file</span></code>
 or <code class="docutils literal notranslate"><span class="pre">-o</span></code> flag:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>nbless README.md plot.py notes.txt --out_file output/executed.ipynb
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>nbless README.md plot.py notes.txt --out_file executed.ipynb
 <span class="c1"># Or</span>
-nbless README.md plot.py notes.txt -o output/executed.ipynb
+nbless README.md plot.py notes.txt -o executed.ipynb
 </pre></div>
 </div>
-<p>If you do not want an executed version of the notebook, run <code class="docutils literal notranslate"><span class="pre">nbuild</span></code>
-instead of <code class="docutils literal notranslate"><span class="pre">nbless</span></code>.</p>
+<p>Unlike the shell command,
+the <code class="docutils literal notranslate"><span class="pre">nbless</span></code> Python function does not create a file on its own.
+To create a notebook file, use the <code class="docutils literal notranslate"><span class="pre">nbformat</span></code> library.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nbformat</span>
+<span class="kn">from</span> <span class="nn">nbless</span> <span class="kn">import</span> <span class="n">nbless</span>
+
+<span class="c1"># Build and execute a notebook with nbless</span>
+    <span class="n">nb</span> <span class="o">=</span> <span class="n">nbless</span><span class="p">([</span><span class="s2">&quot;plot.py&quot;</span><span class="p">,</span> <span class="s2">&quot;notes.txt&quot;</span><span class="p">])</span>
+<span class="n">nbformat</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">nb</span><span class="p">,</span> <span class="s2">&quot;executed.ipynb&quot;</span><span class="p">)</span>
+    <span class="n">Rnb</span> <span class="o">=</span> <span class="n">nbless</span><span class="p">([</span><span class="s2">&quot;plot.R&quot;</span><span class="p">,</span> <span class="s2">&quot;notes.txt&quot;</span><span class="p">],</span> <span class="n">kernel</span><span class="o">=</span><span class="s2">&quot;ir&quot;</span><span class="p">)</span>
+<span class="n">nbformat</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">Rnb</span><span class="p">,</span> <span class="s2">&quot;Rexecuted.ipynb&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="extracting-source-files-from-a-jupyter-notebook-with-nbraze">
 <span id="nbraze"></span><h3>Extracting source files from a Jupyter notebook with <code class="docutils literal notranslate"><span class="pre">nbraze</span></code><a class="headerlink" href="#extracting-source-files-from-a-jupyter-notebook-with-nbraze" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">nbraze</span></code> shell command takes the contents of <a class="reference external" href="https://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/Running%20Code.html">Jupyter Notebook code cells</a>
+and turns them into code files, e.g. Python or R code files (<code class="docutils literal notranslate"><span class="pre">.py</span></code> or
+<code class="docutils literal notranslate"><span class="pre">.R</span></code>). The contents of <a class="reference external" href="https://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/Working%20With%20Markdown%20Cells.html">markdown cells</a>
+are turned into markdown files.</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>nbraze notebook.ipynb
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">nbraze</span></code> function takes the contents of <a class="reference external" href="https://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/Running%20Code.html">Jupyter Notebook code cells</a> and turns them into Python or R code files (<code class="docutils literal notranslate"><span class="pre">.py</span></code> or <code class="docutils literal notranslate"><span class="pre">.R</span></code>).
-The contents of <a class="reference external" href="https://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/Working%20With%20Markdown%20Cells.html">markdown cells</a> are turned into markdown files.</p>
+<p>The default code file extension for <code class="docutils literal notranslate"><span class="pre">nbraze</span></code> is <code class="docutils literal notranslate"><span class="pre">py</span></code>, but it is possible to
+set the file extension with the <code class="docutils literal notranslate"><span class="pre">--extension</span></code> or <code class="docutils literal notranslate"><span class="pre">-e</span></code> flag. If the
+<code class="docutils literal notranslate"><span class="pre">language_info</span></code> key is defined in the Jupyter notebook metadata, <code class="docutils literal notranslate"><span class="pre">nbraze</span></code>
+can try to infer the code file extension from the programming language.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>nbraze notebook.ipynb --extension R
+nbraze notebook.ipynb -e js
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">nbless</span> <span class="kn">import</span> <span class="n">nbraze</span>
+
+<span class="c1"># Create source files from notebook.ipynb</span>
+    <span class="n">nbraze</span><span class="p">(</span><span class="s2">&quot;notebook.ipynb&quot;</span><span class="p">)</span>
+    <span class="n">nbraze</span><span class="p">(</span><span class="s2">&quot;notebook.ipynb&quot;</span><span class="p">,</span> <span class="n">extension</span><span class="o">=</span><span class="s2">&quot;R&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="creating-a-jupyter-notebook-with-nbuild">
 <span id="nbuild"></span><h3>Creating a Jupyter notebook with <code class="docutils literal notranslate"><span class="pre">nbuild</span></code><a class="headerlink" href="#creating-a-jupyter-notebook-with-nbuild" title="Permalink to this headline">¶</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">nbuild</span></code> shell command and Python function takes the contents of Python or R code files
+<p>The <code class="docutils literal notranslate"><span class="pre">nbuild</span></code> shell command takes the contents of Python or R code files
 (<code class="docutils literal notranslate"><span class="pre">.py</span></code> or <code class="docutils literal notranslate"><span class="pre">.R</span></code>) and stores them as <a class="reference external" href="https://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/Running%20Code.html">Jupyter Notebook code
 cells</a>.
 The contents of all other files are stored in <a class="reference external" href="https://jupyter-notebook.readthedocs.io/en/stable/examples/Notebook/Working%20With%20Markdown%20Cells.html">markdown
@@ -306,7 +367,8 @@ nbuild README.md plot.py notes.txt -o notebooks/notebook.ipynb
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>nbuild README.md plot.py notes.txt
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">nbuild</span></code> Python function does create a file on its own. To create a notebook file, use the <code class="docutils literal notranslate"><span class="pre">nbformat</span></code> library.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">nbuild</span></code> Python function does not create a file on its own.
+To create a notebook file, use the <code class="docutils literal notranslate"><span class="pre">nbformat</span></code> library.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nbformat</span>
 <span class="kn">from</span> <span class="nn">nbless</span> <span class="kn">import</span> <span class="n">nbuild</span>
 
@@ -316,89 +378,6 @@ nbuild README.md plot.py notes.txt -o notebooks/notebook.ipynb
 </pre></div>
 </div>
 </div>
-</div>
-<div class="section" id="basic-usage-python-environment">
-<h2>Basic usage: Python environment<a class="headerlink" href="#basic-usage-python-environment" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nbformat</span>
-
-<span class="c1"># You can import any or all of the functions from the nbless package.</span>
-
-<span class="c1"># You can also import each function individually</span>
-<span class="kn">from</span> <span class="nn">nbless</span> <span class="kn">import</span> <span class="n">nbuild</span>
-<span class="kn">from</span> <span class="nn">nbless</span> <span class="kn">import</span> <span class="n">nbexec</span>
-<span class="kn">from</span> <span class="nn">nbless</span> <span class="kn">import</span> <span class="n">nbless</span>
-<span class="kn">from</span> <span class="nn">nbless</span> <span class="kn">import</span> <span class="n">nbconv</span>
-<span class="kn">from</span> <span class="nn">nbless</span> <span class="kn">import</span> <span class="n">nbdeck</span>
-<span class="kn">from</span> <span class="nn">nbless</span> <span class="kn">import</span> <span class="n">nbraze</span>
-
-<span class="c1"># The above imports all 6 functions</span>
-<span class="c1"># This can also be done with either of the two lines below.</span>
-<span class="kn">from</span> <span class="nn">nbless</span> <span class="kn">import</span> <span class="n">nbuild</span><span class="p">,</span> <span class="n">nbexec</span><span class="p">,</span> <span class="n">nbless</span><span class="p">,</span> <span class="n">nbconv</span><span class="p">,</span> <span class="n">nbdeck</span><span class="p">,</span> <span class="n">nbraze</span>
-<span class="kn">from</span> <span class="nn">nbless</span> <span class="kn">import</span> <span class="o">*</span>
-
-<span class="c1"># Simple individual usage</span>
-
-<span class="c1"># Create notebook.ipynb in notebooks folder from plot.py and notes.txt</span>
-<span class="c1"># nbuild() returns a notebook object</span>
-<span class="n">nbformat</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">nbuild</span><span class="p">([</span><span class="s2">&quot;plot.py&quot;</span><span class="p">,</span> <span class="s2">&quot;notes.txt&quot;</span><span class="p">]),</span> <span class="s2">&quot;notebook.ipynb&quot;</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-
-<span class="c1"># Create source files from notebook.ipynb in notebooks folder</span>
-<span class="c1"># nbraze() returns None, instead it creates markdown and code files</span>
-    <span class="n">nbraze</span><span class="p">(</span><span class="s2">&quot;notebook.ipynb&quot;</span><span class="p">)</span>
-<span class="c1"># The default code file for nbraze is Python</span>
-    <span class="n">nbraze</span><span class="p">(</span><span class="s2">&quot;notebook.ipynb&quot;</span><span class="p">,</span> <span class="n">extension</span><span class="o">=</span><span class="s2">&quot;py&quot;</span><span class="p">)</span>
-<span class="c1"># It is also possible to create R files</span>
-    <span class="n">nbraze</span><span class="p">(</span><span class="s2">&quot;notebook.ipynb&quot;</span><span class="p">,</span> <span class="n">extension</span><span class="o">=</span><span class="s2">&quot;R&quot;</span><span class="p">)</span>
-<span class="c1"># nbraze() cannot handle notebooks with a mix of different languages</span>
-
-<span class="c1"># Create notebook_executed.ipynb from notebook.ipynb</span>
-<span class="c1"># nbexec() returns a notebook object</span>
-<span class="n">nbformat</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">nbexec</span><span class="p">(</span><span class="s2">&quot;notebook.ipynb&quot;</span><span class="p">),</span> <span class="s2">&quot;notebook.ipynb&quot;</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-
-<span class="c1"># Or to run both nbuild and nbexec at once, use nbless</span>
-<span class="c1"># nbless() returns a notebook object</span>
-<span class="n">nbformat</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">nbless</span><span class="p">([</span><span class="s2">&quot;plot.py&quot;</span><span class="p">,</span> <span class="s2">&quot;notes.txt&quot;</span><span class="p">]),</span> <span class="s2">&quot;notebook.ipynb&quot;</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-
-<span class="c1"># Create notebook.py from notebook.ipynb in notebooks folder</span>
-<span class="c1"># nbconv() returns a filename and file contents as strings</span>
-<span class="k">def</span> <span class="nf">write_file</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">contents</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="bp">None</span><span class="p">:</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">contents</span><span class="p">)</span>
-
-<span class="n">filename</span><span class="p">,</span> <span class="n">contents</span> <span class="o">=</span> <span class="n">nbconv</span><span class="p">(</span><span class="s2">&quot;notebooks/notebook.ipynb&quot;</span><span class="p">)</span>
-<span class="n">write_file</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">contents</span><span class="p">)</span>
-<span class="n">write_file</span><span class="p">(</span><span class="o">*</span><span class="n">nbconv</span><span class="p">(</span><span class="s2">&quot;notebooks/notebook.ipynb&quot;</span><span class="p">))</span>
-
-<span class="c1"># Create notebook.html from notebook.ipynb in notebooks folder</span>
-<span class="n">write_file</span><span class="p">(</span><span class="o">*</span><span class="n">nbconv</span><span class="p">(</span><span class="s2">&quot;notebooks/notebook.ipynb&quot;</span><span class="p">,</span> <span class="s2">&quot;html&quot;</span><span class="p">))</span>
-
-<span class="c1"># Create script.py from notebook.ipynb in notebooks folder</span>
-<span class="n">write_file</span><span class="p">(</span><span class="s1">&#39;script.py&#39;</span><span class="p">,</span> <span class="n">nbconv</span><span class="p">(</span><span class="s2">&quot;notebooks/notebook.ipynb&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
-
-<span class="c1"># Create report.html from notebook.ipynb in notebooks folder</span>
-<span class="n">write_file</span><span class="p">(</span><span class="s1">&#39;report.html&#39;</span><span class="p">,</span> <span class="n">nbconv</span><span class="p">(</span><span class="s2">&quot;notebooks/notebook.ipynb&quot;</span><span class="p">,</span> <span class="s1">&#39;html&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
-
-<span class="c1"># Create HTML slides from notebook.ipynb in notebooks folder</span>
-<span class="c1"># nbdeck() returns a filename and file contents as strings</span>
-<span class="n">nbformat</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">nbdeck</span><span class="p">(</span><span class="s2">&quot;notebook.ipynb&quot;</span><span class="p">),</span> <span class="s2">&quot;slides.ipynb&quot;</span><span class="p">,</span> <span class="n">version</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-<span class="n">filename</span><span class="p">,</span> <span class="n">contents</span> <span class="o">=</span> <span class="n">nbconv</span><span class="p">(</span><span class="s2">&quot;slides.ipynb&quot;</span><span class="p">,</span> <span class="s2">&quot;slides&quot;</span><span class="p">)</span>
-<span class="n">write_file</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">contents</span><span class="p">)</span>
-<span class="n">write_file</span><span class="p">(</span><span class="o">*</span><span class="n">nbconv</span><span class="p">(</span><span class="s2">&quot;notebooks/notebook.ipynb&quot;</span><span class="p">,</span> <span class="s2">&quot;slides&quot;</span><span class="p">))</span>
-
-<span class="c1"># Another alternative is to import the package and use it as a namespace.</span>
-<span class="kn">import</span> <span class="nn">nbless</span>
-
-<span class="c1"># Use nbless as a namespace</span>
-<span class="n">nbformat</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;notebook.ipynb&quot;</span><span class="p">,</span> <span class="n">nbless</span><span class="o">.</span><span class="n">nbuild</span><span class="p">([</span><span class="s2">&quot;plot.py&quot;</span><span class="p">,</span> <span class="s2">&quot;notes.txt&quot;</span><span class="p">]),</span> <span class="n">version</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-<span class="n">nbformat</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="o">*</span><span class="n">nbless</span><span class="o">.</span><span class="n">nbexec</span><span class="p">(</span><span class="s2">&quot;notebook.ipynb&quot;</span><span class="p">),</span> <span class="n">version</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-<span class="n">nbformat</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;executed.ipynb&#39;</span><span class="p">,</span> <span class="n">nbless</span><span class="o">.</span><span class="n">nbexec</span><span class="p">(</span><span class="s2">&quot;notebook.ipynb&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">],</span> <span class="n">version</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-<span class="n">nbformat</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;executed.ipynb&quot;</span><span class="p">,</span> <span class="n">nbless</span><span class="o">.</span><span class="n">nbless</span><span class="p">([</span><span class="s2">&quot;plot.py&quot;</span><span class="p">,</span> <span class="s2">&quot;notes.txt&quot;</span><span class="p">]),</span> <span class="n">version</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
-<span class="n">write_file</span><span class="p">(</span><span class="o">*</span><span class="n">nbless</span><span class="o">.</span><span class="n">nbconv</span><span class="p">(</span><span class="s2">&quot;notebook.ipynb&quot;</span><span class="p">))</span>
-<span class="n">write_file</span><span class="p">(</span><span class="o">*</span><span class="n">nbless</span><span class="o">.</span><span class="n">nbconv</span><span class="p">(</span><span class="s2">&quot;notebook.ipynb&quot;</span><span class="p">,</span> <span class="s2">&quot;html&quot;</span><span class="p">))</span>
-<span class="n">write_file</span><span class="p">(</span><span class="s1">&#39;script.py&#39;</span><span class="p">,</span> <span class="n">nbless</span><span class="o">.</span><span class="n">nbconv</span><span class="p">(</span><span class="s2">&quot;notebook.ipynb&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
-<span class="n">write_file</span><span class="p">(</span><span class="s1">&#39;report.html&#39;</span><span class="p">,</span> <span class="n">nbless</span><span class="o">.</span><span class="n">nbconv</span><span class="p">(</span><span class="s2">&quot;notebook.ipynb&quot;</span><span class="p">,</span> <span class="s1">&#39;html&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
-</pre></div>
-</div>
 <div class="section" id="missing-a-dependency">
 <h3>Missing a dependency?<a class="headerlink" href="#missing-a-dependency" title="Permalink to this headline">¶</a></h3>
 <p>If you installed via <code class="docutils literal notranslate"><span class="pre">pip</span></code> or <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>, you should have both of
@@ -407,7 +386,7 @@ installing them separately.</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pip install jupyter click
 </pre></div>
 </div>
-<p>Or if you have <a class="reference external" href="https://www.anaconda.com/download/">Anaconda</a> or
+<p>If you have <a class="reference external" href="https://www.anaconda.com/download/">Anaconda</a> or
 <a class="reference external" href="https://conda.io/miniconda.html">Miniconda</a> installed, you can run</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>conda install -yc conda-forge jupyter click
 </pre></div>
@@ -422,11 +401,11 @@ installing them separately.</p>
 </div>
 <p>You can use the <code class="docutils literal notranslate"><span class="pre">ls</span></code> command to assign all of the relevant names in
 the current directory to a variable and pass this variable as an
-argument to <code class="docutils literal notranslate"><span class="pre">nbconvert.py</span></code>.</p>
+argument.</p>
 <p>Consider the example below:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>touch <span class="o">{</span><span class="m">01</span>..09<span class="o">}</span>.py
 <span class="nv">name_list</span><span class="o">=</span><span class="sb">`</span>ls <span class="m">0</span>*.py<span class="sb">`</span>
-python nbuild.py <span class="sb">`</span><span class="nb">echo</span> <span class="nv">$name_list</span><span class="sb">`</span>
+nbuild <span class="sb">`</span><span class="nb">echo</span> <span class="nv">$name_list</span><span class="sb">`</span>
 </pre></div>
 </div>
 <p>In Python environments, <code class="docutils literal notranslate"><span class="pre">os.listdir</span></code> can provide a list of

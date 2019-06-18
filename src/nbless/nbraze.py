@@ -5,7 +5,7 @@ from pathlib import Path
 import nbformat
 
 
-def nbraze(in_file: str, extension: str = "py") -> Dict[str, str]:
+def nbraze(in_file: str, extension: str = "") -> Dict[str, str]:
     """Create markdown and code files from a Jupyter notebook.
 
     :param in_file: The name of the input Jupyter notebook file.
@@ -14,16 +14,18 @@ def nbraze(in_file: str, extension: str = "py") -> Dict[str, str]:
     nb = nbformat.read(in_file, as_version=4)
     if not extension and nb.metadata.language_info.name:
         lang_ext_dict = {
-            "R": ".R",
-            "python": ".py",
-            "javascript": ".js",
-            "ruby": ".rb",
-            "julia": ".jl",
-            "octave": ".m",
-            "go": ".go",
+            "R": "R",
+            "python": "py",
+            "javascript": "js",
+            "ruby": "rb",
+            "julia": "jl",
+            "octave": "m",
+            "go": "go",
         }
         if nb.metadata.language_info.name in lang_ext_dict:
             extension = lang_ext_dict[nb.metadata.language_info.name]
+    if not extension and not nb.metadata.language_info.name:
+        extension = "py"
     filenames = (
         f"{Path(in_file).stem}_cell{n}.md"
         if cell.cell_type == "markdown"

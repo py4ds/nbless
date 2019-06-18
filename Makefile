@@ -51,7 +51,7 @@ else
 endif
 	${PYTHON} -m $(LINTER) src tests
 
-docs/index.html: env $(README) $(DOCS) $(TESTS) $(SRC)
+docs/index.html: $(README) $(DOCS) $(TESTS) $(SRC)
 	mv docs html
 	.venv/bin/sphinx-apidoc -fo html/source src/nbless/ src/nbless/nb*
 	.venv/bin/sphinx-apidoc -fo html/source --tocfile test_modules tests
