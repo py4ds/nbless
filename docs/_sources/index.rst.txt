@@ -10,9 +10,8 @@ Welcome to Nbless's documentation!
    Module reference <modules.rst>
    Test reference <test_modules.rst>
    R and Python interoperability <interop.rst>
-
-
-
+   Missing dependencies? <dep.rst>
+   Too many files to type out? <many-file.rst>
 
 
 Indices and tables
