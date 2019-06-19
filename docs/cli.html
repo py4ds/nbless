@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Nbless command-line interface (CLI) &#8212; Nbless 0.2.27 documentation</title>
+    <title>Nbless command-line interface (CLI) &#8212; Nbless 0.2.35 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -60,6 +60,9 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="modules.html">Module reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="test_modules.html">Test reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interop.html">R and Python interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dep.html">Missing dependencies?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="many-file.html">Too many files to type out?</a></li>
 </ul>
 
 <div class="relations">
@@ -124,7 +127,7 @@
 
 <dl class="option">
 <dt id="cmdoption-nbless-o">
-<code class="sig-name descname">-o</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--out_file</code><code class="sig-prename descclassname"> &lt;out&gt;</code><a class="headerlink" href="#cmdoption-nbless-o" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">-o</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--out_file</code><code class="sig-prename descclassname"> &lt;out_file&gt;</code><a class="headerlink" href="#cmdoption-nbless-o" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p class="rubric">Arguments</p>
@@ -145,9 +148,6 @@
 <dt class="field-even">param extension</dt>
 <dd class="field-even"><p>The extension for code files.</p>
 </dd>
-<dt class="field-odd">param out_file</dt>
-<dd class="field-odd"><p>The name of the output Jupyter notebook file.</p>
-</dd>
 </dl>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>nbraze <span class="o">[</span>OPTIONS<span class="o">]</span> IN_FILE
 </pre></div>
@@ -155,7 +155,7 @@
 <p class="rubric">Options</p>
 <dl class="option">
 <dt id="cmdoption-nbraze-e">
-<code class="sig-name descname">-e</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--extension</code><code class="sig-prename descclassname"> &lt;ext&gt;</code><a class="headerlink" href="#cmdoption-nbraze-e" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">-e</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--extension</code><code class="sig-prename descclassname"> &lt;extension&gt;</code><a class="headerlink" href="#cmdoption-nbraze-e" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p class="rubric">Arguments</p>
@@ -183,7 +183,7 @@
 <p class="rubric">Options</p>
 <dl class="option">
 <dt id="cmdoption-nbdeck-o">
-<code class="sig-name descname">-o</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--out_file</code><code class="sig-prename descclassname"> &lt;out&gt;</code><a class="headerlink" href="#cmdoption-nbdeck-o" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">-o</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--out_file</code><code class="sig-prename descclassname"> &lt;out_file&gt;</code><a class="headerlink" href="#cmdoption-nbdeck-o" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p class="rubric">Arguments</p>
@@ -211,7 +211,7 @@
 <p class="rubric">Options</p>
 <dl class="option">
 <dt id="cmdoption-nbuild-o">
-<code class="sig-name descname">-o</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--out_file</code><code class="sig-prename descclassname"> &lt;out&gt;</code><a class="headerlink" href="#cmdoption-nbuild-o" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">-o</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--out_file</code><code class="sig-prename descclassname"> &lt;out_file&gt;</code><a class="headerlink" href="#cmdoption-nbuild-o" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p class="rubric">Arguments</p>
@@ -232,7 +232,7 @@
 <dt class="field-even">param exporter</dt>
 <dd class="field-even"><p>The exporter that determines the output file type.</p>
 </dd>
-<dt class="field-odd">param out</dt>
+<dt class="field-odd">param out_file</dt>
 <dd class="field-odd"><p>The name of the output Jupyter notebook file.</p>
 </dd>
 <dt class="field-even">note</dt>
@@ -253,7 +253,7 @@ Exporting to pdf requires latex.</p>
 
 <dl class="option">
 <dt id="cmdoption-nbconv-o">
-<code class="sig-name descname">-o</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--out_file</code><code class="sig-prename descclassname"> &lt;out&gt;</code><a class="headerlink" href="#cmdoption-nbconv-o" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">-o</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--out_file</code><code class="sig-prename descclassname"> &lt;out_file&gt;</code><a class="headerlink" href="#cmdoption-nbconv-o" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p class="rubric">Arguments</p>
@@ -289,7 +289,7 @@ Exporting to pdf requires latex.</p>
 
 <dl class="option">
 <dt id="cmdoption-nbexec-o">
-<code class="sig-name descname">-o</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--out_file</code><code class="sig-prename descclassname"> &lt;out&gt;</code><a class="headerlink" href="#cmdoption-nbexec-o" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">-o</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--out_file</code><code class="sig-prename descclassname"> &lt;out_file&gt;</code><a class="headerlink" href="#cmdoption-nbexec-o" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <p class="rubric">Arguments</p>
