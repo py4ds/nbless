@@ -119,7 +119,7 @@
 
 <dl class="function">
 <dt id="tests.make_temp.make_files">
-<code class="sig-prename descclassname">tests.make_temp.</code><code class="sig-name descname">make_files</code><span class="sig-paren">(</span><em class="sig-param">tmp_path: pathlib.Path</em><span class="sig-paren">)</span> &#x2192; List[str]<a class="reference internal" href="_modules/tests/make_temp.html#make_files"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.make_temp.make_files" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">tests.make_temp.</code><code class="sig-name descname">make_files</code><span class="sig-paren">(</span><em class="sig-param">tmp_path: pathlib.Path</em><span class="sig-paren">)</span> &#x2192; Tuple[str, str, str]<a class="reference internal" href="_modules/tests/make_temp.html#make_files"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.make_temp.make_files" title="Permalink to this definition">¶</a></dt>
 <dd><p>Helper function to create a list of pathlib Path objects.</p>
 </dd></dl>
 
@@ -141,6 +141,12 @@
 <dl class="function">
 <dt id="tests.test_cli.test_nbdeck_cli">
 <code class="sig-prename descclassname">tests.test_cli.</code><code class="sig-name descname">test_nbdeck_cli</code><span class="sig-paren">(</span><em class="sig-param">tmp_path: pathlib.Path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/test_cli.html#test_nbdeck_cli"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_cli.test_nbdeck_cli" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print a notebook that can be viewed as or converted into slides.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tests.test_cli.test_nbdeck_cli_out">
+<code class="sig-prename descclassname">tests.test_cli.</code><code class="sig-name descname">test_nbdeck_cli_out</code><span class="sig-paren">(</span><em class="sig-param">tmp_path: pathlib.Path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/test_cli.html#test_nbdeck_cli_out"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_cli.test_nbdeck_cli_out" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set up a Jupyter notebook to be viewed as or converted into slides.</p>
 </dd></dl>
 
@@ -153,13 +159,14 @@
 <dl class="function">
 <dt id="tests.test_cli.test_nbexec_cli_out">
 <code class="sig-prename descclassname">tests.test_cli.</code><code class="sig-name descname">test_nbexec_cli_out</code><span class="sig-paren">(</span><em class="sig-param">tmp_path: pathlib.Path</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/tests/test_cli.html#test_nbexec_cli_out"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_cli.test_nbexec_cli_out" title="Permalink to this definition">¶</a></dt>
-<dd><p>Run nbexec() to execute a temporary notebook file.</p>
+<dd><p>Run nbexec() to execute a temporary notebook with a custom filename.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="tests.test_cli.test_nbless_cli">
 <code class="sig-prename descclassname">tests.test_cli.</code><code class="sig-name descname">test_nbless_cli</code><span class="sig-paren">(</span><em class="sig-param">tmp_path: pathlib.Path</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/tests/test_cli.html#test_nbless_cli"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_cli.test_nbless_cli" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Run nbuild() to create and execute a notebook.</p>
+</dd></dl>
 
 <dl class="function">
 <dt id="tests.test_cli.test_nbraze_cli">
@@ -170,7 +177,8 @@
 <dl class="function">
 <dt id="tests.test_cli.test_nbuild_cli">
 <code class="sig-prename descclassname">tests.test_cli.</code><code class="sig-name descname">test_nbuild_cli</code><span class="sig-paren">(</span><em class="sig-param">tmp_path: pathlib.Path</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/tests/test_cli.html#test_nbuild_cli"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_cli.test_nbuild_cli" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Run nbuild to create a notebook file from temporary source files.</p>
+</dd></dl>
 
 </div>
 <div class="section" id="module-tests.test_nbless">
