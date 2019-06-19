@@ -24,7 +24,7 @@ copyright = '2019, Martin Skarzynski'
 author = 'Martin Skarzynski'
 
 # The short X.Y version
-version = "0.2.35"
+version = "0.2.36"
 # The full version, including alpha/beta/rc tags
 release = version
 
