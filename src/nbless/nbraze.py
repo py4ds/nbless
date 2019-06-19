@@ -10,6 +10,7 @@ def nbraze(in_file: str, extension: str = "") -> Dict[str, str]:
 
     :param in_file: The name of the input Jupyter notebook file.
     :param extension: The extension for code files.
+    :return: A dictionary of output filenames and contents.
     """
     nb = nbformat.read(in_file, as_version=4)
     if not extension and "language_info" in nb.metadata:

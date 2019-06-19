@@ -9,6 +9,7 @@ def nbexec(in_file: str, kernel: str = "python3") -> NotebookNode:
 
     :param in_file: The name of the Jupyter notebook file to be executed.
     :param kernel: The programming language used to execute the notebook.
+    :return: An executed ``nbformat.NotebookNode`` object.
     """
     nb = nbformat.read(in_file, as_version=4)
     ep = ExecutePreprocessor(timeout=600, kernel_name=kernel)

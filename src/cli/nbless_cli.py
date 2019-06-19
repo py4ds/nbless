@@ -10,8 +10,8 @@ from nbless.nbless import nbless
 @click.command()
 @click.argument("in_files", nargs=-1, required=True, type=click.Path(exists=True))
 @click.option("-k", "--kernel", "kernel")
-@click.option("-o", "--out_file", "out")
-def nbless_cli(in_files: List[str], kernel: str, out: str) -> None:
+@click.option("-o", "--out_file", "out_file")
+def nbless_cli(in_files: List[str], kernel: str, out_file: str) -> None:
     """Create an executed Jupyter notebook from markdown and code files.
 
     :param in_files: The source files used to create a Jupyter notebook file.
@@ -19,7 +19,7 @@ def nbless_cli(in_files: List[str], kernel: str, out: str) -> None:
     :param out_file: The name of the output Jupyter notebook file.
     """
     nb = nbless(in_files, kernel) if kernel else nbless(in_files)
-    if out:
-        nbformat.write(nb, out, version=4)
+    if out_file:
+        nbformat.write(nb, out_file, version=4)
     else:
         sys.stdout.write(nbformat.writes(nb))

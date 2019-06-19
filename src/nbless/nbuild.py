@@ -10,6 +10,7 @@ def nbuild(in_files: List[str]) -> NotebookNode:
     """Create an unexecuted Jupyter notebook from markdown and code files.
 
     :param in_files: A list of source file names.
+    :return: An unexecuted ``nbformat.NotebookNode`` object.
     """
     nb = new_notebook()
     nb.cells = [

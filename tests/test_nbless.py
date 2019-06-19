@@ -52,7 +52,7 @@ def test_raises(not_exporters, tmp_path: Path) -> None:
     nb = make_notebook(tmp_path)
     with pytest.raises(ValueError):
         nbconv(in_file=nb, exporter=not_exporters)
-        nbconv(in_file=nb, out="out." + not_exporters)
+        nbconv(in_file=nb, out_file="out." + not_exporters)
 
 
 @pytest.mark.parametrize("exporters", ["html", "asciidoc", "rst"])
@@ -66,8 +66,8 @@ def test_nbconv(exporters, tmp_path: Path) -> None:
 def test_nbconv_file_contents(tmp_path: Path):
     nb = make_notebook(tmp_path)
     assert nbconv(in_file=nb, exporter="html")[1].startswith("<!DOCTYPE html>")
-    assert nbconv(in_file=nb, out="out.htm")[1].startswith("<!DOCTYPE html>")
-    assert nbconv(in_file=nb, out="out.adoc")[1].startswith("\n[[background]]")
+    assert nbconv(in_file=nb, out_file="out.htm")[1].startswith("<!DOCTYPE html>")
+    assert nbconv(in_file=nb, out_file="out.adoc")[1].startswith("\n[[background]]")
     assert nbconv(in_file=nb, exporter="rst")[1].startswith("\nBackground\n")
 
 

@@ -11,6 +11,7 @@ def nbdeck(in_file: str) -> nbformat.notebooknode.NotebookNode:
     - create an HTML slideshow with ``nbconv`` or ``jupyter nbconvert``.
 
     :param in_file: The name of the input Jupyter notebook file.
+    :return: An ``nbformat.NotebookNode`` object with edited slideshow metadata.
     """
     nb = nbformat.read(in_file, as_version=4)
     for n, cell in enumerate(nb.cells):
