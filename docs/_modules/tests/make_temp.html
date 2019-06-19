@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>tests.make_temp &#8212; Nbless 0.2.35 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">Nbless</a></h1>
+
+
+
+<p class="blurb">A Python package for programmatic Jupyter notebook workflows</p>
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=marskar&repo=nbless&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html">Project overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../cli.html">Command-line interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">Module reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../test_modules.html">Test reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../interop.html">R and Python interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dep.html">Missing dependencies?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../many-file.html">Too many files to type out?</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for tests.make_temp</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="k">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">Tuple</span>
+
+<span class="kn">from</span> <span class="nn">nbformat</span> <span class="k">import</span> <span class="n">writes</span>
+
+<span class="kn">from</span> <span class="nn">nbless</span> <span class="k">import</span> <span class="n">nbuild</span><span class="p">,</span> <span class="n">nbless</span>
+
+
+<div class="viewcode-block" id="make_files"><a class="viewcode-back" href="../../tests.html#tests.make_temp.make_files">[docs]</a><span class="k">def</span> <span class="nf">make_files</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;Helper function to create a list of pathlib Path objects.&quot;&quot;&quot;</span>
+    <span class="n">md</span> <span class="o">=</span> <span class="n">tmp_path</span> <span class="o">/</span> <span class="s2">&quot;intro.md&quot;</span>
+    <span class="n">py</span> <span class="o">=</span> <span class="n">tmp_path</span> <span class="o">/</span> <span class="s2">&quot;plot.py&quot;</span>
+    <span class="n">txt</span> <span class="o">=</span> <span class="n">tmp_path</span> <span class="o">/</span> <span class="s2">&quot;discussion.txt&quot;</span>
+    <span class="n">md</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="s2">&quot;# Background</span><span class="se">\n</span><span class="s2">Matplotlib is a Python plotting library.&quot;</span><span class="p">)</span>
+    <span class="n">py</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span>
+        <span class="s2">&quot;import numpy as np</span><span class="se">\n</span><span class="s2">import matplotlib.pyplot as plt</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;N = 50</span><span class="se">\n</span><span class="s2">x = y = colors = np.random.rand(N)</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;area = np.pi * (15 * np.random.rand(N)) ** 2</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;plt.scatter(x, y, s=area, c=colors, alpha=0.5)</span><span class="se">\n</span><span class="s2">plt.show()&quot;</span>
+    <span class="p">)</span>
+    <span class="n">txt</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="s2">&quot;# Discussion</span><span class="se">\n</span><span class="s2">Matplotlib is verbose, but makes cool plots!&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">md</span><span class="o">.</span><span class="n">as_posix</span><span class="p">(),</span> <span class="n">py</span><span class="o">.</span><span class="n">as_posix</span><span class="p">(),</span> <span class="n">txt</span><span class="o">.</span><span class="n">as_posix</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="make_notebook"><a class="viewcode-back" href="../../tests.html#tests.make_temp.make_notebook">[docs]</a><span class="k">def</span> <span class="nf">make_notebook</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Helper function to create a list of pathlib Path objects.&quot;&quot;&quot;</span>
+    <span class="n">nb</span> <span class="o">=</span> <span class="n">tmp_path</span> <span class="o">/</span> <span class="s2">&quot;notebook.ipynb&quot;</span>
+    <span class="n">nb</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">writes</span><span class="p">(</span><span class="n">nbuild</span><span class="p">(</span><span class="n">make_files</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">))))</span>
+    <span class="k">return</span> <span class="n">nb</span><span class="o">.</span><span class="n">as_posix</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="exec_notebook"><a class="viewcode-back" href="../../tests.html#tests.make_temp.exec_notebook">[docs]</a><span class="k">def</span> <span class="nf">exec_notebook</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Helper function to create a list of pathlib Path objects.&quot;&quot;&quot;</span>
+    <span class="n">nb</span> <span class="o">=</span> <span class="n">tmp_path</span> <span class="o">/</span> <span class="s2">&quot;notebook.ipynb&quot;</span>
+    <span class="n">nb</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">writes</span><span class="p">(</span><span class="n">nbless</span><span class="p">(</span><span class="n">make_files</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">),</span> <span class="n">kernel</span><span class="o">=</span><span class="s2">&quot;python3&quot;</span><span class="p">)))</span>
+    <span class="k">return</span> <span class="n">nb</span><span class="o">.</span><span class="n">as_posix</span><span class="p">()</span></div>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2019, Martin Skarzynski.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.1.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+    <a href="https://github.com/marskar/nbless" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>
