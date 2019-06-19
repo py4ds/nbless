@@ -1,12 +1,12 @@
 from pathlib import Path
 from typing import List
 
-import nbformat
+from nbformat import writes
 
-from nbless import nbuild
+from nbless import nbuild, nbless
 
 
-def make_tempfiles(tmp_path: Path) -> List[str]:
+def make_files(tmp_path: Path) -> List[str]:
     """Helper function to create a list of pathlib Path objects."""
     md = tmp_path / "intro.md"
     py = tmp_path / "plot.py"
@@ -22,8 +22,15 @@ def make_tempfiles(tmp_path: Path) -> List[str]:
     return [md.as_posix(), py.as_posix(), txt.as_posix()]
 
 
-def make_temp_notebook(tmp_path: Path) -> str:
+def make_notebook(tmp_path: Path) -> str:
     """Helper function to create a list of pathlib Path objects."""
     nb = tmp_path / "notebook.ipynb"
-    nb.write_text(nbformat.writes(nbuild(make_tempfiles(tmp_path))))
+    nb.write_text(writes(nbuild(make_files(tmp_path))))
+    return nb.as_posix()
+
+
+def exec_notebook(tmp_path: Path) -> str:
+    """Helper function to create a list of pathlib Path objects."""
+    nb = tmp_path / "notebook.ipynb"
+    nb.write_text(writes(nbless(make_files(tmp_path), kernel="python3")))
     return nb.as_posix()

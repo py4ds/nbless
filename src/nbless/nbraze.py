@@ -12,7 +12,7 @@ def nbraze(in_file: str, extension: str = "") -> Dict[str, str]:
     :param extension: The extension for code files.
     """
     nb = nbformat.read(in_file, as_version=4)
-    if not extension and nb.metadata.language_info.name:
+    if not extension and "language_info" in nb.metadata:
         lang_ext_dict = {
             "R": "R",
             "python": "py",
@@ -24,7 +24,7 @@ def nbraze(in_file: str, extension: str = "") -> Dict[str, str]:
         }
         if nb.metadata.language_info.name in lang_ext_dict:
             extension = lang_ext_dict[nb.metadata.language_info.name]
-    if not extension and not nb.metadata.language_info.name:
+    if not extension and "language_info" not in nb.metadata:
         extension = "py"
     filenames = (
         f"{Path(in_file).stem}_cell{n}.md"

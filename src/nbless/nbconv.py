@@ -5,7 +5,7 @@ from typing import Tuple
 from nbconvert.exporters.base import get_exporter
 
 
-def nbconv(in_file: str, exporter: str = '', out: str = '') -> Tuple[str, str]:
+def nbconv(in_file: str, exporter: str = "", out: str = "") -> Tuple[str, str]:
     """Convert a notebook into various formats using ``nbformat`` exporters.
 
     :param in_file: The name of the input notebook file.

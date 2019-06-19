@@ -3,14 +3,7 @@ from pathlib import Path
 import nbformat
 from click.testing import CliRunner
 
-from cli import (
-    nbless_cli,
-    nbuild_cli,
-    nbexec_cli,
-    nbconv_cli,
-    nbraze_cli,
-    nbdeck_cli
-)
+from cli import nbless_cli, nbuild_cli, nbexec_cli, nbconv_cli, nbraze_cli, nbdeck_cli
 from tests.make_temp import make_tempfiles, make_temp_notebook
 
 
@@ -57,12 +50,12 @@ def test_nbconv_cli(tmp_path: Path) -> None:
     runner = CliRunner()
     with runner.isolated_filesystem():
         nb = make_temp_notebook(tmp_path)
-        runner.invoke(nbconv_cli.nbconv_cli, [nb, '-e', 'html'])
-        assert Path('notebook.html').read_text().startswith('<!DOCTYPE html>')
-        runner.invoke(nbconv_cli.nbconv_cli, [nb, '-o', 'report.html'])
-        assert Path('report.html').read_text().startswith('<!DOCTYPE html>\n')
-        runner.invoke(nbconv_cli.nbconv_cli, [nb, '-o', 'report.adoc'])
-        assert Path('report.adoc').read_text().startswith('\n[[background]]')
+        runner.invoke(nbconv_cli.nbconv_cli, [nb, "-e", "html"])
+        assert Path("notebook.html").read_text().startswith("<!DOCTYPE html>")
+        runner.invoke(nbconv_cli.nbconv_cli, [nb, "-o", "report.html"])
+        assert Path("report.html").read_text().startswith("<!DOCTYPE html>\n")
+        runner.invoke(nbconv_cli.nbconv_cli, [nb, "-o", "report.adoc"])
+        assert Path("report.adoc").read_text().startswith("\n[[background]]")
 
 
 def test_nbraze_cli(tmp_path: Path):
