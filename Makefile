@@ -60,11 +60,6 @@ docs/index.html: $(README) $(DOCS) $(TESTS) $(SRC)
 	open docs/index.html
 
 clean:
-	rm -rf docs/_modules
-	rm -rf docs/searchindex.js
-	rm -rf docs/_sources
-	rm -rf docs/doctrees
-	rm -rf doctrees
 	rm -rf build/
 	rm -rf dist/
 	rm -rf .eggs/
