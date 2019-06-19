@@ -20,20 +20,6 @@ def test_nbless_cli(tmp_path: Path) -> None:
             assert cell.source == Path(tempfile).read_text()
 
 
-def test_nbuild_cli_out(tmp_path: Path) -> None:
-    """Run nbuild() to create a notebook with a custom filename."""
-    runner = CliRunner()
-    with runner.isolated_filesystem():
-        files = make_files(tmp_path)
-        runner.invoke(nbuild_cli.nbuild_cli, [files, "-o", "built.ipynb"])
-        cells = nbformat.read("built.ipynb", as_version=4).cells
-        for cell in cells:
-            if cell.cell_type == "code":
-                assert cell.execution_count
-                for output in cell.outputs:
-                    assert output
-
-
 def test_nbuild_cli(tmp_path: Path) -> None:
     """Run nbuild to create a notebook file from temporary source files."""
     runner = CliRunner()
@@ -99,12 +85,28 @@ def test_nbraze_cli(tmp_path: Path):
 
 
 def test_nbdeck_cli(tmp_path: Path):
-    """ Set up a Jupyter notebook to be viewed as or converted into slides."""
+    """Print a notebook that can be viewed as or converted into slides."""
     runner = CliRunner()
     with runner.isolated_filesystem():
         nb = make_notebook(tmp_path)
         result = runner.invoke(nbdeck_cli.nbdeck_cli, nb)
         cells = nbformat.reads(result.output, as_version=4).cells
+        c = 0
+        for cell in cells:
+            if cell.cell_type == "markdown" and cell.source.startswith("#"):
+                c += 1
+                assert cell.metadata.slideshow == {"slide_type": "slide"}
+        assert c == 2
+        assert len(cells) == 3
+
+
+def test_nbdeck_cli_out(tmp_path: Path):
+    """Set up a Jupyter notebook to be viewed as or converted into slides."""
+    runner = CliRunner()
+    with runner.isolated_filesystem():
+        nb = make_notebook(tmp_path)
+        runner.invoke(nbdeck_cli.nbdeck_cli, [nb, "-o", "slides.ipynb"])
+        cells = nbformat.read("slides.ipynb", as_version=4).cells
         c = 0
         for cell in cells:
             if cell.cell_type == "markdown" and cell.source.startswith("#"):
