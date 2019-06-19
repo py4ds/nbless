@@ -5,7 +5,7 @@ with open("README.rst", "r") as fh:
 
 setuptools.setup(
     name="nbless",
-    version="version='0.2.29'",
+    version="version='0.2.30'",
     author="Martin Skarzynski",
     author_email="marskar@gmail.com",
     description="Construct, deconstruct, convert, and run Jupyter notebooks.",
