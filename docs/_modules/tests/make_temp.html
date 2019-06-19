@@ -94,12 +94,12 @@
 <span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="k">import</span> <span class="n">Path</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">List</span>
 
-<span class="kn">import</span> <span class="nn">nbformat</span>
+<span class="kn">from</span> <span class="nn">nbformat</span> <span class="k">import</span> <span class="n">writes</span>
 
-<span class="kn">from</span> <span class="nn">nbless</span> <span class="k">import</span> <span class="n">nbuild</span>
+<span class="kn">from</span> <span class="nn">nbless</span> <span class="k">import</span> <span class="n">nbuild</span><span class="p">,</span> <span class="n">nbless</span>
 
 
-<div class="viewcode-block" id="make_tempfiles"><a class="viewcode-back" href="../../tests.html#tests.make_temp.make_tempfiles">[docs]</a><span class="k">def</span> <span class="nf">make_tempfiles</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<div class="viewcode-block" id="make_files"><a class="viewcode-back" href="../../tests.html#tests.make_temp.make_files">[docs]</a><span class="k">def</span> <span class="nf">make_files</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
     <span class="sd">&quot;&quot;&quot;Helper function to create a list of pathlib Path objects.&quot;&quot;&quot;</span>
     <span class="n">md</span> <span class="o">=</span> <span class="n">tmp_path</span> <span class="o">/</span> <span class="s2">&quot;intro.md&quot;</span>
     <span class="n">py</span> <span class="o">=</span> <span class="n">tmp_path</span> <span class="o">/</span> <span class="s2">&quot;plot.py&quot;</span>
@@ -115,10 +115,17 @@
     <span class="k">return</span> <span class="p">[</span><span class="n">md</span><span class="o">.</span><span class="n">as_posix</span><span class="p">(),</span> <span class="n">py</span><span class="o">.</span><span class="n">as_posix</span><span class="p">(),</span> <span class="n">txt</span><span class="o">.</span><span class="n">as_posix</span><span class="p">()]</span></div>
 
 
-<div class="viewcode-block" id="make_temp_notebook"><a class="viewcode-back" href="../../tests.html#tests.make_temp.make_temp_notebook">[docs]</a><span class="k">def</span> <span class="nf">make_temp_notebook</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<div class="viewcode-block" id="make_notebook"><a class="viewcode-back" href="../../tests.html#tests.make_temp.make_notebook">[docs]</a><span class="k">def</span> <span class="nf">make_notebook</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Helper function to create a list of pathlib Path objects.&quot;&quot;&quot;</span>
     <span class="n">nb</span> <span class="o">=</span> <span class="n">tmp_path</span> <span class="o">/</span> <span class="s2">&quot;notebook.ipynb&quot;</span>
-    <span class="n">nb</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">nbformat</span><span class="o">.</span><span class="n">writes</span><span class="p">(</span><span class="n">nbuild</span><span class="p">(</span><span class="n">make_tempfiles</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">))))</span>
+    <span class="n">nb</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">writes</span><span class="p">(</span><span class="n">nbuild</span><span class="p">(</span><span class="n">make_files</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">))))</span>
+    <span class="k">return</span> <span class="n">nb</span><span class="o">.</span><span class="n">as_posix</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="exec_notebook"><a class="viewcode-back" href="../../tests.html#tests.make_temp.exec_notebook">[docs]</a><span class="k">def</span> <span class="nf">exec_notebook</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Helper function to create a list of pathlib Path objects.&quot;&quot;&quot;</span>
+    <span class="n">nb</span> <span class="o">=</span> <span class="n">tmp_path</span> <span class="o">/</span> <span class="s2">&quot;notebook.ipynb&quot;</span>
+    <span class="n">nb</span><span class="o">.</span><span class="n">write_text</span><span class="p">(</span><span class="n">writes</span><span class="p">(</span><span class="n">nbless</span><span class="p">(</span><span class="n">make_files</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">),</span> <span class="n">kernel</span><span class="o">=</span><span class="s2">&quot;python3&quot;</span><span class="p">)))</span>
     <span class="k">return</span> <span class="n">nb</span><span class="o">.</span><span class="n">as_posix</span><span class="p">()</span></div>
 </pre></div>
 

@@ -14,6 +14,7 @@
     <script type="text/javascript" src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="R and Python interoperability" href="interop.html" />
     <link rel="prev" title="tests" href="test_modules.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -61,6 +62,9 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="interop.html">R and Python interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dep.html">Missing dependencies?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="many-file.html">Too many files to type out?</a></li>
 </ul>
 
 <div class="relations">
@@ -69,6 +73,7 @@
   <li><a href="index.html">Documentation overview</a><ul>
   <li><a href="test_modules.html">tests</a><ul>
       <li>Previous: <a href="test_modules.html" title="previous chapter">tests</a></li>
+      <li>Next: <a href="interop.html" title="next chapter">R and Python interoperability</a></li>
   </ul></li>
   </ul></li>
 </ul>
@@ -107,14 +112,20 @@
 <div class="section" id="module-tests.make_temp">
 <span id="tests-make-temp-module"></span><h2>tests.make_temp module<a class="headerlink" href="#module-tests.make_temp" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
-<dt id="tests.make_temp.make_temp_notebook">
-<code class="sig-prename descclassname">tests.make_temp.</code><code class="sig-name descname">make_temp_notebook</code><span class="sig-paren">(</span><em class="sig-param">tmp_path: pathlib.Path</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/tests/make_temp.html#make_temp_notebook"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.make_temp.make_temp_notebook" title="Permalink to this definition">¶</a></dt>
+<dt id="tests.make_temp.exec_notebook">
+<code class="sig-prename descclassname">tests.make_temp.</code><code class="sig-name descname">exec_notebook</code><span class="sig-paren">(</span><em class="sig-param">tmp_path: pathlib.Path</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/tests/make_temp.html#exec_notebook"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.make_temp.exec_notebook" title="Permalink to this definition">¶</a></dt>
 <dd><p>Helper function to create a list of pathlib Path objects.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="tests.make_temp.make_tempfiles">
-<code class="sig-prename descclassname">tests.make_temp.</code><code class="sig-name descname">make_tempfiles</code><span class="sig-paren">(</span><em class="sig-param">tmp_path: pathlib.Path</em><span class="sig-paren">)</span> &#x2192; List[str]<a class="reference internal" href="_modules/tests/make_temp.html#make_tempfiles"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.make_temp.make_tempfiles" title="Permalink to this definition">¶</a></dt>
+<dt id="tests.make_temp.make_files">
+<code class="sig-prename descclassname">tests.make_temp.</code><code class="sig-name descname">make_files</code><span class="sig-paren">(</span><em class="sig-param">tmp_path: pathlib.Path</em><span class="sig-paren">)</span> &#x2192; List[str]<a class="reference internal" href="_modules/tests/make_temp.html#make_files"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.make_temp.make_files" title="Permalink to this definition">¶</a></dt>
+<dd><p>Helper function to create a list of pathlib Path objects.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tests.make_temp.make_notebook">
+<code class="sig-prename descclassname">tests.make_temp.</code><code class="sig-name descname">make_notebook</code><span class="sig-paren">(</span><em class="sig-param">tmp_path: pathlib.Path</em><span class="sig-paren">)</span> &#x2192; str<a class="reference internal" href="_modules/tests/make_temp.html#make_notebook"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.make_temp.make_notebook" title="Permalink to this definition">¶</a></dt>
 <dd><p>Helper function to create a list of pathlib Path objects.</p>
 </dd></dl>
 
@@ -140,6 +151,12 @@
 </dd></dl>
 
 <dl class="function">
+<dt id="tests.test_cli.test_nbexec_cli_out">
+<code class="sig-prename descclassname">tests.test_cli.</code><code class="sig-name descname">test_nbexec_cli_out</code><span class="sig-paren">(</span><em class="sig-param">tmp_path: pathlib.Path</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/tests/test_cli.html#test_nbexec_cli_out"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_cli.test_nbexec_cli_out" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run nbexec() to execute a temporary notebook file.</p>
+</dd></dl>
+
+<dl class="function">
 <dt id="tests.test_cli.test_nbless_cli">
 <code class="sig-prename descclassname">tests.test_cli.</code><code class="sig-name descname">test_nbless_cli</code><span class="sig-paren">(</span><em class="sig-param">tmp_path: pathlib.Path</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/tests/test_cli.html#test_nbless_cli"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_cli.test_nbless_cli" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -159,10 +176,21 @@
 <div class="section" id="module-tests.test_nbless">
 <span id="tests-test-nbless-module"></span><h2>tests.test_nbless module<a class="headerlink" href="#module-tests.test_nbless" title="Permalink to this headline">¶</a></h2>
 <dl class="function">
+<dt id="tests.test_nbless.test_language_info">
+<code class="sig-prename descclassname">tests.test_nbless.</code><code class="sig-name descname">test_language_info</code><span class="sig-paren">(</span><em class="sig-param">tmp_path: pathlib.Path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/test_nbless.html#test_language_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_nbless.test_language_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract code and markdown files from the cells of an input notebook.</p>
+</dd></dl>
+
+<dl class="function">
 <dt id="tests.test_nbless.test_nbconv">
 <code class="sig-prename descclassname">tests.test_nbless.</code><code class="sig-name descname">test_nbconv</code><span class="sig-paren">(</span><em class="sig-param">exporters</em>, <em class="sig-param">tmp_path: pathlib.Path</em><span class="sig-paren">)</span> &#x2192; None<a class="reference internal" href="_modules/tests/test_nbless.html#test_nbconv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_nbless.test_nbconv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert <code class="docutils literal notranslate"><span class="pre">tempfiles</span></code> with each exporter in <code class="docutils literal notranslate"><span class="pre">exporters</span></code>.</p>
 </dd></dl>
+
+<dl class="function">
+<dt id="tests.test_nbless.test_nbconv_file_contents">
+<code class="sig-prename descclassname">tests.test_nbless.</code><code class="sig-name descname">test_nbconv_file_contents</code><span class="sig-paren">(</span><em class="sig-param">tmp_path: pathlib.Path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/test_nbless.html#test_nbconv_file_contents"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_nbless.test_nbconv_file_contents" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="function">
 <dt id="tests.test_nbless.test_nbdeck">
