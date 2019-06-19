@@ -15,7 +15,7 @@ def nbexec_cli(in_file: str, kernel: str, out: str) -> None:
 
     :param in_file: The name of the input Jupyter notebook file.
     :param kernel: The programming language used to execute the notebook.
-    :param out_file: The name of the output Jupyter notebook file.
+    :param out: The name of the output Jupyter notebook file.
     """
     nb = nbexec(in_file, kernel) if kernel else nbexec(in_file)
     if out:

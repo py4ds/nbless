@@ -37,11 +37,11 @@ endif
 
 test: env
 ifeq ($(ENV), pipenv)
-	pipenv install pytest-mypy
+	pipenv install pytest-mypy pytest-cov
 else
-	${PYTHON} -m pip install pytest-mypy
+	${PYTHON} -m pip install pytest-mypy pytest-cov
 endif
-	${PYTHON} -m pytest src tests
+	${PYTHON} -m pytest src tests --verbose --mypy --mypy-ignore-missing-imports --doctest-modules --cov-report term --cov=src/
 
 lint: env
 ifeq ($(ENV), pipenv)
