@@ -20,7 +20,7 @@ The ``nbless`` Python package consists of 6 Python functions and shell commands:
 - nbexec_, which runs a notebook from top to bottom and saves an executed version.
 - nbless_, which calls ``nbuild`` and ``nbexec`` to create and execute a notebook.
 - nbraze_, which extracts code and markdown files from a notebook.
-- nbuild_, which creates a notebook from source files, e.g. Python (`.py`) and R (`.R`) scripts, markdown (``.md``), and text (``.txt``) files.
+- nbuild_, which creates a notebook from source files, e.g. Python (``.py``) and R (``.R``) scripts, markdown (``.md``), and text (``.txt``) files.
 
 For a related package that provides programmatic tools for working with `R Markdown <https://rmarkdown.rstudio.com/authoring_quick_tour.html>`__ (Rmd) files,
 check out the `Rmdawn Python package <https://py4ds.github.io/rmdawn/>`__.
@@ -59,15 +59,15 @@ Exporting to PDF requires LaTeX.
 
 The supported exporters are
 
-    - asciidoc
-    - pdf
-    - html
-    - latex
-    - markdown
-    - python
-    - rst
-    - script
-    - slides
+    - ``asciidoc``
+    - ``pdf``
+    - ``html``
+    - ``latex``
+    - ``markdown``
+    - ``python``
+    - ``rst``
+    - ``script``
+    - ``slides``
 
 For example, ``nbconv`` can create a python script by extracting
 the content from code cells and discarding all output and markdown
