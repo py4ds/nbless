@@ -4,9 +4,9 @@ python:
 - 3.6
 - 3.7
 install:
-  - pip install -U pytest-cov pytest-mypy jupyter click matplotlib numpy codecov
+  - pip install -U pytest-mypy jupyter click matplotlib numpy
   - sudo apt-get install pandoc
-script: pytest --verbose --mypy --mypy-ignore-missing-imports --doctest-modules --cov-report term --cov=src/
+script: pytest --verbose --mypy --mypy-ignore-missing-imports --doctest-modules
 deploy:
   provider: pypi
   distributions: sdist bdist_wheel
