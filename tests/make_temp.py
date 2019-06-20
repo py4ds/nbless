@@ -1,12 +1,12 @@
 from pathlib import Path
-from typing import Tuple
+from typing import List
 
 from nbformat import writes
 
 from nbless import nbuild, nbless
 
 
-def make_files(tmp_path: Path) -> Tuple[str, str, str]:
+def make_files(tmp_path: Path) -> List[str]:
     """Helper function to create a list of pathlib Path objects."""
     md = tmp_path / "intro.md"
     py = tmp_path / "plot.py"
@@ -19,7 +19,7 @@ def make_files(tmp_path: Path) -> Tuple[str, str, str]:
         "plt.scatter(x, y, s=area, c=colors, alpha=0.5)\nplt.show()"
     )
     txt.write_text("# Discussion\nMatplotlib is verbose, but makes cool plots!")
-    return md.as_posix(), py.as_posix(), txt.as_posix()
+    return [md.as_posix(), py.as_posix(), txt.as_posix()]
 
 
 def make_notebook(tmp_path: Path) -> str:

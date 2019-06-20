@@ -8,13 +8,26 @@ from tests.make_temp import make_files, make_notebook
 
 
 def test_nbless_cli(tmp_path: Path) -> None:
-    """Run nbuild() to create and execute a notebook."""
+    """Run nbless to create and execute a notebook from temporary files."""
     runner = CliRunner()
     with runner.isolated_filesystem():
         files = make_files(tmp_path)
         result = runner.invoke(nbless_cli.nbless_cli, files)
         cells = nbformat.reads(result.output, as_version=4).cells
         assert result.exit_code == 0
+        assert [c.cell_type for c in cells] == ["markdown", "code", "markdown"]
+        for cell, tempfile in zip(cells, files):
+            assert cell.source == Path(tempfile).read_text()
+
+
+def test_nbless_cli_out(tmp_path: Path) -> None:
+    """Run nbless to create and execute a notebook with a custom filename."""
+    runner = CliRunner()
+    with runner.isolated_filesystem():
+        files = make_files(tmp_path)
+        args = files + ["-o", "blessed.ipynb"]
+        runner.invoke(nbless_cli.nbless_cli, args)
+        cells = nbformat.read("blessed.ipynb", as_version=4).cells
         assert [c.cell_type for c in cells] == ["markdown", "code", "markdown"]
         for cell, tempfile in zip(cells, files):
             assert cell.source == Path(tempfile).read_text()
@@ -33,8 +46,21 @@ def test_nbuild_cli(tmp_path: Path) -> None:
             assert cell.source == Path(tempfile).read_text()
 
 
+def test_nbuild_cli_out(tmp_path: Path) -> None:
+    """Run nbuild to create a notebook file with a custom filename."""
+    runner = CliRunner()
+    with runner.isolated_filesystem():
+        files = make_files(tmp_path)
+        args = files + ["-o", "built.ipynb"]
+        runner.invoke(nbuild_cli.nbuild_cli, args)
+        cells = nbformat.read("built.ipynb", as_version=4).cells
+        assert [c.cell_type for c in cells] == ["markdown", "code", "markdown"]
+        for cell, tempfile in zip(cells, files):
+            assert cell.source == Path(tempfile).read_text()
+
+
 def test_nbexec_cli(tmp_path: Path) -> None:
-    """Run nbexec() to execute a temporary notebook file."""
+    """Run nbexec to execute a temporary notebook file."""
     runner = CliRunner()
     with runner.isolated_filesystem():
         nb = make_notebook(tmp_path)
@@ -48,7 +74,7 @@ def test_nbexec_cli(tmp_path: Path) -> None:
 
 
 def test_nbexec_cli_out(tmp_path: Path) -> None:
-    """Run nbexec() to execute a temporary notebook with a custom filename."""
+    """Run nbexec to execute a temporary notebook with a custom filename."""
     runner = CliRunner()
     with runner.isolated_filesystem():
         nb = make_notebook(tmp_path)

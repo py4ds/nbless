@@ -5,10 +5,11 @@ import nbformat
 def nbdeck(in_file: str) -> nbformat.notebooknode.NotebookNode:
     """ Set up a Jupyter notebook to be viewed as or converted into slides.
 
-    Sets `slide_type` to ``slide`` for markdown cells that start with headers.
+    Sets ``slide_type`` to ``slide`` for markdown cells that start with headers.
     After running ``nbdeck``, you can
-    - view Jupyter notebooks on nbviewer or with the RISE extension
-    - create an HTML slideshow with ``nbconv`` or ``jupyter nbconvert``.
+
+        - view Jupyter notebooks on nbviewer or with the RISE extension
+        - create an HTML slideshow with ``nbconv`` or ``jupyter nbconvert``.
 
     :param in_file: The name of the input Jupyter notebook file.
     :return: An ``nbformat.NotebookNode`` object with edited slideshow metadata.
