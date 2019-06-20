@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>nbless.nbdeck &#8212; Nbless 0.2.35 documentation</title>
+    <title>nbless.nbdeck &#8212; Nbless 0.2.36 documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
@@ -98,10 +98,11 @@
 <div class="viewcode-block" id="nbdeck"><a class="viewcode-back" href="../../nbless.html#nbless.nbdeck">[docs]</a><span class="k">def</span> <span class="nf">nbdeck</span><span class="p">(</span><span class="n">in_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">nbformat</span><span class="o">.</span><span class="n">notebooknode</span><span class="o">.</span><span class="n">NotebookNode</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot; Set up a Jupyter notebook to be viewed as or converted into slides.</span>
 
-<span class="sd">    Sets `slide_type` to ``slide`` for markdown cells that start with headers.</span>
+<span class="sd">    Sets ``slide_type`` to ``slide`` for markdown cells that start with headers.</span>
 <span class="sd">    After running ``nbdeck``, you can</span>
-<span class="sd">    - view Jupyter notebooks on nbviewer or with the RISE extension</span>
-<span class="sd">    - create an HTML slideshow with ``nbconv`` or ``jupyter nbconvert``.</span>
+
+<span class="sd">        - view Jupyter notebooks on nbviewer or with the RISE extension</span>
+<span class="sd">        - create an HTML slideshow with ``nbconv`` or ``jupyter nbconvert``.</span>
 
 <span class="sd">    :param in_file: The name of the input Jupyter notebook file.</span>
 <span class="sd">    :return: An ``nbformat.NotebookNode`` object with edited slideshow metadata.</span>

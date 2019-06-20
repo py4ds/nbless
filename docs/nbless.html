@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>nbless package &#8212; Nbless 0.2.35 documentation</title>
+    <title>nbless package &#8212; Nbless 0.2.36 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -181,10 +181,14 @@ Exporting to pdf requires latex.</p>
 <dt id="nbless.nbdeck">
 <code class="sig-prename descclassname">nbless.</code><code class="sig-name descname">nbdeck</code><span class="sig-paren">(</span><em class="sig-param">in_file: str</em><span class="sig-paren">)</span> &#x2192; nbformat.notebooknode.NotebookNode<a class="reference internal" href="_modules/nbless/nbdeck.html#nbdeck"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nbless.nbdeck" title="Permalink to this definition">¶</a></dt>
 <dd><p>Set up a Jupyter notebook to be viewed as or converted into slides.</p>
-<p>Sets <cite>slide_type</cite> to <code class="docutils literal notranslate"><span class="pre">slide</span></code> for markdown cells that start with headers.
-After running <code class="docutils literal notranslate"><span class="pre">nbdeck</span></code>, you can
-- view Jupyter notebooks on nbviewer or with the RISE extension
-- create an HTML slideshow with <code class="docutils literal notranslate"><span class="pre">nbconv</span></code> or <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">nbconvert</span></code>.</p>
+<p>Sets <code class="docutils literal notranslate"><span class="pre">slide_type</span></code> to <code class="docutils literal notranslate"><span class="pre">slide</span></code> for markdown cells that start with headers.
+After running <code class="docutils literal notranslate"><span class="pre">nbdeck</span></code>, you can</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>view Jupyter notebooks on nbviewer or with the RISE extension</p></li>
+<li><p>create an HTML slideshow with <code class="docutils literal notranslate"><span class="pre">nbconv</span></code> or <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">nbconvert</span></code>.</p></li>
+</ul>
+</div></blockquote>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>in_file</strong> – The name of the input Jupyter notebook file.</p>

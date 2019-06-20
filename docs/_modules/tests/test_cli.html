@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>tests.test_cli &#8212; Nbless 0.2.35 documentation</title>
+    <title>tests.test_cli &#8212; Nbless 0.2.36 documentation</title>
     <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
@@ -101,13 +101,26 @@
 
 
 <div class="viewcode-block" id="test_nbless_cli"><a class="viewcode-back" href="../../tests.html#tests.test_cli.test_nbless_cli">[docs]</a><span class="k">def</span> <span class="nf">test_nbless_cli</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Run nbuild() to create and execute a notebook.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Run nbless to create and execute a notebook from temporary files.&quot;&quot;&quot;</span>
     <span class="n">runner</span> <span class="o">=</span> <span class="n">CliRunner</span><span class="p">()</span>
     <span class="k">with</span> <span class="n">runner</span><span class="o">.</span><span class="n">isolated_filesystem</span><span class="p">():</span>
         <span class="n">files</span> <span class="o">=</span> <span class="n">make_files</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">)</span>
         <span class="n">result</span> <span class="o">=</span> <span class="n">runner</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">nbless_cli</span><span class="o">.</span><span class="n">nbless_cli</span><span class="p">,</span> <span class="n">files</span><span class="p">)</span>
         <span class="n">cells</span> <span class="o">=</span> <span class="n">nbformat</span><span class="o">.</span><span class="n">reads</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">output</span><span class="p">,</span> <span class="n">as_version</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">cells</span>
         <span class="k">assert</span> <span class="n">result</span><span class="o">.</span><span class="n">exit_code</span> <span class="o">==</span> <span class="mi">0</span>
+        <span class="k">assert</span> <span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">cell_type</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cells</span><span class="p">]</span> <span class="o">==</span> <span class="p">[</span><span class="s2">&quot;markdown&quot;</span><span class="p">,</span> <span class="s2">&quot;code&quot;</span><span class="p">,</span> <span class="s2">&quot;markdown&quot;</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">cell</span><span class="p">,</span> <span class="n">tempfile</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">cells</span><span class="p">,</span> <span class="n">files</span><span class="p">):</span>
+            <span class="k">assert</span> <span class="n">cell</span><span class="o">.</span><span class="n">source</span> <span class="o">==</span> <span class="n">Path</span><span class="p">(</span><span class="n">tempfile</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="test_nbless_cli_out"><a class="viewcode-back" href="../../tests.html#tests.test_cli.test_nbless_cli_out">[docs]</a><span class="k">def</span> <span class="nf">test_nbless_cli_out</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Run nbless to create and execute a notebook with a custom filename.&quot;&quot;&quot;</span>
+    <span class="n">runner</span> <span class="o">=</span> <span class="n">CliRunner</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">runner</span><span class="o">.</span><span class="n">isolated_filesystem</span><span class="p">():</span>
+        <span class="n">files</span> <span class="o">=</span> <span class="n">make_files</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">)</span>
+        <span class="n">args</span> <span class="o">=</span> <span class="n">files</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;-o&quot;</span><span class="p">,</span> <span class="s2">&quot;blessed.ipynb&quot;</span><span class="p">]</span>
+        <span class="n">runner</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">nbless_cli</span><span class="o">.</span><span class="n">nbless_cli</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+        <span class="n">cells</span> <span class="o">=</span> <span class="n">nbformat</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;blessed.ipynb&quot;</span><span class="p">,</span> <span class="n">as_version</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">cells</span>
         <span class="k">assert</span> <span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">cell_type</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cells</span><span class="p">]</span> <span class="o">==</span> <span class="p">[</span><span class="s2">&quot;markdown&quot;</span><span class="p">,</span> <span class="s2">&quot;code&quot;</span><span class="p">,</span> <span class="s2">&quot;markdown&quot;</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">cell</span><span class="p">,</span> <span class="n">tempfile</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">cells</span><span class="p">,</span> <span class="n">files</span><span class="p">):</span>
             <span class="k">assert</span> <span class="n">cell</span><span class="o">.</span><span class="n">source</span> <span class="o">==</span> <span class="n">Path</span><span class="p">(</span><span class="n">tempfile</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">()</span></div>
@@ -126,8 +139,21 @@
             <span class="k">assert</span> <span class="n">cell</span><span class="o">.</span><span class="n">source</span> <span class="o">==</span> <span class="n">Path</span><span class="p">(</span><span class="n">tempfile</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">()</span></div>
 
 
+<div class="viewcode-block" id="test_nbuild_cli_out"><a class="viewcode-back" href="../../tests.html#tests.test_cli.test_nbuild_cli_out">[docs]</a><span class="k">def</span> <span class="nf">test_nbuild_cli_out</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Run nbuild to create a notebook file with a custom filename.&quot;&quot;&quot;</span>
+    <span class="n">runner</span> <span class="o">=</span> <span class="n">CliRunner</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">runner</span><span class="o">.</span><span class="n">isolated_filesystem</span><span class="p">():</span>
+        <span class="n">files</span> <span class="o">=</span> <span class="n">make_files</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">)</span>
+        <span class="n">args</span> <span class="o">=</span> <span class="n">files</span> <span class="o">+</span> <span class="p">[</span><span class="s2">&quot;-o&quot;</span><span class="p">,</span> <span class="s2">&quot;built.ipynb&quot;</span><span class="p">]</span>
+        <span class="n">runner</span><span class="o">.</span><span class="n">invoke</span><span class="p">(</span><span class="n">nbuild_cli</span><span class="o">.</span><span class="n">nbuild_cli</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+        <span class="n">cells</span> <span class="o">=</span> <span class="n">nbformat</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;built.ipynb&quot;</span><span class="p">,</span> <span class="n">as_version</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">cells</span>
+        <span class="k">assert</span> <span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">cell_type</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cells</span><span class="p">]</span> <span class="o">==</span> <span class="p">[</span><span class="s2">&quot;markdown&quot;</span><span class="p">,</span> <span class="s2">&quot;code&quot;</span><span class="p">,</span> <span class="s2">&quot;markdown&quot;</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">cell</span><span class="p">,</span> <span class="n">tempfile</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">cells</span><span class="p">,</span> <span class="n">files</span><span class="p">):</span>
+            <span class="k">assert</span> <span class="n">cell</span><span class="o">.</span><span class="n">source</span> <span class="o">==</span> <span class="n">Path</span><span class="p">(</span><span class="n">tempfile</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">()</span></div>
+
+
 <div class="viewcode-block" id="test_nbexec_cli"><a class="viewcode-back" href="../../tests.html#tests.test_cli.test_nbexec_cli">[docs]</a><span class="k">def</span> <span class="nf">test_nbexec_cli</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Run nbexec() to execute a temporary notebook file.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Run nbexec to execute a temporary notebook file.&quot;&quot;&quot;</span>
     <span class="n">runner</span> <span class="o">=</span> <span class="n">CliRunner</span><span class="p">()</span>
     <span class="k">with</span> <span class="n">runner</span><span class="o">.</span><span class="n">isolated_filesystem</span><span class="p">():</span>
         <span class="n">nb</span> <span class="o">=</span> <span class="n">make_notebook</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">)</span>
@@ -141,7 +167,7 @@
 
 
 <div class="viewcode-block" id="test_nbexec_cli_out"><a class="viewcode-back" href="../../tests.html#tests.test_cli.test_nbexec_cli_out">[docs]</a><span class="k">def</span> <span class="nf">test_nbexec_cli_out</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Run nbexec() to execute a temporary notebook with a custom filename.&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Run nbexec to execute a temporary notebook with a custom filename.&quot;&quot;&quot;</span>
     <span class="n">runner</span> <span class="o">=</span> <span class="n">CliRunner</span><span class="p">()</span>
     <span class="k">with</span> <span class="n">runner</span><span class="o">.</span><span class="n">isolated_filesystem</span><span class="p">():</span>
         <span class="n">nb</span> <span class="o">=</span> <span class="n">make_notebook</span><span class="p">(</span><span class="n">tmp_path</span><span class="p">)</span>
