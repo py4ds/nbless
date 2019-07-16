@@ -23,8 +23,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  <div class="document">
-    
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="r-and-python-interoperability">
+<h1>R and Python interoperability<a class="headerlink" href="#r-and-python-interoperability" title="Permalink to this headline">¶</a></h1>
+<p>All of the Nbless functions and commands work for Python <em>and</em> R code, with the caveat
+that <code class="docutils literal notranslate"><span class="pre">nbexec</span></code> and <code class="docutils literal notranslate"><span class="pre">nbless</span></code> require the kernel argument to be set to
+<code class="docutils literal notranslate"><span class="pre">ir</span></code> if R code files (<code class="docutils literal notranslate"><span class="pre">.R</span></code>) are included.</p>
+<p>If you want to execute a Jupyter notebook that contains both R and
+Python code, you will have to put the R code in Python scripts (<code class="docutils literal notranslate"><span class="pre">.py</span></code>)
+and use the <a class="reference external" href="https://rpy2.readthedocs.io/">rpy2</a> Python library with the default kernel
+(<code class="docutils literal notranslate"><span class="pre">python3</span></code>).</p>
+<p>Code files extracted from code cells with <code class="docutils literal notranslate"><span class="pre">nbraze</span></code> must all have the same extension (e.g. <cite>.py</cite>).
+If the <code class="docutils literal notranslate"><span class="pre">language_info</span></code> key is defined in the Jupyter notebook metadata, <code class="docutils literal notranslate"><span class="pre">nbraze</span></code> will try to infer the programming language.</p>
+<p>You can also run the Nbless functions in an R environment using the
+<a class="reference external" href="https://rstudio.github.io/reticulate/">reticulate</a> R package.</p>
+<p>All Nbless functions and commands rely on the <a class="reference external" href="https://nbconvert.readthedocs.io/">nbconvert</a> and <a class="reference external" href="http://nbformat.readthedocs.io/">nbformat</a> modules that are included with the <code class="docutils literal notranslate"><span class="pre">jupyter</span></code> Python library.
+The command line interface relies on the <a class="reference external" href="https://click.palletsprojects.com/">click</a> Python library.</p>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <h1 class="logo"><a href="index.html">Nbless</a></h1>
@@ -86,36 +115,8 @@
 
         </div>
       </div>
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          
-
-          <div class="body" role="main">
-            
-  <div class="section" id="r-and-python-interoperability">
-<h1>R and Python interoperability<a class="headerlink" href="#r-and-python-interoperability" title="Permalink to this headline">¶</a></h1>
-<p>All of the Nbless functions and commands work for Python <em>and</em> R code, with the caveat
-that <code class="docutils literal notranslate"><span class="pre">nbexec</span></code> and <code class="docutils literal notranslate"><span class="pre">nbless</span></code> require the kernel argument to be set to
-<code class="docutils literal notranslate"><span class="pre">ir</span></code> if R code files (<code class="docutils literal notranslate"><span class="pre">.R</span></code>) are included.</p>
-<p>If you want to execute a Jupyter notebook that contains both R and
-Python code, you will have to put the R code in Python scripts (<code class="docutils literal notranslate"><span class="pre">.py</span></code>)
-and use the <a class="reference external" href="https://rpy2.readthedocs.io/">rpy2</a> Python library with the default kernel
-(<code class="docutils literal notranslate"><span class="pre">python3</span></code>).</p>
-<p>Code files extracted from code cells with <code class="docutils literal notranslate"><span class="pre">nbraze</span></code> must all have the same extension (e.g. <cite>.py</cite>).
-If the <code class="docutils literal notranslate"><span class="pre">language_info</span></code> key is defined in the Jupyter notebook metadata, <code class="docutils literal notranslate"><span class="pre">nbraze</span></code> will try to infer the programming language.</p>
-<p>You can also run the Nbless functions in an R environment using the
-<a class="reference external" href="https://rstudio.github.io/reticulate/">reticulate</a> R package.</p>
-<p>All Nbless functions and commands rely on the <a class="reference external" href="https://nbconvert.readthedocs.io/">nbconvert</a> and <a class="reference external" href="http://nbformat.readthedocs.io/">nbformat</a> modules that are included with the <code class="docutils literal notranslate"><span class="pre">jupyter</span></code> Python library.
-The command line interface relies on the <a class="reference external" href="https://click.palletsprojects.com/">click</a> Python library.</p>
-</div>
-
-
-          </div>
-          
-        </div>
-      </div>
-    <div class="clearer"></div>
-  </div>
+      <div class="clearer"></div>
+    </div>
     <div class="footer">
       &copy;2019, Martin Skarzynski.
       

@@ -22,8 +22,48 @@
   <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  <div class="document">
-    
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="too-many-file-names-to-type-out">
+<h1>Too many file names to type out?<a class="headerlink" href="#too-many-file-names-to-type-out" title="Permalink to this headline">¶</a></h1>
+<p>The easiest way to handle large numbers of files is to use the <code class="docutils literal notranslate"><span class="pre">*</span></code> wildcard in the shell.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>nbuild source_file* -o notebook.ipynb
+</pre></div>
+</div>
+<p>You can use the <code class="docutils literal notranslate"><span class="pre">ls</span></code> command to assign all of the relevant names in
+the current directory to a variable and pass this variable as an
+argument.</p>
+<p>Consider the example below:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>touch <span class="o">{</span><span class="m">01</span>..09<span class="o">}</span>.py
+<span class="nv">name_list</span><span class="o">=</span><span class="sb">`</span>ls <span class="m">0</span>*.py<span class="sb">`</span>
+nbuild <span class="sb">`</span><span class="nb">echo</span> <span class="nv">$name_list</span><span class="sb">`</span>
+</pre></div>
+</div>
+<p>In Python environments, <code class="docutils literal notranslate"><span class="pre">os.listdir</span></code> can provide a list of
+all files:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">listdir</span>
+<span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">isfile</span><span class="p">,</span> <span class="n">join</span>
+<span class="n">onlyfiles</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">listdir</span><span class="p">(</span><span class="n">mypath</span><span class="p">)</span> <span class="k">if</span> <span class="n">isfile</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">mypath</span><span class="p">,</span> <span class="n">f</span><span class="p">))]</span>
+</pre></div>
+</div>
+<p>To preserve the order and differentiate files that should be
+incorporated into the notebook, it may be helpful to left pad file names
+with zeros (e.g. <code class="docutils literal notranslate"><span class="pre">01\_intro.md</span></code>, <code class="docutils literal notranslate"><span class="pre">02\_figure1.R</span></code>).
+This works well for R scripts, but Python files that start with numbers cannot be imported.</p>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
 <h1 class="logo"><a href="index.html">Nbless</a></h1>
@@ -84,47 +124,8 @@
 
         </div>
       </div>
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          
-
-          <div class="body" role="main">
-            
-  <div class="section" id="too-many-file-names-to-type-out">
-<h1>Too many file names to type out?<a class="headerlink" href="#too-many-file-names-to-type-out" title="Permalink to this headline">¶</a></h1>
-<p>The easiest way to handle large numbers of files is to use the <code class="docutils literal notranslate"><span class="pre">*</span></code> wildcard in the shell.</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>nbuild source_file* -o notebook.ipynb
-</pre></div>
-</div>
-<p>You can use the <code class="docutils literal notranslate"><span class="pre">ls</span></code> command to assign all of the relevant names in
-the current directory to a variable and pass this variable as an
-argument.</p>
-<p>Consider the example below:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>touch <span class="o">{</span><span class="m">01</span>..09<span class="o">}</span>.py
-<span class="nv">name_list</span><span class="o">=</span><span class="sb">`</span>ls <span class="m">0</span>*.py<span class="sb">`</span>
-nbuild <span class="sb">`</span><span class="nb">echo</span> <span class="nv">$name_list</span><span class="sb">`</span>
-</pre></div>
-</div>
-<p>In Python environments, <code class="docutils literal notranslate"><span class="pre">os.listdir</span></code> can provide a list of
-all files:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">os</span> <span class="kn">import</span> <span class="n">listdir</span>
-<span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">isfile</span><span class="p">,</span> <span class="n">join</span>
-<span class="n">onlyfiles</span> <span class="o">=</span> <span class="p">[</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">listdir</span><span class="p">(</span><span class="n">mypath</span><span class="p">)</span> <span class="k">if</span> <span class="n">isfile</span><span class="p">(</span><span class="n">join</span><span class="p">(</span><span class="n">mypath</span><span class="p">,</span> <span class="n">f</span><span class="p">))]</span>
-</pre></div>
-</div>
-<p>To preserve the order and differentiate files that should be
-incorporated into the notebook, it may be helpful to left pad file names
-with zeros (e.g. <code class="docutils literal notranslate"><span class="pre">01\_intro.md</span></code>, <code class="docutils literal notranslate"><span class="pre">02\_figure1.R</span></code>).
-This works well for R scripts, but Python files that start with numbers cannot be imported.</p>
-</div>
-
-
-          </div>
-          
-        </div>
-      </div>
-    <div class="clearer"></div>
-  </div>
+      <div class="clearer"></div>
+    </div>
     <div class="footer">
       &copy;2019, Martin Skarzynski.
       
