@@ -343,6 +343,15 @@ Related projects
 - `jupytext <https://github.com/mwouts/jupytext>`__
 - `notedown <https://github.com/aaren/notedown>`__
 
+The packages listed above can all convert Jupyter notebooks to other formats:
+
+- markdown files (all three) or
+- Python scripts (``jupytext``).
+
+Nbless wraps `jupyter nbconvert <https://nbconvert.readthedocs.io>`__ to convert notebooks to other file types, but it can do something all of the aforementioned packages cannot.
+Nbless can take a more modular approach to file conversion by extracting the contents of each notebook cell into a separate file (cell -> file) or using a source file to create each notebook cell (file -> cell).
+Looking beyond simple file conversion, Nbless includes a tool for making slides from notebooks (by setting ``slide_type`` in notebook metadata).
+
 Next Steps
 ----------
 
