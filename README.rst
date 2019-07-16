@@ -80,9 +80,8 @@ content.
     nbconv notebook.ipynb -e python
 
 
-In the example above, the output file would be ``notebook.py``, but you can
-provide a more descriptive name for the output file with the ``--out_file`` or
-``-o`` flag:
+In the example above, the notebook would be printed to the screen (``stdout``), but you can
+create or overwrite a notebook files with the ``--out_file`` or ``-o`` flag:
 
 .. code:: sh
 
@@ -167,15 +166,14 @@ Executing a notebook with ``nbexec``
 
 The ``nbexec`` command runs the input notebook from top to bottom.
 If an ``out_file`` name is not provided, the executed notebook contents will be
-printed.
+printed to the screen (``stdout``). This can be useful for previewing the output.
 
 .. code:: sh
 
     nbexec notebook.ipynb
 
-You can provide a more descriptive name for the executed output notebook with
-the ``--out_file`` or ``-o`` flag or by redirecting the output to a file with
-``>``.
+You can create or overwrite a notebook file with the ``--out_file`` or ``-o`` flag
+or by redirecting the output to a file with ``>``.
 
 .. code:: sh
 
@@ -186,20 +184,14 @@ the ``--out_file`` or ``-o`` flag or by redirecting the output to a file with
     nbexec notebook.ipynb > executed.ipynb
 
 The default kernel is ``python3``, but it is possible to specify the kernel
-that will be used to run notebook with the ``--kernel`` or ``-k`` flag.
+that will be used to run notebook with the ``--kernel`` or ``-k`` flag
+as in the example with the `IRkernel <https://irkernel.github.io>`__ below.
 
 .. code:: sh
 
     nbexec notebook.ipynb --kernel ir --out_file notebook.ipynb
     # Or
     nbexec notebook.ipynb -k ir -o notebook.ipynb
-
-You can preview the default output filename and the raw notebook output by
-running ``nbexec`` with only the positional argument:
-
-.. code:: sh
-
-    nbexec notebook.ipynb
 
 Unlike the shell command,
 the ``nbexec`` Python function does not create a file on its own.

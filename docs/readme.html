@@ -101,9 +101,8 @@ content.</p>
 nbconv notebook.ipynb -e python
 </pre></div>
 </div>
-<p>In the example above, the output file would be <code class="docutils literal notranslate"><span class="pre">notebook.py</span></code>, but you can
-provide a more descriptive name for the output file with the <code class="docutils literal notranslate"><span class="pre">--out_file</span></code> or
-<code class="docutils literal notranslate"><span class="pre">-o</span></code> flag:</p>
+<p>In the example above, the notebook would be printed to the screen (<code class="docutils literal notranslate"><span class="pre">stdout</span></code>), but you can
+create or overwrite a notebook files with the <code class="docutils literal notranslate"><span class="pre">--out_file</span></code> or <code class="docutils literal notranslate"><span class="pre">-o</span></code> flag:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>nbconv notebook.ipynb --out_file script.py
 <span class="c1"># Or</span>
 nbconv notebook.ipynb -o script.py
@@ -171,13 +170,12 @@ To create a converted file, use the <code class="docutils literal notranslate"><
 <span id="nbexec"></span><h3>Executing a notebook with <code class="docutils literal notranslate"><span class="pre">nbexec</span></code><a class="headerlink" href="#executing-a-notebook-with-nbexec" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">nbexec</span></code> command runs the input notebook from top to bottom.
 If an <code class="docutils literal notranslate"><span class="pre">out_file</span></code> name is not provided, the executed notebook contents will be
-printed.</p>
+printed to the screen (<code class="docutils literal notranslate"><span class="pre">stdout</span></code>). This can be useful for previewing the output.</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>nbexec notebook.ipynb
 </pre></div>
 </div>
-<p>You can provide a more descriptive name for the executed output notebook with
-the <code class="docutils literal notranslate"><span class="pre">--out_file</span></code> or <code class="docutils literal notranslate"><span class="pre">-o</span></code> flag or by redirecting the output to a file with
-<code class="docutils literal notranslate"><span class="pre">&gt;</span></code>.</p>
+<p>You can create or overwrite a notebook file with the <code class="docutils literal notranslate"><span class="pre">--out_file</span></code> or <code class="docutils literal notranslate"><span class="pre">-o</span></code> flag
+or by redirecting the output to a file with <code class="docutils literal notranslate"><span class="pre">&gt;</span></code>.</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>nbexec notebook.ipynb --out_file executed.ipynb
 <span class="c1"># Or</span>
 nbexec notebook.ipynb -o executed.ipynb
@@ -186,15 +184,11 @@ nbexec notebook.ipynb &gt; executed.ipynb
 </pre></div>
 </div>
 <p>The default kernel is <code class="docutils literal notranslate"><span class="pre">python3</span></code>, but it is possible to specify the kernel
-that will be used to run notebook with the <code class="docutils literal notranslate"><span class="pre">--kernel</span></code> or <code class="docutils literal notranslate"><span class="pre">-k</span></code> flag.</p>
+that will be used to run notebook with the <code class="docutils literal notranslate"><span class="pre">--kernel</span></code> or <code class="docutils literal notranslate"><span class="pre">-k</span></code> flag
+as in the example with the <a class="reference external" href="https://irkernel.github.io">IRkernel</a> below.</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>nbexec notebook.ipynb --kernel ir --out_file notebook.ipynb
 <span class="c1"># Or</span>
 nbexec notebook.ipynb -k ir -o notebook.ipynb
-</pre></div>
-</div>
-<p>You can preview the default output filename and the raw notebook output by
-running <code class="docutils literal notranslate"><span class="pre">nbexec</span></code> with only the positional argument:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>nbexec notebook.ipynb
 </pre></div>
 </div>
 <p>Unlike the shell command,
@@ -310,6 +304,14 @@ To create a notebook file, use the <code class="docutils literal notranslate"><s
 <li><p><a class="reference external" href="https://github.com/mwouts/jupytext">jupytext</a></p></li>
 <li><p><a class="reference external" href="https://github.com/aaren/notedown">notedown</a></p></li>
 </ul>
+<p>The packages listed above can all convert Jupyter notebooks to other formats:</p>
+<ul class="simple">
+<li><p>markdown files (all three) or</p></li>
+<li><p>Python scripts (<code class="docutils literal notranslate"><span class="pre">jupytext</span></code>).</p></li>
+</ul>
+<p>Nbless wraps <a class="reference external" href="https://nbconvert.readthedocs.io">jupyter nbconvert</a> to convert notebooks to other file types, but it can do something all of the aforementioned packages cannot.
+Nbless can take a more modular approach to file conversion by extracting the contents of each notebook cell into a separate file (cell -&gt; file) or using a source file to create each notebook cell (file -&gt; cell).
+Looking beyond simple file conversion, Nbless includes a tool for making slides from notebooks (by setting <code class="docutils literal notranslate"><span class="pre">slide_type</span></code> in notebook metadata).</p>
 </div>
 <div class="section" id="next-steps">
 <h2>Next Steps<a class="headerlink" href="#next-steps" title="Permalink to this headline">¶</a></h2>
