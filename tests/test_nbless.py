@@ -77,7 +77,7 @@ def test_nbconv_file_contents(tmp_path: Path):
 def test_nbraze(tmp_path: Path):
     """Extract code and markdown files from the cells of an input notebook."""
     fdict = nbraze(make_notebook(tmp_path))
-    assert [Path(f).suffix for f in fdict] == [".md", ".py", ".md"]
+    assert [Path(f).suffix for f in fdict] == [".md", ".py", ".md", '.json']
     assert fdict["notebook_cell0.md"].startswith("# Background\nMatplotlib")
     assert fdict["notebook_cell1.py"].startswith("import numpy as np\n")
     assert fdict["notebook_cell2.md"].startswith("# Discussion\nMatplotlib")
