@@ -89,7 +89,7 @@ def test_language_info(tmp_path: Path):
     nbnode = nbformat.read(nb, as_version=4)
     assert nbnode.metadata.language_info.name == "python"
     fdict = nbraze(nb)
-    assert [Path(f).suffix for f in fdict] == [".md", ".py", ".md"]
+    assert [Path(f).suffix for f in fdict] == [".md", ".py", ".md", ".json"]
     assert fdict["notebook_cell0.md"].startswith("# Background\nMatplotlib")
     assert fdict["notebook_cell1.py"].startswith("import numpy as np\n")
     assert fdict["notebook_cell2.md"].startswith("# Discussion\nMatplotlib")
