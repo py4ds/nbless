@@ -27,11 +27,11 @@ def nbraze(in_file: str, extension: str = "") -> Dict[str, str]:
             extension = lang_ext_dict[nb.metadata.language_info.name]
     if not extension and "language_info" not in nb.metadata:
         extension = "py"
-    filenames = (
+    filenames = [
         f"{Path(in_file).stem}_cell{n}.md"
         if cell.cell_type == "markdown"
         else f"{Path(in_file).stem}_cell{n}.{extension}"
         for n, cell in enumerate(nb.cells)
-    )
-    sources = (cell.source for cell in nb.cells)
+        ] + [f"{Path(in_file).stem}_metadata.json"]
+    sources = [cell.source for cell in nb.cells] + [nb.metadata]
     return dict(zip(filenames, sources))
