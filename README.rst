@@ -1,7 +1,7 @@
 Nbless: a Python package for programmatic Jupyter notebook workflows
 ====================================================================
 
-|Build| |Chat| |Coverage| |License| |PyPI| |Python versions| |PyUp| |Repo status|
+|pyOpenSci| |Build| |Chat| |Coverage| |License| |PyPI| |Python versions| |PyUp| |Repo status|
 
 Introduction
 ------------
@@ -80,9 +80,8 @@ content.
     nbconv notebook.ipynb -e python
 
 
-In the example above, the output file would be ``notebook.py``, but you can
-provide a more descriptive name for the output file with the ``--out_file`` or
-``-o`` flag:
+In the example above, the notebook would be printed to the screen (``stdout``), but you can
+create or overwrite a notebook files with the ``--out_file`` or ``-o`` flag:
 
 .. code:: sh
 
@@ -167,15 +166,14 @@ Executing a notebook with ``nbexec``
 
 The ``nbexec`` command runs the input notebook from top to bottom.
 If an ``out_file`` name is not provided, the executed notebook contents will be
-printed.
+printed to the screen (``stdout``). This can be useful for previewing the output.
 
 .. code:: sh
 
     nbexec notebook.ipynb
 
-You can provide a more descriptive name for the executed output notebook with
-the ``--out_file`` or ``-o`` flag or by redirecting the output to a file with
-``>``.
+You can create or overwrite a notebook file with the ``--out_file`` or ``-o`` flag
+or by redirecting the output to a file with ``>``.
 
 .. code:: sh
 
@@ -186,20 +184,14 @@ the ``--out_file`` or ``-o`` flag or by redirecting the output to a file with
     nbexec notebook.ipynb > executed.ipynb
 
 The default kernel is ``python3``, but it is possible to specify the kernel
-that will be used to run notebook with the ``--kernel`` or ``-k`` flag.
+that will be used to run notebook with the ``--kernel`` or ``-k`` flag
+as in the example with the `IRkernel <https://irkernel.github.io>`__ below.
 
 .. code:: sh
 
     nbexec notebook.ipynb --kernel ir --out_file notebook.ipynb
     # Or
     nbexec notebook.ipynb -k ir -o notebook.ipynb
-
-You can preview the default output filename and the raw notebook output by
-running ``nbexec`` with only the positional argument:
-
-.. code:: sh
-
-    nbexec notebook.ipynb
 
 Unlike the shell command,
 the ``nbexec`` Python function does not create a file on its own.
@@ -343,6 +335,15 @@ Related projects
 - `jupytext <https://github.com/mwouts/jupytext>`__
 - `notedown <https://github.com/aaren/notedown>`__
 
+The packages listed above can all convert Jupyter notebooks to other formats:
+
+- markdown files (all three) or
+- Python scripts (``jupytext``).
+
+Nbless wraps `jupyter nbconvert <https://nbconvert.readthedocs.io>`__ to convert notebooks to other file types, but it can do something all of the aforementioned packages cannot.
+Nbless can take a more modular approach to file conversion by extracting the contents of each notebook cell into a separate file (cell -> file) or using a source file to create each notebook cell (file -> cell).
+Looking beyond simple file conversion, Nbless includes a tool for making slides from notebooks (by setting ``slide_type`` in notebook metadata).
+
 Next Steps
 ----------
 
@@ -351,6 +352,8 @@ Currently, notebook metadata is lost when using ``nbraze``/``nbuild``/``nbless``
 - Enable ``nbuild``/``nbless`` to accept metadata via a ``metadata.json`` file.
 - Enable ``nbraze`` to output metadata via a ``metadata.json`` file.
 
+.. |pyOpenSci| image:: https://img.shields.io/:PyOpenSci-Peer%20Reviewed-success.svg?logo=data:image/svg%2Bxml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8%2BPHN2ZyAgIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIgICB4bWxuczpjYz0iaHR0cDovL2NyZWF0aXZlY29tbW9ucy5vcmcvbnMjIiAgIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyIgICB4bWxuczpzdmc9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiAgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgICB4bWxuczpzb2RpcG9kaT0iaHR0cDovL3NvZGlwb2RpLnNvdXJjZWZvcmdlLm5ldC9EVEQvc29kaXBvZGktMC5kdGQiICAgeG1sbnM6aW5rc2NhcGU9Imh0dHA6Ly93d3cuaW5rc2NhcGUub3JnL25hbWVzcGFjZXMvaW5rc2NhcGUiICAgdmVyc2lvbj0iMS4xIiAgIGlkPSJMYXllcl8xIiAgIHg9IjBweCIgICB5PSIwcHgiICAgdmlld0JveD0iMjcuMTkyOTgyMTk2ODA3ODYgMTAuMTk3MzY4NjIxODI2MTcyIDIwMy45NDczNTI4ODYxOTk5NSAyMTIuMTE2NjY4NzAxMTcxODgiICAgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNzc1IDI3Ni43OyIgICBpbmtzY2FwZTp2ZXJzaW9uPSIwLjkxIHIxMzcyNSIgICBzb2RpcG9kaTpkb2NuYW1lPSJQeU9wZW5TY2kuc3ZnIj4gIDxtZXRhZGF0YSAgICAgaWQ9Im1ldGFkYXRhMTciPiAgICA8cmRmOlJERj4gICAgICA8Y2M6V29yayAgICAgICAgIHJkZjphYm91dD0iIj4gICAgICAgIDxkYzpmb3JtYXQ%2BaW1hZ2Uvc3ZnK3htbDwvZGM6Zm9ybWF0PiAgICAgICAgPGRjOnR5cGUgICAgICAgICAgIHJkZjpyZXNvdXJjZT0iaHR0cDovL3B1cmwub3JnL2RjL2RjbWl0eXBlL1N0aWxsSW1hZ2UiIC8%2BICAgICAgPC9jYzpXb3JrPiAgICA8L3JkZjpSREY%2BICA8L21ldGFkYXRhPiAgPGRlZnMgICAgIGlkPSJkZWZzMTUiIC8%2BICA8c29kaXBvZGk6bmFtZWR2aWV3ICAgICBwYWdlY29sb3I9IiNmZmZmZmYiICAgICBib3JkZXJjb2xvcj0iIzY2NjY2NiIgICAgIGJvcmRlcm9wYWNpdHk9IjEiICAgICBvYmplY3R0b2xlcmFuY2U9IjEwIiAgICAgZ3JpZHRvbGVyYW5jZT0iMTAiICAgICBndWlkZXRvbGVyYW5jZT0iMTAiICAgICBpbmtzY2FwZTpwYWdlb3BhY2l0eT0iMCIgICAgIGlua3NjYXBlOnBhZ2VzaGFkb3c9IjIiICAgICBpbmtzY2FwZTp3aW5kb3ctd2lkdGg9IjM4NDAiICAgICBpbmtzY2FwZTp3aW5kb3ctaGVpZ2h0PSIyMDMxIiAgICAgaWQ9Im5hbWVkdmlldzEzIiAgICAgc2hvd2dyaWQ9ImZhbHNlIiAgICAgaW5rc2NhcGU6em9vbT0iNC40NTAzODEiICAgICBpbmtzY2FwZTpjeD0iLTMxLjQ0ODYzOSIgICAgIGlua3NjYXBlOmN5PSI5NS43MTYyNzEiICAgICBpbmtzY2FwZTp3aW5kb3cteD0iMCIgICAgIGlua3NjYXBlOndpbmRvdy15PSI1NSIgICAgIGlua3NjYXBlOndpbmRvdy1tYXhpbWl6ZWQ9IjEiICAgICBpbmtzY2FwZTpjdXJyZW50LWxheWVyPSJMYXllcl8xIiAvPiAgPHN0eWxlICAgICB0eXBlPSJ0ZXh0L2NzcyIgICAgIGlkPSJzdHlsZTMiPi5zdDB7ZmlsbDojMUExQTFBO308L3N0eWxlPiAgPHBhdGggICAgIGNsYXNzPSJzdDAiICAgICBkPSJtIDE3MS44NzkwOSwxMDYuMzY1NyAwLC04LjkwMDAwNCAtMjEuMywxOS41MDAwMDQgMjEuMywyMC40IDAsLTguOSBjIDIwLjMsMCAzMi40MDAwMSwxNy42IDMyLjQwMDAxLDM1LjUgMCwxNy45IC0xMi41LDM2LjEgLTMyLjQwMDAxLDM2LjEgLTIxLjU5OTk5LDAgLTMyLjM5OTk5LC0xOC4yIC0zMi4zOTk5OSwtMzYuMSBsIC0yNS4yMDAwMSwwIGMgMCwzMS44IDI1LjgsNTcuNiA1Ny42LDU3LjYgMzEuOCwwIDU3LjYwMDAxLC0yNS44IDU3LjYwMDAxLC01Ny42IDAuMSwtMzEuOSAtMjUuNywtNTcuNiAtNTcuNjAwMDEsLTU3LjYgeiIgICAgIHN0eWxlPSJmaWxsOiNlNmU2ZTYiICAgICBpZD0icGF0aDExIiAgICAgaW5rc2NhcGU6Y29ubmVjdG9yLWN1cnZhdHVyZT0iMCIgLz4gIDx0ZXh0ICAgICBzb2RpcG9kaTpsaW5lc3BhY2luZz0iMTAwJSIgICAgIGlkPSJ0ZXh0MzQxOCIgICAgIHk9IjExMi4xODExNyIgICAgIHg9IjIwLjA1NDk0OSIgICAgIHN0eWxlPSJmb250LXN0eWxlOm5vcm1hbDtmb250LXZhcmlhbnQ6bm9ybWFsO2ZvbnQtd2VpZ2h0OjUwMDtmb250LXN0cmV0Y2g6bm9ybWFsO2ZvbnQtc2l6ZToxNDAuNTcwNjkzOTdweDtsaW5lLWhlaWdodDoxMDAlO2ZvbnQtZmFtaWx5OkN1cnNvcjstaW5rc2NhcGUtZm9udC1zcGVjaWZpY2F0aW9uOidDdXJzb3IsIE1lZGl1bSc7dGV4dC1hbGlnbjpzdGFydDtsZXR0ZXItc3BhY2luZzowcHg7d29yZC1zcGFjaW5nOjBweDt3cml0aW5nLW1vZGU6bHItdGI7dGV4dC1hbmNob3I6c3RhcnQ7ZmlsbDojZTZlNmU2O2ZpbGwtb3BhY2l0eToxO3N0cm9rZTpub25lO3N0cm9rZS13aWR0aDoxcHg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXI7c3Ryb2tlLW9wYWNpdHk6MSIgICAgIHhtbDpzcGFjZT0icHJlc2VydmUiPjx0c3BhbiAgICAgICBzb2RpcG9kaTpyb2xlPSJsaW5lIiAgICAgICBpZD0idHNwYW4zMzM4IiAgICAgICB4PSIyMC4wNTQ5NDkiICAgICAgIHk9IjExMi4xODExNyI%2BUHk8L3RzcGFuPjwvdGV4dD48L3N2Zz4=
+   :target: https://github.com/pyOpenSci/software-review/issues/7
 .. |Build| image:: https://travis-ci.org/py4ds/nbless.svg?branch=master
    :target: https://travis-ci.org/py4ds/nbless
 .. |Chat| image:: https://badges.gitter.im/py4ds/nbless.svg

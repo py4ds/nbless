@@ -88,7 +88,7 @@ pygments_style = None
 html_theme = 'alabaster'
 html_theme_options = {
     'description': 'A Python package for programmatic Jupyter notebook workflows',
-    'fixed_sidebar': 'true',
+    'fixed_sidebar': 'false',
     'page_width': '100%',
     'github_button': 'true',
     'github_banner': 'true',
