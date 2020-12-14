@@ -10,7 +10,7 @@ matplotlib==3.1.1
 numpy==1.16.4
 pypandoc==1.4
 bumpversion==0.5.3
-wheel==0.33.4
+wheel==0.36.2
 tox==3.13.2
 coverage==4.5.3
 Sphinx==2.1.2
